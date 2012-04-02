@@ -14,17 +14,92 @@ no relationship consideration of attributes and service cause possible reactive 
 \
 3) no consideration of consistency\
 \
-4) no prediction, thus how much resource we need to increase?\
+4) no prediction, thus how much resource we need to increase? Notice when add/remove resource we still consider the granularity of per application since it is really difficult to ensure such resource are used by certain services\
 \
-5) only focus driven on single attribute, such as resource and performance\
+\
+5) only focus driven on single/limited attribute, such as resource and performance\
 \
 6) not many to define on fine grained service, but rather see an application has a constant SLA
 \f1 \'81\'43
 \f0  thus not fine grained.\
 \
+7) most approach suffer look backward issue - based on past environmental condition to cnofig new interval, expecting the same violation does not occur. May consequently result in too many re-condifg over time. \
+\
+8) solutions for MOO may lack of consideration of distributed architecture while other solution suffer issue 7).\
+\
 Helpful techniques from literature:\
 use of  Exponentially Weighted Moving Average (EWMA)  therefore to avoid occasionally peak in a very short period of time.\
 \
-0596173, ec2price and CIT2009 could be helpful for question 5)\
+0596173, ccgrid, ec2price and CIT2009 could be helpful for question 4)\
 \
-AutonomicSLA-Cloud could be helpful to determine monitor interval}
+AutonomicSLA-Cloud could be helpful to determine monitor interval\
+\
+HPCS - IWCMC Vincent, Compsac 2010 I. Brandic and Emeakaroha_CloudComp2010 could be useful for overall architecture of self managing SLA\
+\
+HPCS - IWCMC Vincent can also benefits to transfer SLA parameter to monetary cost\
+\
+ccgrid could be useful to adapt a coefficient strategy for load balancing. This may be useful when considering which node to perform resizing\
+\
+Cloud11_Autoscaling provide good prediction model autoregressive moving average method (ARMA) can be used for predict workload. 6119065 also use queue theory to predict latency.\
+\
+iwcs, 6119065 can be used for multi-objective optimisation problem.\
+\
+service demand law may be helpful for determine resource used per service, this is mentioned in ICPE11_MAQPRO which also can be useful for MVA\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs30 \cf0 Potential theory involved (each subject to minor modifications):\
+\
+relations of attribute:
+\fs24 \
+CBR, prediction theory, Mean Value Analysis, queue theory
+\f1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs30 \cf0 Finding optimal config of services and attributes:
+\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs26 \cf0 Multi-objective optimization (popular)
+\f1 \'81\'43
+\f0  genetic algorithm
+\fs24 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs30 \cf0 Adaptive systems:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs24 \cf0 adaptive MAPE loop, MPC\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs30 \cf0 Managing SLA in cloud:
+\fs24 \
+Heuristics-base:\
+Market based theory, CBR, queue theory\
+\
+Control-theoretic:\
+control theory\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs28 \cf0 Current though:
+\fs24 \
+\
+1. (application of queuing theory to model consistency queue) can used a list of global workload time interval e.g. a day or a year for each service. Monitoring the waiting time and number of request based on another interval e.g. 5 sec. Then when SLA violation found with in workload time interval i,  if it is service A, get the expected waiting time to next request,  get the max number of requests of all other services that within the same consistency region, before a request for A that still not violate timeliness SLA 
+\f1 (MVA)
+\f0 , calculate the probability of that (using non-homogeneous poisson process) and also calculate the  probability of average waiting time of those services (exponential distribution). So we can have comparative weight of trade-off for services within the same region. The only overhead is the number of occurrence of waiting time and request for each service, and the monitoring interval for waiting time as it does not use non-homogeneous. (may be only use the number of occurrence (NoO), and get rid of probability only used the expected NoO via Litter's theorem)\
+\
+\
+2. trigger can be based on violation found, on a predictable-manner even when the SLA parameters are actively changed.}
