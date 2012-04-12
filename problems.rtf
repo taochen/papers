@@ -50,13 +50,15 @@ service demand law may be helpful for determine resource used per service, this 
 
 \fs30 \cf0 Potential theory involved (each subject to minor modifications):\
 \
-relations of attribute:
+relations of attribute: (for fitness function)
 \fs24 \
-CBR, prediction theory, Mean Value Analysis, queue theory
-\f1 \
+ Mean Value Analysis, queue theory,  \uc0\u8234 Birth\'96death process\uc0\u8236 , Erlang
+\fs38 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 \cf0 \
+\f1\fs24 \cf0 \
+
+\f0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -68,13 +70,17 @@ CBR, prediction theory, Mean Value Analysis, queue theory
 \f0  genetic algorithm
 \fs24 \
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs30 \cf0 resource efficiency:
+\fs24 \
+supply demand theory, partial equilibrium \
 \
+
+\fs30 Adaptive systems:\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\fs30 \cf0 Adaptive systems:\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
-
-\fs24 \cf0 adaptive MAPE loop, MPC\
+\fs24 \cf0 adaptive MAPE loop, MPC, CBR, prediction theory,\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
@@ -91,15 +97,70 @@ control theory\
 \
 \
 \
-\
+(fine grande service could be helpful to determine what is the consumer really demand)\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs28 \cf0 Current though:
 \fs24 \
 \
-1. (application of queuing theory to model consistency queue) can used a list of global workload time interval e.g. a day or a year for each service. Monitoring the waiting time and number of request based on another interval e.g. 5 sec. Then when SLA violation found with in workload time interval i,  if it is service A, get the expected waiting time to next request,  get the max number of requests of all other services that within the same consistency region, before a request for A that still not violate timeliness SLA 
-\f1 (MVA)
-\f0 , calculate the probability of that (using non-homogeneous poisson process) and also calculate the  probability of average waiting time of those services (exponential distribution). So we can have comparative weight of trade-off for services within the same region. The only overhead is the number of occurrence of waiting time and request for each service, and the monitoring interval for waiting time as it does not use non-homogeneous. (may be only use the number of occurrence (NoO), and get rid of probability only used the expected NoO via Litter's theorem)\
+predict or not or hybrid? estimate != predict\
+\
+1. (application of queuing theory to model consistency queue) can used a list of global workload time interval e.g. a day or a year for each region queue.  also record occurrence of whole region and percentage of occurrence of each related services. When adaption get the expected number of request to that region (using non-homogeneous poisson process) then make trade-off to make the SLA >= response time of mixture of consistency level of related service with number of expected - 1 (assume the request to A occur at last, worst case)\
+\
+1.1 if not predict, observe  queue size for each region and calculate the timeliness of observe last request for each services, if violate trigger GA  , still can apply Litter's law to adjust monitoring interval. Or a monitoring would be trigger by each request\
+\
+(or using simp weight average for global workload time interval for each service)\
 \
 \
-2. trigger can be based on violation found, on a predictable-manner even when the SLA parameters are actively changed.}
+2. trigger can be based on violation found or global monitoring time interval reach, on a predictable-manner even when the SLA parameters are actively changed.\
+\
+3. extend conflict region to have multiple CR within a service region , also has sessional region within each CR although those SCR should be consider the same. We specify what service should be consistent and translate to CDS in SSOR. of course it would have many CDS for a service in SCR. Each service region may have different components.\
+\
+4. category of SLA parameters (for each fine grained service)\
+adjustable (each associate with cost for each party, only value that runtime adjustable, always controllable, usually ensure by provider)\
+consistency level \
+resource, no of VM (cpu memory etc), PM\
+monetary price willing to pay\
+\
+monitor able (max capacity is form of (at least one) adjustable or other monitor able, may be probability, each with utility point per party)\
+response time\
+numbers of failure/invocation/service complete\
+scalability\
+elasticity\
+accuracy\
+throughput\
+\
+also have other factors not in SLA and usually uncontrollable\
+workload\
+time\
+\
+\
+monitor able can capture relation amongst parameters, each adjustable may have a boundary region (e.g. consistency region, component region) that capture relation of a service to other serves then in the equation of mapping monitor able  to  adjustable, such boundary region may or may not be used.\
+\
+max capacity monitor able should always able to be mapped with adjustable \
+\
+\
+\
+adjustable and monitor able has 3 measurement function:\
+1) measurement on state, e.g. response time (direct), throughput = number of complete service / t \
+2) measurement of max on state (before adjustable element change, that is on current adjustable value state) e.g. throughput = % of service weight * max resource / com sue of serving request \
+3) the bounds on SLA\
+\
+\
+5. (partial equilibrium  should always focus on product type) if it is possible to determine how much adjustable parameter is demanded, then we can choosing the best fit type/spot using partial equilibrium of demand supply theory. 
+\f1  
+\f0  This fit the case where spot instance are used where price change based on supply demand.\
+\
+can use partial equilibrium for each spot instance type as each product. Seems like amazon does not allow scale up - purchase a type still charge the whole regardless if you fully using it. can consider fine grandee resource to prices per cpu/memory.\
+\
+\
+price may change hourly but SLA enforcement may be trigger multiple times within a hours in which case the price does not change. then we may use 5.1
+\f1 \
+\
+
+\f0 5.1. does not change the current instance type, only foucs on additional demand
+\f1 , 
+\f0 calculating the ratio of capacity (cpu/memory) can be also used to reduce the most suitable instance type (e.g. most expensive fits the ratio) when over supply
+\f1 ,
+\f0  also increase the most suitable type (e.g. cheapest and require less number of type) (the solution for if scale up or scale out could potentially be determined as well). When it can't add more on the VM it seeking to add more PM with suitable type \
+}
