@@ -1,13 +1,13 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf230
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;}
-{\colortbl;\red255\green255\blue255;}
+{\colortbl;\red255\green255\blue255;\red154\green154\blue154;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f0\fs24 \cf0 Self-managed and fine grained SLA guarantee in the cloud\
 \
 Problems list:\
-1) no consider relationship amongst different attributes, and services\
+1) no consider relationship/interference amongst different attributes, and services\
 no relationship consideration of attributes and service cause possible reactive to enforce SLA needs to be predefined. what parameter needs to consider can be defined e.g. bandwidth, CPU but what action needs to perform should be avoid.\
 \
 2) no consider business reason towards such attributes\
@@ -26,6 +26,18 @@ no relationship consideration of attributes and service cause possible reactive 
 7) most approach suffer look backward issue - based on past environmental condition to cnofig new interval, expecting the same violation does not occur. May consequently result in too many re-condifg over time. \
 \
 8) solutions for MOO may lack of consideration of distributed architecture while other solution suffer issue 7).\
+\
+9
+\f1 \'81\'6a
+\f0 market price fluctuations such as spot instance can result int SLA violation as they can not determine the demand. Consumers need to manually estimate their need, which is unrealistic, currently only based on bid price, which could not fully represent demand.\
+\
+10) in on-demand manner, the iaas SLA may not be need as no need to specify how much resource needed but how much willing to pay for. (exception would be reserve resource)\
+\
+11) no consideration of interference (such as static modeling of SLA), not intend to handle such interference but try to avoid it when modelling (such as those dynamic modelling papers)\
+\
+12) for resource allocation paper, usually do not consider user friendly SLA terms.\
+\
+ANN may be better for regression for long time prediction, however, regression is more efficient and accurate enough on short time period.\
 \
 Helpful techniques from literature:\
 use of  Exponentially Weighted Moving Average (EWMA)  therefore to avoid occasionally peak in a very short period of time.\
@@ -46,6 +58,10 @@ iwcs, 6119065 can be used for multi-objective optimisation problem.\
 \
 service demand law may be helpful for determine resource used per service, this is mentioned in ICPE11_MAQPRO which also can be useful for MVA\
 \
+various papers in dynamic modelling can be used for create dynamic model of relations. such as q-cloud.\
+\
+GECON10, TR10 can be useful to unifying resource such as cpu\
+\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Potential theory involved (each subject to minor modifications):\
@@ -57,8 +73,9 @@ relations of attribute: (for fitness function)
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f1\fs24 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 \
+\f0 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -114,53 +131,105 @@ predict or not or hybrid? estimate != predict\
 \
 2. trigger can be based on violation found or global monitoring time interval reach, on a predictable-manner even when the SLA parameters are actively changed.\
 \
-3. extend conflict region to have multiple CR within a service region , also has sessional region within each CR although those SCR should be consider the same. We specify what service should be consistent and translate to CDS in SSOR. of course it would have many CDS for a service in SCR. Each service region may have different components.\
+3. We define component level region (for cpu memory) and service level region (CR and SCR for consistency), which are hierarchical. Each region may have different type such as CR, SCR. We specify what service should be consistent and translate to CDS in SSOR. of course it would have many CDS for a service in SCR. Each service region may have different components. We do not considering consistency between components, as it can not ensure what sequence a node see if it only being deployed one component.\
+\
+3.1 each service would have a set of interference services, if the adj value is not service level and not direct associate between services then the set would be likely to be the services within the same region. If like consistency then for each service, the set of interference services should be each consistency level between it and another service as well as a chain, s1 -2- s2 -3- s3 mean then s1 has 2 level with s2, s2 has 3 level with s3. Note that the permutation should not be duplicated.\
 \
 4. category of SLA parameters (for each fine grained service)\
-adjustable (each associate with cost for each party, only value that runtime adjustable, always controllable, usually ensure by provider)\
+adjustable (each associate with cost for each party (cost needs to be normalised by compute % of compared paris, of course need to consider weight), only value that runtime adjustable, always controllable, usually ensure by provider, cost does not have to be fixed, we should always try to determine demand with minimum resource)\
+\
+(it should be specified if is region level as it always associate with a region, also it need to specify if the adj value is global value i.e. consistency level, if not global then it can by adjusted in each PM. non global value can change on each node, if need to change global one then will effect all node, if such effect violate SLA then corresponding node needs to add in to solve MOO)\
+\
+\
+\
 consistency level \
 resource, no of VM (cpu memory etc), PM\
 monetary price willing to pay\
 \
-monitor able (max capacity is form of (at least one) adjustable or other monitor able, may be probability, each with utility point per party)\
+monitor able (max capacity is form of (at least one) adjustable or other monitor able, may be probability, each with utility point per party
+\f1 ,
+\f0  also associate with a responsible party when violation cause by certain adjustable value (that is the cost party on adjustable value))\
+service time\
 response time\
 numbers of failure/invocation/service complete\
-scalability\
-elasticity\
 accuracy\
 throughput\
 \
-also have other factors not in SLA and usually uncontrollable\
+also have measure metric that usually not in SLA but cloud should ensure:\
+scalability\
+elasticity\
+\
+also have other factors not in SLA and usually exogenous  (this can associated with service or region as well, which can only be measured)\
 workload\
 time\
+LLC\
 \
 \
 monitor able can capture relation amongst parameters, each adjustable may have a boundary region (e.g. consistency region, component region) that capture relation of a service to other serves then in the equation of mapping monitor able  to  adjustable, such boundary region may or may not be used.\
 \
-max capacity monitor able should always able to be mapped with adjustable \
+\
 \
 \
 \
 adjustable and monitor able has 3 measurement function:\
-1) measurement on state, e.g. response time (direct), throughput = number of complete service / t \
-2) measurement of max on state (before adjustable element change, that is on current adjustable value state) e.g. throughput = % of service weight * max resource / com sue of serving request \
+1) measurement on state, e.g. response time (direct), throughput = number of complete service / t (it usually specified by SLA)\
+2) measurement of max on state (before adjustable element change, that is on current adjustable value state) e.g. throughput = number of request / sum of the  response time of each request (sec)\
+(for adjustable this would be the assign ones)\
 3) the bounds on SLA\
 \
+***************\
+1) is not used in calculation. On monitoring we only compare 1) and 3), 1) worse than 3) means violation then adjustment need; 1) better than 3) would need to see utility/cost ratio of 1) and 2), if 1) better than 2) then no action otherwise adjustment needed.\
+ 2) is used when solve MOO, then can determine up/down, and adjust monitor able variable via adjustable variable depends on the equation.\
+2) may be, can be predefined or learn online using MIMO (ARMA/ARIMA)?\
+if 2) is region level metric, such as cpu, men then for each service it can be compute via 1) (mean % of cpu usage on service) in fact or auto-created model in 2) need measure value from 1) that is, region level adjustable value can be transferred to service level. \
+***************\
+\
+There should be transfer function when using measure and adjustable in 2) . if they are not the same as service level or region level. i.e. the SMA of % of service cpu usage can be used to compute cpu usage of a service when new region cpu usage is given. If the adju value is between service, then transfer function is needed to define how to handle such value in 2) (if there the same as region that means no interference amongst services)\
+\
+mon value is also global or non global, when used in 2) transfer function is need, e.g. throughput of a node = SLA throughput/number of node.\
+\
+in order to do comparison and calculation any way, when SLA value, measured value via 1) and adj value used in 2) we need transfer function.\
+\
+note that cpu usage can use unify metric such as ECU to measure.\
 \
 5. (partial equilibrium  should always focus on product type) if it is possible to determine how much adjustable parameter is demanded, then we can choosing the best fit type/spot using partial equilibrium of demand supply theory. 
 \f1  
 \f0  This fit the case where spot instance are used where price change based on supply demand.\
 \
-can use partial equilibrium for each spot instance type as each product. Seems like amazon does not allow scale up - purchase a type still charge the whole regardless if you fully using it. can consider fine grandee resource to prices per cpu/memory.\
+can use partial equilibrium for each spot instance type as each product. Seems like amazon does not allow scale up - purchase a type still charge the whole regardless if you fully using it. can consider fine grandee resource to prices per cpu/memory. (we can calculate demand/supply function dynamically - demand function Q = b - Pa, supply function Q = d + Pc, (to get b,a,d and c can use 
+\fs38 \uc0\u8234 Linear least squares\uc0\u8236  
+\fs24 (polynomial regression)) then it can be used MR = MC, MR = quantity times demand function
+\f1 ,
+\f0  therefore the demand resource would definitely being produce with a assumption of profit maximum) remember to consider case where there is no equilibrium point within the quantity range, then usually select the max of demand. (such demand is base on all demand rather than then increasing demand, therefore the price may be change even a service is running fine, and then may over the budget cause that service can not buy more)\
 \
 \
 price may change hourly but SLA enforcement may be trigger multiple times within a hours in which case the price does not change. then we may use 5.1
 \f1 \
-\
+ \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 5.1. does not change the current instance type, only foucs on additional demand
+\f0 \cf0 5.1. does not change the current instance type, only foucs on additional demand
 \f1 , 
 \f0 calculating the ratio of capacity (cpu/memory) can be also used to reduce the most suitable instance type (e.g. most expensive fits the ratio) when over supply
 \f1 ,
-\f0  also increase the most suitable type (e.g. cheapest and require less number of type) (the solution for if scale up or scale out could potentially be determined as well). When it can't add more on the VM it seeking to add more PM with suitable type \
-}
+\f0  also increase the most suitable type (e.g. cheapest and require less number of type) (the solution for if scale up or scale out could potentially be determined as well). When it can't add more on the VM it seeking to add more PM with suitable type. (all those output should be involve in the solution of MOO)\
+\
+assign resource to service as instance type, although the resource may not be fully used buy this is how the price is calculated. instance type can be scale up/down to another type\
+\
+6. with 2
+\f1 nd 
+\f0 order ARMAX and least squares algorithm, we can dynamically model relationship between monitroable value and adjustable value, giving mon(k) = a1mon(k-1) + a2mon(k) +  adj(k) +  adj(k-1) \cf2 + d(k-1) + d(k-2).\cf0 \
+\
+adj(k) = sigma An1*adjn1 (n = no of services for adj1) (k)+ sigma An2*adjn2 (n = no of services for adj1) (k) + \'85\'85. sigma Axc*adjxc (x = no of services for adjc within interference domain of target service) (k), c = no of adjustable value that associate with m Axc = row vector, adjxc = column vector\
+(this can be either adj value or mon value)\
+\cf2 d(k) = sigma An1*dn1 (n = no of services for with in the region of associated adjustable values) (k)+ sigma An2*dn2 (k)  + \'85..sigma Axc*dxc (x = no of services for with in the region of associated adjustable values) (k), c = no of exogenous parameter such as workload. Axc = row vector, dxc = column vector\cf0 \
+\
+least squares algorithm can solve this by building partial derivation of S (sum of error) = 0, for solving each a1,a2,And the number of equals needed  = 2 + 2 sigma Ki (i=1,2 \'85 c) K = no of service for each interference domain of adjustable value for a service, i= no of different type of region for adjustable value\cf2  + 2 * exogenous parameters * no of all services involved (get rid of the redundant ones).\cf0  This is the minimum required number of measurement as well. (not duplicated monitoring)\
+\
+Note that the mon in above equation needs to be normalised,  mon = sum of mon(i)/ i * SLAmon\
+adj may not be need as it use mean percentage to transfer from region level to service level. The adj value in interval k should be the mean value of all request, such as consistency of n should be the sum of (number of ordered service in front of the target service) / n * number of request (refer 3.1 for this, it not only the service associated with the target but also the service within the chain). for resource should be sum of n request / n. Adj value also needs to be normalised, such that when req time decrease resource should be increase such that req = 1 / resource etc.\
+\
+for each interval k, if no request to a service but still it would be used for calculation but at k time step the coefficient would be 0.\
+\
+\
+to decide wether use ARMA/ARIMA/ARMAX is a experiment driven task.}
