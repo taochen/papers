@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf230
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;}
-{\colortbl;\red255\green255\blue255;\red154\green154\blue154;}
+{\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
@@ -73,9 +73,8 @@ relations of attribute: (for fitness function)
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f1\fs24 \cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 \cf0 \
+\f0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -135,23 +134,27 @@ predict or not or hybrid? estimate != predict\
 \
 3.1 each service would have a set of interference services, if the adj value is not service level and not direct associate between services then the set would be likely to be the services within the same region. If like consistency then for each service, the set of interference services should be each consistency level between it and another service as well as a chain, s1 -2- s2 -3- s3 mean then s1 has 2 level with s2, s2 has 3 level with s3. Note that the permutation should not be duplicated.\
 \
-4. category of SLA parameters (for each fine grained service)\
-adjustable (each associate with cost for each party (cost needs to be normalised by compute % of compared paris, of course need to consider weight), only value that runtime adjustable, always controllable, usually ensure by provider, cost does not have to be fixed, we should always try to determine demand with minimum resource)\
+4. category of SLA parameters (for each fine grained service, the could cover any adaption strategy for SLA enforcement, i.e. admission control, resource allocation and task scheduling)\
+\
+adjustable (each associate with cost for each party (cost needs to be normalised by compute % of compared paris, of course need to consider weight), only value that runtime adjustable, always controllable and can not be violated, usually ensure by provider, cost does not have to be fixed, we should always try to determine demand with minimum resource) also associate with region, that is interference boundary\
+\
+probably need three type of region: 1) service level region (consistency) 2) VM level region 3) PM level region. 1) belongs to 2) belongs to 3)\
+\
+if the adj is constant value for each service in the interference region, then when apply to equation 2) it can be reduced to one rather than consider all service (i.e. number of replica in VM level)\
 \
 (it should be specified if is region level as it always associate with a region, also it need to specify if the adj value is global value i.e. consistency level, if not global then it can by adjusted in each PM. non global value can change on each node, if need to change global one then will effect all node, if such effect violate SLA then corresponding node needs to add in to solve MOO)\
 \
-\
-\
+SLA as well but usually can not be violated)\
 consistency level \
 resource, no of VM (cpu memory etc), PM\
 monetary price willing to pay\
+no of invocation\
 \
 monitor able (max capacity is form of (at least one) adjustable or other monitor able, may be probability, each with utility point per party
 \f1 ,
 \f0  also associate with a responsible party when violation cause by certain adjustable value (that is the cost party on adjustable value))\
 service time\
 response time\
-numbers of failure/invocation/service complete\
 accuracy\
 throughput\
 \
@@ -159,10 +162,10 @@ also have measure metric that usually not in SLA but cloud should ensure:\
 scalability\
 elasticity\
 \
-also have other factors not in SLA and usually exogenous  (this can associated with service or region as well, which can only be measured)\
+also have other factors not in SLA and usually exogenous  (this can associated with service or region as well, which can only be measured, we can use simple AR to predict this)\
 workload\
 time\
-LLC\
+\
 \
 \
 monitor able can capture relation amongst parameters, each adjustable may have a boundary region (e.g. consistency region, component region) that capture relation of a service to other serves then in the equation of mapping monitor able  to  adjustable, such boundary region may or may not be used.\
@@ -178,8 +181,8 @@ adjustable and monitor able has 3 measurement function:\
 3) the bounds on SLA\
 \
 ***************\
-1) is not used in calculation. On monitoring we only compare 1) and 3), 1) worse than 3) means violation then adjustment need; 1) better than 3) would need to see utility/cost ratio of 1) and 2), if 1) better than 2) then no action otherwise adjustment needed.\
- 2) is used when solve MOO, then can determine up/down, and adjust monitor able variable via adjustable variable depends on the equation.\
+1) is not used in calculation. On monitoring we only compare 1) and 3), 1) worse than 3) means violation then adjustment need; 1) better than 3) would need to see utility/cost ratio of 1) and 2), if 1) better than 2) then no action otherwise adjustment needed. \
+ 2) is used when solve MOO, then can determine up/down, and adjust monitor able variable via adjustable variable depends on the equation. (as for how the mon change when adj change can be find out by linear dynamic model, so no need to define i.e y = 1/x) (the up and down can not be changed, i.e if there is need to reduce resource then resource should not be added, so it reduce over optimise a SLA (such as consistency))\
 2) may be, can be predefined or learn online using MIMO (ARMA/ARIMA)?\
 if 2) is region level metric, such as cpu, men then for each service it can be compute via 1) (mean % of cpu usage on service) in fact or auto-created model in 2) need measure value from 1) that is, region level adjustable value can be transferred to service level. \
 ***************\
@@ -222,14 +225,36 @@ assign resource to service as instance type, although the resource may not be fu
 \
 adj(k) = sigma An1*adjn1 (n = no of services for adj1) (k)+ sigma An2*adjn2 (n = no of services for adj1) (k) + \'85\'85. sigma Axc*adjxc (x = no of services for adjc within interference domain of target service) (k), c = no of adjustable value that associate with m Axc = row vector, adjxc = column vector\
 (this can be either adj value or mon value)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf2 d(k) = sigma An1*dn1 (n = no of services for with in the region of associated adjustable values) (k)+ sigma An2*dn2 (k)  + \'85..sigma Axc*dxc (x = no of services for with in the region of associated adjustable values) (k), c = no of exogenous parameter such as workload. Axc = row vector, dxc = column vector\cf0 \
 \
 least squares algorithm can solve this by building partial derivation of S (sum of error) = 0, for solving each a1,a2,And the number of equals needed  = 2 + 2 sigma Ki (i=1,2 \'85 c) K = no of service for each interference domain of adjustable value for a service, i= no of different type of region for adjustable value\cf2  + 2 * exogenous parameters * no of all services involved (get rid of the redundant ones).\cf0  This is the minimum required number of measurement as well. (not duplicated monitoring)\
 \
-Note that the mon in above equation needs to be normalised,  mon = sum of mon(i)/ i * SLAmon\
-adj may not be need as it use mean percentage to transfer from region level to service level. The adj value in interval k should be the mean value of all request, such as consistency of n should be the sum of (number of ordered service in front of the target service) / n * number of request (refer 3.1 for this, it not only the service associated with the target but also the service within the chain). for resource should be sum of n request / n. Adj value also needs to be normalised, such that when req time decrease resource should be increase such that req = 1 / resource etc.\
+update the model and apply the model can be done on each interval k, but adj and mon needs to be normalised (such as use mean value or % of total), \cf3 or we can update model on each request, so may be better capture the case where violation and over provision occur (the AR worth be still using measure value from previous k-1 interval) and then only apply it on k invertval, normalisation is still needed. (this is experiment driven) \cf0 Adj value also needs to be normalised,  when req time decrease resource should be increase such that req = 1 / resource etc.\
 \
 for each interval k, if no request to a service but still it would be used for calculation but at k time step the coefficient would be 0.\
 \
 \
-to decide wether use ARMA/ARIMA/ARMAX is a experiment driven task.}
+to decide wether use ARMA/ARIMA/ARMAX is a experiment driven task.\
+\
+upon SLA violation, this can seen as a trigger of interval k change, such as spike load or the up/down turing point on workload graphic.\
+\
+7. to make the model even more generic and flexible, one does not need to know which adj/mon value can influence mon value, it can be learn online via AIC and maximum likelihood method, as well as stepwise algorithm. (of course the sample time of finding the number of parameters would be longer than finding the coefficient)\
+\
+\
+8. the main difference between ANN and ARMA is that ANN capture nonlinear relation. However, since the model is updated in very short epoch, therefore it is possible to capture local linear relations. ANN needs to determine no of nodes in hidden/input layer and no of hidden layer, as order in ARMA. They can be also dynamically defined via AIC. When apply ANN we apply the same as ARMA: relevant mon and adj values as input (including interference services), a mon as output. \
+\
+we apply AIC and stepwise on ANN we can assume 1/2 hidden layer (as 2nd order on ARMA), then only go through combination of input and hidden neuron \
+\
+\'93It has been mathematically proved that the single-hidden \
+layer feed-forward networks are universal approximators \
+that can learn any continuous functions with arbitrary \
+accuracy\'94\
+\
+for training ANN we assume weight can be learn online therefore on each training interval we only need to determine no of input and no of neurone and activation function (no of layer is set to 1 or 2). whose value not less than the min AIC in the history. Therefore instead of finding the optimal model in one run, we only interesting in finding the best ever model and eventually reach to the best model. \
+\
+with predefined accuracy 
+\f1 (the chance that SLA violation occur)
+\f0 , we can even dynamically chose either ARMA or ANN.\
+\
+We could apply a buffer windows, so we won't running out of memory to store historic data. This is applicable since the old data can not represent current dynamics.}
