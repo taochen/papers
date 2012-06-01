@@ -1,12 +1,12 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf230
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\fnil\fcharset134 STHeitiSC-Light;
 }
-{\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red154\green154\blue154;\red179\green179\blue179;
-}
+{\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f0\fs24 \cf0 Self-managed and fine grained SLA guarantee in the cloud\
+adaptive fine grandee SLA  pareto optimisation and economic equilibrium enforcement\
 \
 Problems list:\
 1) no consider relationship/interference amongst different attributes, and services\
@@ -127,7 +127,7 @@ predict or not or hybrid? estimate != predict\
 \
 0. SLA model could be expose model that handles \{SLA-infrastrcutre, SLA-platform\} - (model) - SLA-software (to end user). It can be extended to form end to end SLA as well, but each type of user group (i.e. gold, silver) need to use different instance of service (2 different instance of service A)\
 \
-Pareto optimal fined grained SLA means for each service, should use the least adj to achieve highest mon.\
+Pareto optimal fined grained SLA means for each service, it contains conflict objective such as least adj to achieve highest mon, most strict consistency to best performance etc.\
 \
 1. (application of queuing theory to model consistency queue) can used a list of global workload time interval e.g. a day or a year for each region queue.  also record occurrence of whole region and percentage of occurrence of each related services. When adaption get the expected number of request to that region (using non-homogeneous poisson process) then make trade-off to make the SLA >= response time of mixture of consistency level of related service with number of expected - 1 (assume the request to A occur at last, worst case)\
 \
@@ -144,12 +144,15 @@ Pareto optimal fined grained SLA means for each service, should use the least ad
 \
 4. category of SLA parameters (for each fine grained service, the could cover any adaption strategy for SLA enforcement, i.e. admission control, resource allocation and task scheduling)\
 \
-adjustable (each associate with cost for each party (cost needs to be normalised by compute % of compared paris, of course need to consider weight), only value that runtime adjustable, always controllable and can not be violated, usually ensure by provider, cost does not have to be fixed, we should always try to determine demand with minimum resource) also associate with interference boundary (services)\
+we identify non-functional interference i.e. consistency and functional interference i.e. one service invoke another.\
+\
+we use hirerichical structure to describe service nested with each other, therefore an interference of a adj of parent service would contain all sub-services, and their SLA should put into the same MOO decision process. If such nested relation is on different component then the at least one service needs to be defined for each component so we can fine the real one that need to be scale up/down in/out.\
+\
+adjustable (could be vector)(each associate with cost for each party (cost needs to be normalised by compute % of compared paris, of course need to consider weight), only value that runtime adjustable, always controllable and can not be violated, usually ensure by provider, cost does not have to be fixed, we should always try to determine demand with minimum resource) also associate with interference boundary (services)\
 \
 only global adj need region and sequencer\
 \
 if the adj is constant value for each service in the interference region, then when apply to equation 2) it can be reduced to one rather than consider all service (i.e. number of replica in VM level)\
-\
 \
 \
 SLA as well but usually can not be violated)\
@@ -173,8 +176,9 @@ elasticity\
 also have other factors not in SLA and usually exogenous  (this can associated with service or region as well, which can only be measured, we can use simple AR to predict this)\
 workload\
 time\
+input size\
 \
-\
+Note that an interference region contain all service in each region of an adj, each region of an adj consist of any service that interfered with a service in that region. Therefore interferences service of a service does not necessary to be all service in that adj region.\
 \
 monitor able can capture relation amongst parameters, each adjustable may have a boundary region (e.g. consistency region, component region) that capture relation of a service to other serves then in the equation of mapping monitor able  to  adjustable, such boundary region may or may not be used.\
 \
@@ -194,7 +198,7 @@ adjustable and monitor able has 3 measurement function:\
 3) the bounds on SLA\
 \
 ***************\
-1) is not used in calculation. On monitoring we only compare 1) and 3), 1) worse than 3) means violation then adjustment need; 1) better than 3) would need to see utility/cost ratio of 1) and 2), if 1) better than 2) then no action otherwise adjustment needed. \
+1) is not used in calculation. On under provision monitoring we only compare 1) and 3), 1) worse than 3) means violation then adjustment need;  On over provision monitoring we compare the adj of 1) and 2), if 1) < 2) then adjustment needed. (may be 1) can > 2) but as long as no mon's such that 1) < 3) then no adjustment needed) \
  2) is used when solve MOO, then can determine up/down, and adjust monitor able variable via adjustable variable depends on the equation. (as for how the mon change when adj change can be find out by linear dynamic model, so no need to define i.e y = 1/x) (the up and down can not be changed, i.e if there is need to reduce resource then resource should not be added, so it reduce over optimise a SLA (such as consistency))\
 2) may be, can be predefined or learn online using MIMO (ARMA/ARIMA)?\
 if 2) is region level metric, such as cpu, men then for each service it can be compute via 1) (mean % of cpu usage on service) in fact or auto-created model in 2) need measure value from 1) that is, region level adjustable value can be transferred to service level. \
@@ -215,7 +219,7 @@ note that cpu usage can use unify metric such as ECU to measure.\
 Price determine can be based on different consumer (their services) in such case no negotiation is needed as the SLA would always satisfied and reach equilibrium for each consumer. Price should be based on each PM and the granularity of that adj (e.g. component for cpu, memory) as well.\
 \
 \
-budget could be based on each PM, component and consumer, based on capacity of each PM the overall defined budget can be spliced into percentage for each PM.  Budget typically the overall cost of all adj within each PM, component and consumer.\
+budget could be based on each PM, component and consumer as well as adj\
 \
 can use partial equilibrium for each spot instance type as each product. Seems like amazon does not allow scale up - purchase a type still charge the whole regardless if you fully using it. can consider fine grained resource to prices per cpu/memory.\cf2  (we can calculate demand/supply function dynamically - demand function Q = b - Pa, supply function Q = d + Pc, (to get b,a,d and c can use 
 \fs38 \uc0\u8234 Linear least squares\uc0\u8236  
@@ -223,14 +227,14 @@ can use partial equilibrium for each spot instance type as each product. Seems l
 \f1 ,
 \f0  therefore the demand resource would definitely being produce with a assumption of profit maximum) remember to consider case where there is no equilibrium point within the quantity range, then usually select the max of demand. \cf0 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf2 for the first interval, the demand/supply function would be calculated by a set of the (budget of each region adj type)/ total quantity of that adj type in each interval. Then the subsequence interval can use the calculate equilibrium point price and the total number of adj value in each previous intervals. \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 \
 \
 When demand function is known we calculate price = P = (PED/(1+PED))*MC, PED = P/Q * dQ/dP. Then for each individual of MOO we set criteria: budget >= sum of each service of the calculate equilibrium price based on current amount of adj * amount of adj, in order to verify its feasiablity. \
 we can calculate the demand function Q = b -Pa by using training data of final Q,P by each MOO interval end. \
 \
-\
+one MOO can have more budget function as well if it cross different consumers.\
 \
 when apply demand/supply with MOO we may need finer grained price (instead of per hour, we may need per sec etc.)
 \f1 \
@@ -244,16 +248,16 @@ assign resource to service as instance type, although the resource may not be fu
 \
 6. with 2
 \f1 nd 
-\f0 order ARMAX and least squares algorithm, we can dynamically model relationship between monitroable value and adjustable value, giving mon(k) = a1mon(k-1) + a2mon(k) +  adj(k) +  adj(k-1) \cf3 + d(k-1) + d(k-2).\cf0 \
+\f0 order ARMAX and least squares algorithm, we can dynamically model relationship between monitroable value and adjustable value, giving mon(k) = a1mon(k-1) + a2mon(k) +  adj(k) +  adj(k-1) \cf2 + d(k-1) + d(k-2).\cf0 \
 \
 adj(k) = sigma An1*adjn1 (n = no of services for adj1) (k)+ sigma An2*adjn2 (n = no of services for adj1) (k) + \'85\'85. sigma Axc*adjxc (x = no of services for adjc within interference domain of target service) (k), c = no of adjustable value that associate with m Axc = row vector, adjxc = column vector\
 (this can be either adj value or mon value)\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
-\cf3 d(k) = sigma An1*dn1 (n = no of services for with in the region of associated adjustable values) (k)+ sigma An2*dn2 (k)  + \'85..sigma Axc*dxc (x = no of services for with in the region of associated adjustable values) (k), c = no of exogenous parameter such as workload. Axc = row vector, dxc = column vector\cf0 \
+\cf2 d(k) = sigma An1*dn1 (n = no of services for with in the region of associated adjustable values) (k)+ sigma An2*dn2 (k)  + \'85..sigma Axc*dxc (x = no of services for with in the region of associated adjustable values) (k), c = no of exogenous parameter such as workload. Axc = row vector, dxc = column vector\cf0 \
 \
-least squares algorithm can solve this by building partial derivation of S (sum of error) = 0, for solving each a1,a2,And the number of equals needed  = 2 + 2 sigma Ki (i=1,2 \'85 c) K = no of service for each interference domain of adjustable value for a service, i= no of different type of region for adjustable value\cf3  + 2 * exogenous parameters * no of all services involved (get rid of the redundant ones).\cf0  This is the minimum required number of measurement as well. (not duplicated monitoring)\
+least squares algorithm can solve this by building partial derivation of S (sum of error) = 0, for solving each a1,a2,And the number of equals needed  = 2 + 2 sigma Ki (i=1,2 \'85 c) K = no of service for each interference domain of adjustable value for a service, i= no of different type of region for adjustable value\cf2  + 2 * exogenous parameters * no of all services involved (get rid of the redundant ones).\cf0  This is the minimum required number of measurement as well. (not duplicated monitoring)\
 \
-update the model and apply the model can be done on each interval k, but adj and mon needs to be normalised (such as use mean value or % of total), \cf4 or we can update model on each request, so may be better capture the case where violation and over provision occur (the AR worth be still using measure value from previous k-1 interval) and then only apply it on k invertval, normalisation is still needed. (this is experiment driven) \cf0 Adj value also needs to be normalised,  when req time decrease resource should be increase such that req = 1 / resource etc.\
+update the model and apply the model can be done on each interval k, but adj and mon needs to be normalised (such as use mean value or % of total), \cf3 or we can update model on each request, so may be better capture the case where violation and over provision occur (the AR worth be still using measure value from previous k-1 interval) and then only apply it on k invertval, normalisation is still needed. (this is experiment driven) \cf0 Adj value also needs to be normalised,  when req time decrease resource should be increase such that req = 1 / resource etc.\
 \
 for each interval k, if no request to a service but still it would be used for calculation but at k time step the coefficient would be 0.\
 \
@@ -293,13 +297,33 @@ weight include: 1) amongst services from different consumers, 2) services from t
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f2 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 when determine global value on sequencer, it may not have weight on each node, therefore would need to determine on the least sum degradation i.e. how much the mon are worse than local decision when apply certain global adj value, then pick up the smallest one. (if we use weight) or can simply use domination ranking.\
+\f0 \cf0 when determine global value on sequencer, it may not have weight on each node, (we first ensure SLA are all meet) therefore would need to determine on the least sum degradation i.e. how much the mon are worse than local decision when apply certain global adj value, then pick up the smallest one. (if we use weight) or can simply use domination ranking. (of course need to reexamine any constraints that effected such as budget)\
 \
+when consensus on adj we can agree on different level of region concurrently, i.e no of PM and consistency \
 \
+Some adj from different MOO (or ven the same MOO) may needs to compete with each others (i.e. cpu/memory) when such competition occur we first satisfy the ones that have more profit, then looking to add more PM normally add 1, in this case we know how much resource needs thus add on the proper VM  otherwise from the cheapest one . (need to send to sequencer for determine) 
+\f1 no action if node already decided to be added) (PM section could based on availability)\
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f2 \cf0 when add new PM we may or may not know how much resource demand, if unknown we use the cheapest VM, the budget would be equally grained from the current PM who propose to add new one (or in ratio if how much is known). As during MOO this should be a constraint on each PM.\
+\
+at the end of each run of MOO needs to rebalance the remaining budget, based on the goal that every node should have equally free budget. The overall budget would not exceed the consumer anticipation.\
+\
+such distribution can be done in a decentralised way after each adj has been finally decided.
+\f0 \
+\
+when we need remove PM, remove the ones that use least resource. and equally distribute the budget\
+\
+In MOO, the objective could be each SLO + min the cost, of each service we could sum up cost/mon of all adj value so that reduce the number of objective. for consistency only sum up the consistency that a target service needs to maintain when another service arrive first. Therefore assume each service has the same number of SLO, the complexity of objective is 2 * S \
+\
+We assume that even when SLA of mon has been satisfied, the consumer still wish to pay more in order to optimise the mon. Subject to budget\
 \
 10. as the economic road map suggests, IaaS, Paas is more likely to be monopolistic market while SaaS would be monopolistic competition.\
+\
+two reasons to make budget on each node 1) cost function of PM may be different 2) it allow local computation get rid of consensus of the same type of PM. as solve it centrally is the  same as solve it distributedlly. But the demand function of each node can better capture the true demand. \
 \
 \
 Experiment driven:\
@@ -308,6 +332,21 @@ Experiment driven:\
 3) the way to forward/backward search on ANN model, if need to try every combination?\
 4) if apply dynamically determine if use ANN or ARMA? or choose one only?\
 \
+for demonstrating problem we need to \
+1) show benefit of fine grained\
+2) in terms of interference between services we mean 1,the original approach consider only one service is broken as it is interfered 2,  change one control of a service may interfere another service.\
+\
+such interference could be conflict interference or concord interference\
+\
+we can use resource (concord) and use consistency (conflict) as example. We also need to show vertical and horizontal interference for both.\
+\
+3) show conflict objectives of one service, such that trade-off between performance, consistency and budget with consideration of 1) and 2).\
+\
 for accuracy experiment, can change the control value and measure the actual mon and the output mon of model. Or can only change workload etc, measure both mon and adj, then apply adj to model and compare the actual mon and output mon of model, in such case we can use 70% data to train and 30% to test. \
+\
+\
+for MOO experiment, we first need to proof our approach can reduce SLA violation by comparing the   different SLO over the entire workload, scalability and elasticity can be evaluated here. Then we can apply general approach i.e. static to compare 
+\f1 (those does not consider conflict, service inter fence and equilibrium) 
+\f0 SLO, (if optimal), cost (if minimised) and profit (if maximised). example of comparison can see HPL-2008-123R1-mimo\
 \
 7423114222}
