@@ -1,7 +1,8 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\froman\fcharset0 Times-Roman;
 \f3\fnil\fcharset134 STHeitiSC-Light;}
-{\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;}
+{\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
+}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
@@ -164,7 +165,10 @@ if the adj is constant value for each service in the interference region, then w
 eventually we decide to use cpu/memory per component, thus RQ can be component level such as cpu/memory thus all inclusive service would be using the same RQ.\
 \
 SLA as well but usually can not be violated)\
-consistency level \
+order error level \
+(order error should be as weak as possible since they may be charged, but the consistency requirement is expressed as consistency on mon variable) measurement of order error is the max number of difference to the target service, while measurement of consistency is the max number of different of the same request on different replica as this is easier to be interpreted by human.\
+\
+\
 resource, no of VM (cpu memory etc), PM (for cpu if we can not assign freq, then can assign it based on ECU, e.g. 2.8 GHz may = 2.8/1.2=2.3333 ECU, and change it in granularity of 2.333)\
 monetary price willing to pay\
 no of invocation (this is actually controllable workload)\
@@ -186,6 +190,7 @@ workload\
 time\
 input size\
 \
+\
 Note that an interference region contain all service in each region of an adj, each region of an adj consist of any service that interfered with a service in that region. Therefore interferences service of a service does not necessary to be all service in that adj region.\
 \
 monitor able can capture relation amongst parameters, each adjustable may have a boundary region (e.g. consistency region, component region) that capture relation of a service to other serves then in the equation of mapping monitor able  to  adjustable, such boundary region may or may not be used.\
@@ -200,13 +205,14 @@ after each PM determine there MOOs, for each global adj the final decision is ca
 \f0 \
 \
 ***************\
-adjustable and monitor able has 3 measurement function:\
+QoS and control primitives has 3 measurement function:\
 1) measurement on state, e.g. response time (direct), throughput = number of complete service / t (it usually specified by SLA) (this should be the fact, even for consistency. We could measure the max difference between request of a replica to others (e.g. logical clock 7 on R1, but 1 on other, such clock should be reset once max order error reached), then use it to feed model. Such result should be no more than the setup in SSOR) consistency small does not mean response time better, it could be small if workload is small. such relation could be learn by feed fact to dynamic objective model.\
 \
-2) measurement of max on state (before adjustable element change, that is on current adjustable value state) e.g. throughput = number of request / sum of the  response time of each request (sec)\
-(for adjustable this would be the assign ones) (objective function note for adj may have more than one adj share the same obj function)\
 \
-3) the bounds on SLA\
+2) prediction of expected state (before adjustable element change, that is on current adjustable value state) e.g. throughput = number of request / sum of the  response time of each request (sec)\
+(for adjustable this would be the assign ones) (objective function note for adj may have more than one adj share the same obj function) (for control primitives, this is a cost function (per-service) )\
+\
+3) the bounds on SLA (could )\
 \
 ***************\
 1) is not used in calculation. On under provision monitoring we only compare 1) and 3), 1) worse than 3) means violation then adjustment need;  On over provision monitoring we compare the adj of 1) and 2), if 1) < 2) then adjustment needed. (may be 1) can > 2) but as long as no mon's such that 1) < 3) then no adjustment needed) \
@@ -319,7 +325,13 @@ accuracy\'94\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf2 An incremental model selection could be applied, i.e. (start with full input) chose the number of neurone of a hidden layer that best than the best historical AIC/RS (or just the best one if the target couldn't find ), then do it only the next layer, then reduce the input one by one. Note that the RSS should be base on the new model on the give interval (with the data in the buffer windows). Or we can consider all combination via backward approach.\cf0 \
 \
-(instead of AIC, we may apply the least RSS seems we only interest in accuracy and the speed of converge, if only apply RS ann can only run 1 round to see number of neruos), mutual information is a good way to predict interference set and related resource quality.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf4 (instead of AIC, we may apply the least RSS seems we only interest in accuracy and the speed of converge, if only apply RS ann can only run 1 round to see number of neruos), mutual information is a good way to predict interference set and related resource quality.\
+t\
+\
+\cf0 train ann we can train a model using step-wise approach, that is, setup worst RS and RMAPE and record any model that produce higher than that. Increase the number of neurone until the increment does not provide better model. Of course to prevent training forever, a max training time is needed such that the best ever model is returned if such time is reached.\
+\
+The above is only for the same ANN structure, for subsequent only need to train form the selected number of neurone and return as long as it get the RS and RMAPE  better than the worst one. If the structure change then the entire process should be repeated.\
 \
 with predefined accuracy 
 \f1 (the chance that SLA violation occur)
@@ -332,11 +344,17 @@ all monitor of each adj should be kept even they are not used since the next aic
 If apply ACO then there is need upper/lower bound on all QoS, especially resource quality therefore 
 \f2\fs26 heuristic factors can be found by output of RQ value/sum of outputs of all other RQ value (if smaller is better the can be 1 - the above)\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0\fs24 \cf0 we can even have a sequencer/planner for each interference set, it is used to decide global RQ involve MOP. We do not consider cross PM service interference. Therefore MI only search locally (or only on the same VM). Only accept predefined cross PM interfered service. sequencer  is used when the MOP should be solved globally (involve global RQ). (or if possible, try use MI to iterate every service in the cloud, this is carry on on each node, of course should exclude its own replica, we need to ensure the training sample time is the same, thus only consider the leap time)\
+\f0\fs24 we can even have a sequencer/planner for each interference set, it is used to decide global RQ involve MOP. We do not consider cross PM service interference. Therefore MI only search locally (or only on the same VM). Only accept predefined cross PM interfered service. sequencer  is used when the MOP should be solved globally (involve global RQ). (or if possible, try use MI to iterate every service in the cloud, this is carry on on each node, of course should exclude its own replica, we need to ensure the training sample time is the same, thus only consider the leap time) (one leverage is to only consider services on the same PM, as well as the services instance that required by target service)\
 \
 not that the primitives which interfere a QoS could be changed even cpu, memory could be remove if they are not significant\
+\
+note that for the abstract qos model, the the training data can be composite 
+\f1 (could be sequential, parallel, loop and conditional etc.)
+\f0  or atomic service as long as it gives enough sensitive set of control primitives (that is all the significant inclusive services are identified by the middleware) and the training data are fed correctly.\
+\
+\
+We can conclude all the control primitives into a aggressive 'cost' as an objective function (that is sum of each provision of control primitives' objective function) when solving MOP. but the restriction of each resource would need to be considered \
 \
 9. In MOO the selection rule could be: (non dominated and crowd distance)/ assigned weight (if any)\
 weight include: 1) amongst services from different consumers, 2) services from the same consumers 3) amongst different adj/mon value from the same service\
@@ -359,6 +377,8 @@ Some adj from different MOO (or ven the same MOO) may needs to compete with each
 \f3 \cf0 when add new PM we may or may not know how much resource demand, if unknown we use the cheapest VM, the budget would be equally grained from the current PM who propose to add new one (or in ratio if how much is known). As during MOO this should be a constraint on each PM.\
 \
 at the end of each run of MOO needs to rebalance the remaining budget, based on the goal that every node should have equally free budget. The overall budget would not exceed the consumer anticipation.\
+\
+the SLA bound would be distributed as well if applicable e.g. throughput\
 \
 such distribution can be done in a decentralised way after each adj has been finally decided.
 \f0 \
@@ -439,4 +459,7 @@ default min resource on a VM (use to determine if remove such VM)\
 if a RQ is global\
 \
 b8:8d:12:1c:32:5a \
+7300\
+\pard\pardeftab720
+\cf0 \
 }
