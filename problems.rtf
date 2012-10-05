@@ -329,6 +329,7 @@ accuracy\'94\
 \cf4 (instead of AIC, we may apply the least RSS seems we only interest in accuracy and the speed of converge, if only apply RS ann can only run 1 round to see number of neruos), mutual information is a good way to predict interference set and related resource quality.\
 t\
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 train ann we can train a model using step-wise approach, that is, setup worst RS and RMAPE and record any model that produce higher than that. Increase the number of neurone until the increment does not provide better model. Of course to prevent training forever, a max training time is needed such that the best ever model is returned if such time is reached.\
 \
 The above is only for the same ANN structure, for subsequent only need to train form the selected number of neurone and return as long as it get the RS and RMAPE  better than the worst one. If the structure change then the entire process should be repeated.\
@@ -394,6 +395,8 @@ or we can use the maximum adj * S +  mon * S (more detail strategy) (may be with
 We assume that even when SLA of mon has been satisfied, the consumer still wish to pay more in order to optimise the mon. Subject to budget\
 \
 mutual information (define how much dependency) and covariation (decide if conflict or redundant) (the data should be based on measure ones 1)) can be used for objective reduction, does not need to be with MOO optimiser.\
+\
+the objectives for each group could be QoS + total cost of each instance, if sharing RP e.g. CPU then the cost of it is equally proposetioned to each instance.\
 \
 10. as the economic road map suggests, IaaS, Paas is more likely to be monopolistic market while SaaS would be monopolistic competition.\
 \
