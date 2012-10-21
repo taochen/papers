@@ -1,9 +1,9 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\froman\fcharset0 Times-Roman;
-\f3\fnil\fcharset134 STHeitiSC-Light;}
+\f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;}
 {\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
-}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\red164\green8\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7720\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f0\fs24 \cf0 Self-managed and fine grained SLA guarantee in the cloud\
@@ -78,8 +78,9 @@ relations of attribute: (for fitness function)
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f1\fs24 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 \
+\f0 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -346,7 +347,10 @@ If apply ACO then there is need upper/lower bound on all QoS, especially resourc
 \f2\fs26 heuristic factors can be found by output of RQ value/sum of outputs of all other RQ value (if smaller is better the can be 1 - the above)\
 \
 
-\f0\fs24 we can even have a sequencer/planner for each interference set, it is used to decide global RQ involve MOP. We do not consider cross PM service interference. Therefore MI only search locally (or only on the same VM). Only accept predefined cross PM interfered service. sequencer  is used when the MOP should be solved globally (involve global RQ). (or if possible, try use MI to iterate every service in the cloud, this is carry on on each node, of course should exclude its own replica, we need to ensure the training sample time is the same, thus only consider the leap time) (one leverage is to only consider services on the same PM, as well as the services instance that required by target service)\
+\f0\fs24 \cf5 we can even have a sequencer/planner for each interference set, it is used to decide global RQ involve MOP. We do not consider cross PM service interference. Therefore MI only search locally (or only on the same VM). Only accept predefined cross PM interfered service. sequencer  is used when the MOP should be solved globally (involve global RQ).\cf0  (or if possible, try use MI to iterate every service in the cloud, this is carry on on each node, of course should exclude its own replica, we need to ensure the training sample time is the same, thus only consider the leap time) \
+(one leverage is to only consider services on the same PM, as well as the services instance that required by target service)\
+\
+as opposed to sequencer, we can possibly apply a decentralised manner, since the node that willing to optimise would automatically being a sequencer, then all the objective related to global RP would be considered. However, the dynamically changing QoS model needs to passing through to the temporarily sequencer. (to repeat, the sequencer is mainly for collecting QoS model from different node) of course if the objective is under optimising then any further trigger would be ignored.\
 \
 not that the primitives which interfere a QoS could be changed even cpu, memory could be remove if they are not significant\
 \
@@ -396,15 +400,31 @@ We assume that even when SLA of mon has been satisfied, the consumer still wish 
 \
 mutual information (define how much dependency) and covariation (decide if conflict or redundant) (the data should be based on measure ones 1)) can be used for objective reduction, does not need to be with MOO optimiser.\
 \
-the objectives for each group could be QoS + total cost of each instance, if sharing RP e.g. CPU then the cost of it is equally proposetioned to each instance.\
+the objectives for each group could be QoS + total cost of each instance, if sharing RP e.g. CPU then the cost of it is equally proportioned to each instance.\
+\
+\
+dynamic MOP can be see as static MOP for each point in time, therefore can be solve using traditional approach. GA may need to consider re-evolve but ACO seems like capable to handle change of objective, another factor is that the interval t of optimisation needs to map with the time taken to search (although the trigger is defined by the over/under utilisation, but we can decide if we need to start the metaheristics)\
+\
+In ACO even it is optimise a single objective, each ant would select a RP for all objective even it is not sensitive by the current objective. Such RP's heuristic factor could determine its preference. Each ant would eventually have a solution, which is an individual. Therefore at each round, ACO would produce a pareto set, and all the sets from all rounds are combined together to form a larger pareto set, which then sorted and non-dominating and crowding distance to have the pareto optimality. \
+\
+(
+\f4 pheromone factor is more like the preference of a certain objective, whereas heuristic factor is more like preference of how it affects to the global objectives.
+\f0 )\
+\
+\
+it is possible to integrate the dynamic economic equilibrium model with ACO, upon a solution we used the decided RP price, then the decided price is based on trade-off RP. \
 \
 10. as the economic road map suggests, IaaS, Paas is more likely to be monopolistic market while SaaS would be monopolistic competition.\
+\
+price is different for each service instance of a consumer \
 \
 the reasons to make budget on each node is: it allow local computation get rid of consensus of the same type of PM. as solve it centrally is the  same as solve it distributedlly. But the demand function of each node can better capture the true demand. \
 \
 cost = price * (stand by power + power per resource * the resource a consumer use) (e.g. cpu frequency, price here are from utility provider)\
 \
 (how to find power per resource refer to 'enery-cost', we can use approximate value since this is out of scope)\
+\
+unlike previous work, we assume what the user willing to pay depends on his/her maximum budget and the trade-off decision of QoS optimisation, which implies that the users do not have to spend all his/her possible budget.\
 \
 \
 Experiment driven:\
@@ -465,4 +485,6 @@ b8:8d:12:1c:32:5a \
 7300\
 \pard\pardeftab720
 \cf0 \
+\
+\
 }
