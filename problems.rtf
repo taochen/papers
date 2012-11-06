@@ -78,9 +78,8 @@ relations of attribute: (for fitness function)
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f1\fs24 \cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 \cf0 \
+\f0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -346,6 +345,7 @@ all monitor of each adj should be kept even they are not used since the next aic
 If apply ACO then there is need upper/lower bound on all QoS, especially resource quality therefore 
 \f2\fs26 heuristic factors can be found by output of RQ value/sum of outputs of all other RQ value (if smaller is better the can be 1 - the above)\
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f0\fs24 \cf5 we can even have a sequencer/planner for each interference set, it is used to decide global RQ involve MOP. We do not consider cross PM service interference. Therefore MI only search locally (or only on the same VM). Only accept predefined cross PM interfered service. sequencer  is used when the MOP should be solved globally (involve global RQ).\cf0  (or if possible, try use MI to iterate every service in the cloud, this is carry on on each node, of course should exclude its own replica, we need to ensure the training sample time is the same, thus only consider the leap time) \
 (one leverage is to only consider services on the same PM, as well as the services instance that required by target service)\
@@ -405,14 +405,30 @@ the objectives for each group could be QoS + total cost of each instance, if sha
 \
 dynamic MOP can be see as static MOP for each point in time, therefore can be solve using traditional approach. GA may need to consider re-evolve but ACO seems like capable to handle change of objective, another factor is that the interval t of optimisation needs to map with the time taken to search (although the trigger is defined by the over/under utilisation, but we can decide if we need to start the metaheristics)\
 \
-In ACO even it is optimise a single objective, each ant would select a RP for all objective even it is not sensitive by the current objective. Such RP's heuristic factor could determine its preference. Each ant would eventually have a solution, which is an individual. Therefore at each round, ACO would produce a pareto set, and all the sets from all rounds are combined together to form a larger pareto set, which then sorted and non-dominating and crowding distance to have the pareto optimality. \
+In ACO even it is optimise a single objective, each ant would select a RP for all objective even it is not sensitive by the current objective. Such RP's heuristic factor could determine its preference. Each ant would eventually have a solution, which is an individual. Therefore at each round, ACO would produce a pareto set, and all the sets from all rounds are combined together to form a larger pareto set, which then sorted and non-dominating and crowding distance to have the pareto optimality.  
+\f1 (the best solution for each objective is selected based on 
+\f0 non-dominating and crowding distance after each interation
+\f1 )
+\f0 \
 \
 (
 \f4 pheromone factor is more like the preference of a certain objective, whereas heuristic factor is more like preference of how it affects to the global objectives.
 \f0 )\
 \
 \
-it is possible to integrate the dynamic economic equilibrium model with ACO, upon a solution we used the decided RP price, then the decided price is based on trade-off RP. \
+it is possible to integrate the dynamic economic equilibrium model with ACO, upon a solution we used the decided RP price, then the decided price is based on trade-off RP.  assume distinct price for each service instance._\
+\
+when allocating RP, it is possible to limit to certain type, e.g. a VM has 128MB, 1 core CPU, 100 concurrency. so that the MOP process can face less option. At the extreme case (arbitrary possibility) such type never exist then the search space would be every possible value. (continuos and descret)\
+\
+When select a RP, other RP use the current provision value. If RP from external service is uncontrollable then simply use the provisioned value. For EP, if changes, there is need to update with the latest one (same as QoS sensitivity model change, the existing pareto sets needs to be re-evaluated, also he rustic factor needs to be updated).\
+\
+may be different optimisation group could be seen as different colony? ACO is more suitable than GA because it is better in terms of handling dynamic/continuous optimisation, and potentially good at many objectives (as each ant works in paralleled)\
+\
+in ACO all the solutions are recored till the last and then sort, this is due to dynamic change of objective function which case 'which is better' could be changing.\
+\
+for improvement and degration of objective, we use the ratio better achieved value and the value before optimisation.\
+\
+even though only one ant for an objective, it needs to determine RP which does not required by this objective, but during pheromone update it updates 0.\
 \
 10. as the economic road map suggests, IaaS, Paas is more likely to be monopolistic market while SaaS would be monopolistic competition.\
 \
@@ -426,6 +442,8 @@ cost = price * (stand by power + power per resource * the resource a consumer us
 \
 unlike previous work, we assume what the user willing to pay depends on his/her maximum budget and the trade-off decision of QoS optimisation, which implies that the users do not have to spend all his/her possible budget.\
 \
+\
+When change RP provision we could either stop-start the VM or doing live migration on the same PM (if on-the-fly allocation is not allowed). may be we should add by yes combination of resource we imply vertical and horizontal scaling. (how much we need the scale?)\
 \
 Experiment driven:\
 1) ARMA/ARIMA/ARMAX? (if include workload)\
