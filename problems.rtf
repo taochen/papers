@@ -402,12 +402,13 @@ mutual information (define how much dependency) and covariation (decide if confl
 \
 the objectives for each group could be QoS + total cost of each instance, if sharing RP e.g. CPU then the cost of it is equally proportioned to each instance.\
 \
+==================================================================\
 \
 dynamic MOP can be see as static MOP for each point in time, therefore can be solve using traditional approach. GA may need to consider re-evolve but ACO seems like capable to handle change of objective, another factor is that the interval t of optimisation needs to map with the time taken to search (although the trigger is defined by the over/under utilisation, but we can decide if we need to start the metaheristics)\
 \
 In ACO even it is optimise a single objective, each ant would select a RP for all objective even it is not sensitive by the current objective. Such RP's heuristic factor could determine its preference. Each ant would eventually have a solution, which is an individual. Therefore at each round, ACO would produce a pareto set, and all the sets from all rounds are combined together to form a larger pareto set, which then sorted and non-dominating and crowding distance to have the pareto optimality.  
 \f1 (the best solution for each objective is selected based on 
-\f0 non-dominating and crowding distance after each interation
+\f0 their value, only the best solution is allowed to update pheromone factor
 \f1 )
 \f0 \
 \
@@ -420,15 +421,31 @@ it is possible to integrate the dynamic economic equilibrium model with ACO, upo
 \
 when allocating RP, it is possible to limit to certain type, e.g. a VM has 128MB, 1 core CPU, 100 concurrency. so that the MOP process can face less option. At the extreme case (arbitrary possibility) such type never exist then the search space would be every possible value. (continuos and descret)\
 \
-When select a RP, other RP use the current provision value. If RP from external service is uncontrollable then simply use the provisioned value. For EP, if changes, there is need to update with the latest one (same as QoS sensitivity model change, the existing pareto sets needs to be re-evaluated, also he rustic factor needs to be updated).\
+When select a RP, other RP use the current provision value. If RP from external service is uncontrollable then simply use the provisioned value. For EP, if changes, there is need to update with the latest one (same as QoS sensitivity model change, the existing pareto sets needs to be re-evaluated, also he rustic factor needs to be updated, possibly, we could update the pheromone factor as well (just iterate all solutions again, based on each iteration from the 1st to last)).\
 \
 may be different optimisation group could be seen as different colony? ACO is more suitable than GA because it is better in terms of handling dynamic/continuous optimisation, and potentially good at many objectives (as each ant works in paralleled)\
 \
 in ACO all the solutions are recored till the last and then sort, this is due to dynamic change of objective function which case 'which is better' could be changing.\
 \
-for improvement and degration of objective, we use the ratio better achieved value and the value before optimisation.\
+for improvement and degration of objective, we use the ratio better achieved value and the predicated value of that objective before optimisation. (use predicted value even such has been violated)\
 \
 even though only one ant for an objective, it needs to determine RP which does not required by this objective, but during pheromone update it updates 0.\
+\
+An ant randomly select an objective therefore each objective could have more than one solution each iteration. the number of ant should be > the number of objective (or we make sure each objective is optimised by at least one ant each iteration) All the sensitive RP and objective should be considered together to avoid lock-in on local optimisation solution.\
+\
+our aco only uses non-dominated sort at the last stage, therefore modify it does not affect diversity of searching solutions. (so we can set the extreme value of crowd distance is 0 instead of infinite) (or use ranking dominance?)\
+\
+when constructing solution, the sequence of RP for ant could be random, if when select a PR any constraints violated, then this particular RP would needs to be reselected without the previous RP candidate that cause violation. if all candidates are cause violation then go back to previous RP.\
+\
+each ant would have a suicide time if so time reach it stops regardless if the solution has been completed. If concurrent then only global pheromone update is needed.\
+\
+It may be possible to add local pheromone update (for diversity): for all ants for the same objective, update a fixed value for local one of a candidate based on how many ants have selected such candidate. If it is under concurrency it may have little useful. (see various qos for workflow paper) note then local and global update are updating the same pheromone value.\
+\
+our ACO is MAX-MIN ant systems thereby we need to define max/min pheromone value.\
+\
+\
+==================================================================\
+\
 \
 10. as the economic road map suggests, IaaS, Paas is more likely to be monopolistic market while SaaS would be monopolistic competition.\
 \
@@ -504,5 +521,6 @@ b8:8d:12:1c:32:5a \
 \pard\pardeftab720
 \cf0 \
 \
-\
+xinxin8866@live.cn\
+{\field{\*\fldinst{HYPERLINK "http://video.fc2.com/a/content/20120213gJExCDLr"}}{\fldrslt http://video.fc2.com/a/content/20120213gJExCDLr}}\
 }
