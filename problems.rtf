@@ -304,6 +304,10 @@ to decide wether use ARMA/ARIMA/ARMAX is a experiment driven task.\
 \
 upon SLA violation, this can seen as a trigger of interval k change, such as spike load or the up/down turing point on workload graphic.\
 \
+like in ANN we can also use step-wise approach to determine the number of order\
+\
+in symmetric uncertainty, for new or removed control primitive, the interval that it is unavailable would be represented as value 0. And garardunlly, it can be determined as sensitive/insensitive\
+\
 7. to make the model even more generic and flexible, one does not need to know which adj/mon value can influence mon value, it can be learn online via AIC/RS and maximum likelihood method, as well as stepwise algorithm. (of course the sample time of finding the number of parameters would be longer than finding the coefficient)\
 \
 \
@@ -435,7 +439,9 @@ An ant randomly select an objective therefore each objective could have more tha
 \
 our aco only uses non-dominated sort at the last stage, therefore modify it does not affect diversity of searching solutions. (so we can set the extreme value of crowd distance is 0 instead of infinite) (or use ranking dominance?)\
 \
-when constructing solution, the sequence of RP for ant could be random, if when select a PR any constraints violated, then this particular RP would needs to be reselected without the previous RP candidate that cause violation. if all candidates are cause violation then go back to previous RP.\
+when constructing solution, the sequence of RP for ant could be random, if when select a PR any constraints violated, then this particular RP would needs to be reselected without the previous RP candidate that cause violation. if all candidates are cause violation then go back to previous RP. The sequence of selecting RP could be random, so if an ant suicide then the next ant may not be trapped in the same way. (should we say we have two ants: the normal ant and the guidance ant which assist the normal ant regarding which RP should be consider next)\
+\
+for each objective (normal ant), the guidance ant could maintain another pheromone, which is updated as fixed value *  the number of successful ant that select such RP as the ith RP to search. (this probability is determined on pheromone  factor only)  this need the min/max pheromone value as well. Note that this guidance ant only effect the efficiency to produce a valid solution not quality of the solution. Thereby it uses a different pheromone structure as the normal ant.\
 \
 each ant would have a suicide time if so time reach it stops regardless if the solution has been completed. If concurrent then only global pheromone update is needed.\
 \
@@ -443,6 +449,7 @@ It may be possible to add local pheromone update (for diversity): for all ants f
 \
 our ACO is MAX-MIN ant systems thereby we need to define max/min pheromone value.\
 \
+may be worth to compare the produced solution with existing one to make sure it is really better\
 \
 ==================================================================\
 \
@@ -461,6 +468,9 @@ unlike previous work, we assume what the user willing to pay depends on his/her 
 \
 \
 When change RP provision we could either stop-start the VM or doing live migration on the same PM (if on-the-fly allocation is not allowed). may be we should add by yes combination of resource we imply vertical and horizontal scaling. (how much we need the scale?)\
+\
+\
+11. on architecture, we can use DDDAS, and for the trigger of optimisation, we can do either reactive (based on measurement, can be used for both under and over) or proactive (based on prediction) mainly for under. \
 \
 Experiment driven:\
 1) ARMA/ARIMA/ARMAX? (if include workload)\
