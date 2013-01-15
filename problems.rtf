@@ -441,7 +441,7 @@ our aco only uses non-dominated sort at the last stage, therefore modify it does
 \
 when constructing solution, the sequence of RP for ant could be random, if when select a PR any constraints violated, then this particular RP would needs to be reselected without the previous RP candidate that cause violation. if all candidates are cause violation then go back to previous RP. The sequence of selecting RP could be random, so if an ant suicide then the next ant may not be trapped in the same way. (should we say we have two ants: the normal ant and the guidance ant which assist the normal ant regarding which RP should be consider next)\
 \
-for each objective (normal ant), the guidance ant could maintain another pheromone, which is updated as fixed value *  the number of successful ant that select such RP as the ith RP to search. (this probability is determined on pheromone  factor only)  this need the min/max pheromone value as well. Note that this guidance ant only effect the efficiency to produce a valid solution not quality of the solution. Thereby it uses a different pheromone structure as the normal ant.\
+for each objective (normal ant), the guidance ant could maintain another pheromone, which is updated as fixed value *  the number of successful ant that select such RP as the ith RP to search. (this probability is determined on pheromone  factor only, and its update could be local update only)  this need the min/max pheromone value as well. Note that this guidance ant only effect the efficiency to produce a valid solution not quality of the solution. Thereby it uses a different pheromone structure as the normal ant.\
 \
 each ant would have a suicide time if so time reach it stops regardless if the solution has been completed. If concurrent then only global pheromone update is needed.\
 \
@@ -450,6 +450,14 @@ It may be possible to add local pheromone update (for diversity): for all ants f
 our ACO is MAX-MIN ant systems thereby we need to define max/min pheromone value.\
 \
 may be worth to compare the produced solution with existing one to make sure it is really better\
+\
+when the solution can not be found (always constraints violated) by trying every candidate of an input. if it is the last input for such constraint, then it would go back to each input of that constrain, try every candidate. If it is not the last one, then it will let the guidance ant to select another CP to search. If still cause the violation even when try every possible combination of inputs for a constraints, it  then start the normal ant again for a better sequence. Of course once the time is reach such ant should be suicide.\
+\
+\
+The training data (demand) can be different from control (provision), but they are assumed to be able to be mapped together. e.g. security policy (provision), the level of risk (demand)\
+\
+\
+we could adopt two form of ACO - 1 has weight and 1 is weight-free. This only require to change the heuristic factor formula and change crowdoing distance to weight sum formula.\
 \
 ==================================================================\
 \
@@ -532,5 +540,12 @@ b8:8d:12:1c:32:5a \
 \cf0 \
 \
 xinxin8866@live.cn\
-{\field{\*\fldinst{HYPERLINK "http://video.fc2.com/a/content/20120213gJExCDLr"}}{\fldrslt http://video.fc2.com/a/content/20120213gJExCDLr}}\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 244812319\
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "http://video.fc2.com/a/content/20120213gJExCDLr"}}{\fldrslt \cf0 http://video.fc2.com/a/content/20120213gJExCDLr}}\
+\
+\
+\
 }
