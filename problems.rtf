@@ -453,12 +453,29 @@ may be worth to compare the produced solution with existing one to make sure it 
 \
 when the solution can not be found (always constraints violated) by trying every candidate of an input. if it is the last input for such constraint, then it would go back to each input of that constrain, try every candidate. If it is not the last one, then it will let the guidance ant to select another CP to search. If still cause the violation even when try every possible combination of inputs for a constraints, it  then start the normal ant again for a better sequence. Of course once the time is reach such ant should be suicide.\
 \
+when QoS model changes, ACO can re-evaluate even when there are new primitive/phase out primitives, it just simply go through the selection process only for the new primitive.\
+if it is a merge of two local optimisation, then the process only need to validate the constraints and remove the solutions that violate them.\
+\
 \
 The training data (demand) can be different from control (provision), but they are assumed to be able to be mapped together. e.g. security policy (provision), the level of risk (demand) or the computational resource and different instance type to be matched.\
 \
 \
 we could adopt two form of ACO - 1 has weight and 1 is weight-free. This only require to change the heuristic factor formula and change crowdoing distance to weight sum formula.\
 \
+To determined which objectives are conflicted when optimisation, not only the models of depends-on instance, but also those that deployed on the same VM as depends-on instance should be considered. Also, should consider those instances that uses global CP\
+\
+based on current strategy, the scale in/out are based on scale up/down (e.g. not enough on PM or no hardware CP is needed on a PM), but in future it is possible to design more 
+\f4 sophisticated\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0 \cf0  techniques for scale in/out (this may need a centralised control) this is sufficient because:\
+\
+1) VM allocation require centralised control\
+2) optimising the cal up/down could help to reach global minimised in/out as well.\
+we consider the VM allocation for best global resource usage as a separated problem\
+\
+\
+cost like CPU is proportioned to each service-instance of VM, (they all be considered in the same objective group for sure), thus when decide to need new replica, the extra portion of budget can be equally allocated to the new replica (as decided by ACO), then the post-balancing of available budget can be triggered. For other CP that still sufficient, we can cut the default amount to the new replica.\
 ==================================================================\
 \
 \
@@ -545,7 +562,8 @@ xinxin8866@live.cn\
 \cf0 244812319\
 \pard\pardeftab720
 {\field{\*\fldinst{HYPERLINK "http://video.fc2.com/a/content/20120213gJExCDLr"}}{\fldrslt \cf0 http://video.fc2.com/a/content/20120213gJExCDLr}}\
-\
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "http://www.cs.duke.edu/~angl/papers/cloudprophet_tr.pdf"}}{\fldrslt \cf0 http://www.cs.duke.edu/~angl/papers/cloudprophet_tr.pdf}}\
 myllxgmt\
 \
 }
