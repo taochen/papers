@@ -471,11 +471,27 @@ based on current strategy, the scale in/out are based on scale up/down (e.g. not
 \f0 \cf0  techniques for scale in/out (this may need a centralised control) this is sufficient because:\
 \
 1) VM allocation require centralised control\
-2) optimising the cal up/down could help to reach global minimised in/out as well.\
+2) optimising the cal up/down could help to reach global minimised in/out as well. (e.g. min the number of VM)\
 we consider the VM allocation for best global resource usage as a separated problem\
 \
 \
 cost like CPU is proportioned to each service-instance of VM, (they all be considered in the same objective group for sure), thus when decide to need new replica, the extra portion of budget can be equally allocated to the new replica (as decided by ACO), then the post-balancing of available budget can be triggered. For other CP that still sufficient, we can cut the default amount to the new replica.\
+\
+QoS sensitivity is identified via CP and EP, and it is selected from same VM and 
+\b required by
+\b0  service-instances.\
+\
+Conflcting objective is identified via CP, and it is selected from:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f4 \cf0 1) directly or indirectly 
+\b interact with
+\b0  the service-instances on the attached VM;\
+ 2) deployed on the attched VM and those that on the same VM as the interacted service-instances;\
+ 3) from other VMs but sharing the same CP with service-instance on the attached VM (i.e. a global control of load balancing policy for all instances of a service).\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0 \cf0 \
 ==================================================================\
 \
 \
