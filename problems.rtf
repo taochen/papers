@@ -1,6 +1,7 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\froman\fcharset0 Times-Roman;
-\f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;}
+\f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fnil\fcharset0 Verdana;
+}
 {\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
 \red164\green8\blue0;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7720\viewkind0
@@ -454,7 +455,7 @@ may be worth to compare the produced solution with existing one to make sure it 
 when the solution can not be found (always constraints violated) by trying every candidate of an input. if it is the last input for such constraint, then it would go back to each input of that constrain, try every candidate. If it is not the last one, then it will let the guidance ant to select another CP to search. If still cause the violation even when try every possible combination of inputs for a constraints, it  then start the normal ant again for a better sequence. Of course once the time is reach such ant should be suicide.\
 \
 when QoS model changes, ACO can re-evaluate even when there are new primitive/phase out primitives, it just simply go through the selection process only for the new primitive.\
-if it is a merge of two local optimisation, then the process only need to validate the constraints and remove the solutions that violate them.\
+if it is a merge of two local optimisation, then the process only need to validate the constraints and remove the solutions that violate them. This case, however could affect performance of ACO, we observed that the case of  new primitive/phase out is unlikely to happen frequently\
 \
 \
 The training data (demand) can be different from control (provision), but they are assumed to be able to be mapped together. e.g. security policy (provision), the level of risk (demand) or the computational resource and different instance type to be matched.\
@@ -486,13 +487,34 @@ Conflcting objective is identified via CP, and it is selected from:\
 
 \f4 \cf0 1) directly or indirectly 
 \b interact with
-\b0  the service-instances on the attached VM;\
- 2) deployed on the attched VM and those that on the same VM as the interacted service-instances;\
- 3) from other VMs but sharing the same CP with service-instance on the attached VM (i.e. a global control of load balancing policy for all instances of a service).\
+\b0  the service-instances on the attached PM\
+ 2) deployed on the attched PM and those that on the same PM as the interacted service-instances;\
+ 3) from other VMs but sharing the same CP with service-instance on the attached PM (i.e. a global control of load balancing policy for all instances of a service).\
+4) we only consider nonpartitionable CP amongst PM under VM interference. \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f0 \cf0 \
-==================================================================\
+\
+using demand not provision value, for a CP provision decision X, we can tell least X more likely to cause under provision whereas higher X more likely to over provision.\
+\
+\
+why not MAPE?\
+\pard\pardeftab720
+\cf0 Calculating an aggregated MAPE is a common practice. A potential problem with this approach is that the lower-volume items (which will usually have higher MAPEs) can dominate the statistic. This is usually not desirable. One solution is to first segregate the items into different groups based upon volume (e.g., ABC categorization) and then calculate separate statistics for each grouping. Another approach is to establish a weight for each item\'92s MAPE that reflects the item\'92s relative importance to the organization\'97this is an excellent practice.\
+\
+\
+Note that generally, for services chain in the cloud we assume SLA for the whole chain can be spliced to each of the inclusive service. However, if not, we can apply certain function (input as QoS of each service) in the constraints to calculate the global expected QoS.\
+\
+\
+exclude irrelevant primitives is a good way to reduce over fitting problem already!\
+\
+we can move the optimisation to global in terms of PM, considering VM interference. But whether certain services from different VMs should be optimised in one optimisation loop depends on whether they are truly correlated. (The QoS sensitivity model)\
+\
+for dynamic ACO, instead of having a solution archive, we can only have a short memory, K, at each iteration t, for each objective, the best number of K solution  is try to replace the entires of that memory from t-1. The pheromone of new ones are increased whereas removed on are decreased as constant value (e.g., (max-min)/K). This can increase diversity and it is a randomised way to cope with dynamic. Of course at the final stage only the best of each objective can be put into the pareto front.\
+\
+after the above actions, the memory from t-1 can be corssovered and generate new solution (memory based)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 ==================================================================\
 \
 \
 10. as the economic road map suggests, IaaS, Paas is more likely to be monopolistic market while SaaS would be monopolistic competition.\
@@ -582,4 +604,52 @@ xinxin8866@live.cn\
 {\field{\*\fldinst{HYPERLINK "http://www.cs.duke.edu/~angl/papers/cloudprophet_tr.pdf"}}{\fldrslt \cf0 http://www.cs.duke.edu/~angl/papers/cloudprophet_tr.pdf}}\
 myllxgmt\
 \
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "http://video.fc2.com/en/a/content/20130216b2PCaS04"}}{\fldrslt \cf0 http://video.fc2.com/en/a/content/20130216b2PCaS04}}\
+\pard\pardeftab720
+{\field{\*\fldinst{HYPERLINK "http://www.xvideos.com/video1153631/hot_young_sexy_teen_is_the_best"}}{\fldrslt \cf0 http://www.xvideos.com/video1153631/hot_young_sexy_teen_is_the_best}}\
+\
+{\field{\*\fldinst{HYPERLINK "http://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm"}}{\fldrslt http://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm}}\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth21800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clmgf \clvertalc \clshdrawnil \clwWidth2180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clmrg \clvertalc \clshdrawnil \clwWidth2180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\sl320
+
+\f5 \cf0 Thank you for yui mizuna your order, your application has been processed.\nestcell 
+\pard\intbl\itap2\nestcell \nestrow
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clmgf \clvertalc \clshdrawnil \clwWidth21800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clmrg \clvertalc \clshdrawnil \clwWidth21800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\sl320
+\cf0 \'a0\nestcell 
+\pard\intbl\itap2\nestcell \nestrow
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth19620\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\sl320
+\cf0 \'a0\nestcell 
+\pard\intbl\itap2\pardeftab720\sl320
+\cf0 Your Order Number is: 10138825\nestcell \nestrow
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth19620\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\sl320
+\cf0 \'a0\nestcell 
+\pard\intbl\itap2\pardeftab720\sl320
+\cf0 Your Membership number is: 8165405\nestcell \nestrow
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth2180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth19620\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\sl320
+\cf0 \'a0\nestcell 
+\pard\intbl\itap2\pardeftab720\sl320
+\cf0 Your Master Card card will be charged $12.00\nestcell \lastrow\nestrow\cell \lastrow\row
 }
