@@ -508,11 +508,15 @@ Note that generally, for services chain in the cloud we assume SLA for the whole
 \
 exclude irrelevant primitives is a good way to reduce over fitting problem already!\
 \
-we can move the optimisation to global in terms of PM, considering VM interference. But whether certain services from different VMs should be optimised in one optimisation loop depends on whether they are truly correlated. (The QoS sensitivity model)\
+we can move the optimisation to global in terms of PM, considering VM interference. But whether certain services from different VMs should be optimised in one optimisation loop depends on whether they are truly correlated. (The QoS sensitivity model). Note that in terms of resource competition, we may not be able to follow FCFS (for different VM in the same optimisation group) but follow the way to minimising the number of service that needs to be replicated. We assume all CP are charged on the same price no matter type of PM/software stack, then on the new VM these services would be continuously modelled and optimised by our adaptive approach.\
 \
 for dynamic ACO, instead of having a solution archive, we can only have a short memory, K, at each iteration t, for each objective, the best number of K solution  is try to replace the entires of that memory from t-1. The pheromone of new ones are increased whereas removed on are decreased as constant value (e.g., (max-min)/K). This can increase diversity and it is a randomised way to cope with dynamic. Of course at the final stage only the best of each objective can be put into the pareto front.\
 \
-after the above actions, the memory from t-1 can be corssovered and generate new solution (memory based)\
+after the above actions, the memory from t-1 can be mutationed and generate new solution (memory based)\
+\
+for objective finder, we can maintain a objective topology (based on if sensitive to same CP (directly or indirectly)) in each local autoscaler. This regional concept not only help to reduce centralisation in distributed environment, also help such reduction on a particular PM (node). Each autoscaler only interested on the services deployed on corresponding VMs/PM.\
+\
+MAPE not cater for modelling, model@runtime not used for optimising, DDDAS cater for both.\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \
