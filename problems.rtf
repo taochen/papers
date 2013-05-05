@@ -1,7 +1,7 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\froman\fcharset0 Times-Roman;
-\f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fnil\fcharset0 Verdana;
-}
+\f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fswiss\fcharset0 ArialMT;
+\f6\fnil\fcharset0 Verdana;}
 {\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
 \red164\green8\blue0;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7720\viewkind0
@@ -519,6 +519,10 @@ for objective finder, we can maintain a objective topology (based on if sensitiv
 MAPE not cater for modelling, model@runtime not used for optimising, DDDAS cater for both. model@runtime may only consider requirements change (which is part of our consideration), but not how the system behave under fixed requirements.\
 \
 even if some software CP is not charged, so we do not care their over provision (as they can be still used by other service-instance, even they are assigned to one instance, unlike hardware Cps, in case they are charged, think of the case of broadband charge), we should still find the best combination of them and other CP, since a good software CP may require less hardware CP, which can be used by other VM.\
+\
+the frequency of model selecting and training could be different to frequency of measurement (interval) e.g., measure every interval but select and train every 10 intervals, feed data for all these 10 intervals for training and selecting.\
+\
+for CPU and memory we measure demand via average whereas use max for thread, this is because software CP has more closed and direct impact to service than hardware CP. So we measure the demand more restricted. \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \
@@ -617,6 +621,13 @@ myllxgmt\
 \
 \pard\pardeftab720
 {\field{\*\fldinst{HYPERLINK "http://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm"}}{\fldrslt \cf0 http://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm}}\
+\
+\pard\pardeftab720\sl320
+
+\f5\fs22 \cf0 326ZT4K7
+\f0\fs24 \
+\pard\pardeftab720
+\cf0 \
 
 \itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
 \clvertalc \clshdrawnil \clwWidth21800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
@@ -626,7 +637,7 @@ myllxgmt\
 \clmrg \clvertalc \clshdrawnil \clwWidth2180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
 \pard\intbl\itap2\pardeftab720\sl320
 
-\f5 \cf0 Thank you for yui mizuna your order, your application has been processed.\nestcell 
+\f6 \cf0 Thank you for yui mizuna your order, your application has been processed.\nestcell 
 \pard\intbl\itap2\nestcell \nestrow
 
 \itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
