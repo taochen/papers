@@ -531,6 +531,17 @@ our QoS model is not try to directly make prediction of future QoS, but to predi
 Traditional MAPE-K is fixed, even it could use reforcement learning, the policy is still fixed and K is usually just mean for information sharing. may be, we can propose something like MAPE-A (adaptation), which is the same as DDDAS but could be interested in self-adaptive SE community. This is indeed the same as MAPE-K in the sense that they are sharing information, but extra adaptation could means that each component could also learning itself (e.g., A and P), may be called self-learning MAPE-K-Simulation? (Rami: could apply DDDAS within the global MAPE)\
 \
 A hybrid and adaptive multi-learners approach for online QoS modelling in the cloud\
+\
+use feature selection not extraction because 1) the data is labeled so supervised learning is good 2) filter in selection produces negligible overhead.\
+\
+can apply objective reduction with ACO on autoscaling algorithm, the major point is that once an objective is in conflict with one or more other objectives, then it is considered as conflict with all objectives. We can use pearson correlation coefficient as metric (and its distance as well) to see if the objectives are positive or negative, then we can:\
+\
+1) simply get rid of all positive objectives.\
+2) use the algorithm describe in reduction-neighborhood.pdf to do the reduction.\
+\
+the concept of direct and indirect primitives is different from reliable and unreliable, they are just split based on the fact that they are physically sharing resources. Direct ones has direct impact to QoS, whereas indirect ones indirectly impact 	QoS via the sharing resources (soft-and hard-ware). The primitives in indirect space may be also reliable, those in direct space may be unreliable as well, therefore not all the primitives in indirect primitive space are dubious useful and misleading. Direct space just more correlate to the QoS than indirect space in average.\
+\
+Computational Intelligence based Approach for Cost and QoS Optimized Elasticity in the Cloud\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \pard\pardeftab720
