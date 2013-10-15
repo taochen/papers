@@ -539,7 +539,19 @@ can apply objective reduction with ACO on autoscaling algorithm, the major point
 1) simply get rid of all positive objectives.\
 2) use the algorithm describe in reduction-neighborhood.pdf to do the reduction.\
 \
+distance measurement can used spearman, which can work with nonlinear relations.\
+\
 the concept of direct and indirect primitives is different from reliable and unreliable, they are just split based on the fact that they are physically sharing resources. Direct ones has direct impact to QoS, whereas indirect ones indirectly impact 	QoS via the sharing resources (soft-and hard-ware). The primitives in indirect space may be also reliable, those in direct space may be unreliable as well, therefore not all the primitives in indirect primitive space are dubious useful and misleading. Direct space just more correlate to the QoS than indirect space in average.\
+\
+the weight-sum approach is so called scalarization (this need manual specify or update weight, which is unrealistic in my case), whereas we focus on pareto-based. (or we develop a hybrid one, which is praeto and scalarization based?)\
+\
+reduce the objective does not care about the different demsionality amongst objectives, because as long as they are reduced then the reduced objective can be optimised even without modify the CP that only related to it. In addition, it might need to put the reduced objective in the constraints, in case some of them are violated.\
+\
+Wang,  harmonic distance \
+\
+switch(adaptive) better than ensemble as it is less sensitive to dumb-down learners\
+\
+spear mans, remove certain objectives that results in -0.2 to 1, the level of removal increasing fro -0.2 to 1.\
 \
 Computational Intelligence based Approach for Cost and QoS Optimized Elasticity in the Cloud\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
