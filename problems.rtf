@@ -553,6 +553,24 @@ switch(adaptive) better than ensemble as it is less sensitive to dumb-down learn
 \
 spear mans, remove certain objectives that results in -0.2 to 1, the level of removal increasing fro -0.2 to 1.\
 \
+A key difference between our work and Nelly's bayesian based DDN is that, in the cloud, we assume arbitrary number of adaptation strategy and the combination of configuration, in addition, these configuration could be numeric not discrete only. In other words, it is impossible for a developer to design a specific combination of configuration to form an adaptation strategy. However, their approach would require such action, and given large number of adaptation strategy, the overhead of bayesian based DDN tends to be insufficient for online adaptation. We use ML (e.g., ANN) to model correlation, then apply it to a search-based optimisation for decision making, whereas they use bayesian based DDN directly on decision making. (linking QoS and certain adaptation strategy).\
+\
+on reduction, QoS and cost objective may be un-reduceable, therefore we focus on different QoS objectives.\
+\
+CP bundle may be help to reduce complexity, however, it could prevent optimal CP combination\
+\
+when assign hardware CP decisions, it 1) assign based on priority, otherwise assign the one that can be satisfied by the remaining resource, 2) if the unsatisfied one incur predictive QoS/SLA violation, ignore it if it is less than a threshold. 3) In case such violation is non-ignorable, we select either replicate or migrate based on their cost via linear regression of historical data.  \
+\
+if the objective change is 
+\i which
+\i0  and 
+\i when
+\i0 , then we have to restart the ACO (this is not occur in high frequency, thus does not effect the adapation process), if the change is only 
+\i how
+\i0 , then we can resolve it via the dynamic variation.\
+\
+constraint change does not affect the optimisation as it is not occur in high frequency and can resolve by start new optimisation.\
+\
 Computational Intelligence based Approach for Cost and QoS Optimized Elasticity in the Cloud\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
