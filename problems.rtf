@@ -3,7 +3,8 @@
 \f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fswiss\fcharset0 ArialMT;
 \f6\fnil\fcharset0 Verdana;}
 {\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
-\red164\green8\blue0;\red0\green57\blue161;\red7\green78\blue230;\red12\green82\blue6;}
+\red164\green8\blue0;\red255\green39\blue18;\red217\green11\blue0;\red0\green57\blue161;\red7\green78\blue230;
+\red12\green82\blue6;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7720\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
@@ -559,19 +560,50 @@ on reduction, QoS and cost objective may be un-reduceable, therefore we focus on
 \
 CP bundle may be help to reduce complexity, however, it could prevent optimal CP combination\
 \
-when assign hardware CP decisions, it 1) assign based on priority, otherwise assign the one that can be satisfied by the remaining resource, 2) if the unsatisfied one incur predictive QoS/SLA violation, ignore it if it is less than a threshold. 3) In case such violation is non-ignorable, we select either replicate or migrate based on their cost via linear regression of historical data.  \
+when assign hardware CP decisions, it 1) assign based on priority, otherwise assign the one that can be satisfied by the remaining resource, 2) if the unsatisfied one incur predictive QoS/SLA violation, ignore it if it is less than a threshold. (or see if the migration/replication incur more cost than the penalty) 3) In case such violation is non-ignorable, we select either replicate or migrate based on their cost via linear regression of historical data.  \
 \
 if the objective change is 
 \i which
 \i0  and 
 \i when
-\i0 , then we have to restart the ACO (this is not occur in high frequency, thus does not effect the adapation process), if the change is only 
+\i0 , then we have to restart the ACO (this is not occur in high frequency, thus does not effect the adaptation process), if the change is only 
 \i how
-\i0 , then we can resolve it via the dynamic variation.\
+\i0 , then we can resolve it via the dynamic variation. This is because the objective topology could change as well.\
 \
 constraint change does not affect the optimisation as it is not occur in high frequency and can resolve by start new optimisation.\
 \
-Computational Intelligence based Approach for Cost and QoS Optimized Elasticity in the Cloud\
+reduction and model change needs to be synchronised, the optimisation process is not competed until the action has been taken.\
+\
+as long as the search is completed, the action needs to be finished no matter wether the  
+\i which
+\i0  and 
+\i when 
+\i0 change
+\i .
+\i0  \
+\
+group of VM (possible regioning) consists of many regions, each region has many objectives from those VMs.\
+\
+\
+\cf6 regards to if trigger optimisation, \
+when detect QoS violation (under provision):\
+1) if it is predicted that the likely QoS one step ahead is still ok, then do nothing\
+2) if the likely QoS one step ahead is not ok, then compare (violated QoS unit to QoS threshold * penalty per unit and penalty of ACO (cost per hardware CP unit), which can be estimated offline with regards to number of objective) to decide if trigger optimisation.\
+\
+when detect over provision:\
+then compare (idle CP to utility threshold * penalty per idle CP and penalty of ACO (cost per hardware CP unit)) to decide if trigger optimisation.\
+\
+(consider using risk of optimisation?)\
+risk, may be could, using the 1 - probability of successful rate * the penalty? where the probability can be updated over time.\cf0 \
+\
+\
+\cf7 the above can be also achieve in a proactive way, in order to be used for big job HPC application: upon each job, it predict the future QoS directly and do as before (do not need to consider 1) of under provision)\cf0 \
+\
+modelling interval should not be too small, ideally it should be close to the worst case of response time. \
+\
+with regards to elasticity, our approach focus on how to produce the QoS/cost optimal demand (search based) of cloud-based application/cloud, whereas other work focus on the non- QoS/cost optimal demand (rule, control) better way to provision/de-provisiong control knobs. (vm-pm mapping) optimal demand, need to define these terms. may be use optimal demand in the context use qos/cost in the title.\
+\
+Enable QoS and Cost Optimized Elasticity in the Cloud using Computational Intelligence based Approach \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \pard\pardeftab720
@@ -732,17 +764,17 @@ holly-michaels\nestcell \lastrow\nestrow\cell \lastrow\row
 \
 \pard\pardeftab720
 
-\f0 \cf6 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
+\f0 \cf8 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
 \
 \pard\pardeftab720
-{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf7 \ul \ulc7 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
+{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf9 \ul \ulc9 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
 \
 \pard\pardeftab720
-{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf8 h\cf7 \ul \ulc7 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
+{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf10 h\cf9 \ul \ulc9 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
 \pard\pardeftab720
-\cf8 \
-Cheers,\cf6 \
-\cf8 Jon\
+\cf10 \
+Cheers,\cf8 \
+\cf10 Jon\
 \
 skyinfly1987@gmail.com\
 mylmtlxg\
