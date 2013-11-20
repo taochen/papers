@@ -597,11 +597,19 @@ then compare (idle CP to utility threshold * penalty per idle CP and penalty of 
 risk, may be could, using the 1 - probability of successful rate * the penalty? where the probability can be updated over time.\cf0 \
 \
 \
-\cf7 the above can be also achieve in a proactive way, in order to be used for big job HPC application: upon each job, it predict the future QoS directly and do as before (do not need to consider 1) of under provision)\cf0 \
+\cf7 the above can be also achieve in a proactive way, in order to be used for big job HPC application: upon each job, it predict the future QoS directly and do as before (do not need to consider 1) of under provision)\
+\
+the new setup should at least being used for time t, if the detect of violation is within the t time frame of the last setup, then ignore it.\cf0 \
 \
 modelling interval should not be too small, ideally it should be close to the worst case of response time. \
 \
-with regards to elasticity, our approach focus on how to produce the QoS/cost optimal demand (search based) of cloud-based application/cloud, whereas other work focus on the non- QoS/cost optimal demand (rule, control) better way to provision/de-provisiong control knobs. (vm-pm mapping) optimal demand, need to define these terms. may be use optimal demand in the context use qos/cost in the title.\
+with regards to elasticity, our approach focus on how to produce the QoS/cost optimal demand (search based) of cloud-based application/cloud, whereas other work focus on the non- QoS/cost optimal demand (rule, control) better way to provision/de-provision control knobs. (vm-pm mapping). optimal demand, need to define these terms. may be use optimal demand in the context use qos/cost in the title.\
+\
+should mention that max QoS and min cost is good for both cloud consumer/provider, especially provider more concern about utilisation of such cost.\
+\
+due to we are working on single cloud scenario, we need to assume the total capacity of the cloud (e.g., number of PM) is always larger than the total affordable primitives of the consumers. In other words, when services/applications are competing for resources, they would eventually being satisfied by scale up/out as long as they can afford the charges.\
+\
+wallace.cs.bham.ac.uk\
 \
 Enable QoS and Cost Optimized Elasticity in the Cloud using Computational Intelligence based Approach \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
@@ -789,7 +797,7 @@ wxid_pw8vafhd0n4d21\
 \pard\pardeftab720\sl360
 
 \f5\b \cf0 Airi Minami\
-\
+Mikan Kururugi\
 19291016\
 
 \f1 \'92\'86\'8d\'91\'9b\'f6\'90\'bc\'96\'f6\'8f\'42\'8e\'73\
