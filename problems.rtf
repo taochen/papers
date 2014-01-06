@@ -560,7 +560,7 @@ on reduction, QoS and cost objective may be un-reduceable, therefore we focus on
 \
 CP bundle may be help to reduce complexity, however, it could prevent optimal CP combination\
 \
-when assign hardware CP decisions, it 1) assign based on priority, otherwise assign the one that can be satisfied by the remaining resource, 2) if the unsatisfied one incur predictive QoS/SLA violation, ignore it if it is less than a threshold. (or see if the migration/replication incur more cost than the penalty) 3) In case such violation is non-ignorable, we select either replicate or migrate based on their cost via linear regression of historical data.  \
+when assign hardware CP decisions, it 1) assign based on priority, otherwise assign the one that can be satisfied by the remaining resource, 2) if the unsatisfied one incur predictive QoS/SLA violation, ignore it if it is less than a threshold. (or see if the migration/replication incur more cost than the penalty, do 3) before 2)) 3) In case such violation is non-ignorable, we select either replicate or migrate based on their cost via linear regression of historical data.  \
 \
 if the objective change is 
 \i which
@@ -611,7 +611,18 @@ due to we are working on single cloud scenario, we need to assume the total capa
 \
 wallace.cs.bham.ac.uk\
 \
-Enable QoS and Cost Optimized Elasticity in the Cloud using Computational Intelligence based Approach \
+when cloud dynamics occur, new adding primitive can use 0 to present the missing info whereas the removed primitive would be removed directly, this is because those primitives are usually indirect primitives, and the same info can be easily provided by another indirect primitives.\
+\
+Enable Globally QoS and Cost (benefits?) Optimized Elasticity in the Cloud using Computational Intelligence based Approach \
+\
+\
+\
+Self-adaptive and regional architecture for QoS/cost optimised elasticity in the cloud\
+\
+adaptation overhead from 2 - 8\
+achieved score from 2 - 8\
+\
+a drawback of ensemble: Unfortunately, the ratio of examples to classes is small at the metalevel for any reasonable number of algorithms to choose from, and there are serious risks of overfitting due to underlying similarities among algorithms.\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \pard\pardeftab720
@@ -798,6 +809,9 @@ wxid_pw8vafhd0n4d21\
 
 \f5\b \cf0 Airi Minami\
 Mikan Kururugi\
+YUNA SHIINA\
+Yukina Momota\
+\
 19291016\
 
 \f1 \'92\'86\'8d\'91\'9b\'f6\'90\'bc\'96\'f6\'8f\'42\'8e\'73\
