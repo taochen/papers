@@ -1,0 +1,19 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 This paper is not about cloud, but it present an approach for self-adaptive system in general.\
+\
+It uses PID control for tunning with static QoS model (goal), therefore making it different for other approaches as the dynamic in QoS can be handled by PID control, which make it OK to use fixed QoS model as presumably making it as a dynamic model.\
+\
+\
+It also use a preference optimiser to handle the tradeoff, which aim to reach pareto optimality.\
+This is interesting as it reduce it into Boolean satisfactory problem, which solved by SAT. \
+\
+\
+Hardgoal - has clear satisfaction \
+soft goal - do not have clear satisfaction, but referred to as 'good enough' (do not confuse with this, it refers to do not know how good is good, but do know how bad is bad, thus it is OK to have SLA says response time no less than xxx)\
+\
+the overhead is also interesting, it can handle  200 hard goal with maximum of 20 soft goal within 1 sec.}
