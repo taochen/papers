@@ -614,11 +614,12 @@ wallace.cs.bham.ac.uk\
 \
 when cloud dynamics occur, new adding primitive can use 0 to present the missing info whereas the removed primitive would be removed directly, this is because those primitives are usually indirect primitives, and the same info can be easily provided by another indirect primitives.\
 \
-Enable Global QoS and Cost (benefits?) Optimized Elasticity in the Cloud using Computational Intelligence based Approach \
+\cf7 Enable Global QoS and Cost (benefits?) Optimized Elasticity in the Cloud using Computational Intelligence based Approach \
 \
-Enable Globally-optimal QoS and Cost (benefits?) for the Cloud Services using Computational Intelligence based Approach \
+Enable Globally-optimal QoS and Cost (benefits?) for the Cloud Services using Computational Intelligence based Approach \cf0 \
 \
 Self-Adaptive and Self-Optimized Autoscaling for Service Based Applications in the Elastic Cloud\
+(using self-awareness and MAPE?)\
 \
 adaptation overhead from 2 - 8\
 achieved score from 2 - 8\
@@ -626,6 +627,23 @@ achieved score from 2 - 8\
 a drawback of ensemble: Unfortunately, the ratio of examples to classes is small at the metalevel for any reasonable number of algorithms to choose from, and there are serious risks of overfitting due to underlying similarities among algorithms.\
 \
 mind the differences on static/dynamic and offline/online\
+\
+using the first node in cloud as reference, the interval start time of a new VM should be sync to the same physical clock. e.g., first node at 0:15 and interval is 5 mins, then if new VM start by 2:17 it needs to wait till 2:20 to start sampling. The same applied to new primitive/service\
+\
+\
+1) elastic strategy = certain combination of CP\
+2) elastic rules= a pair of condition and an action consists of certain combination of CP\
+\
+Rule-based could be 2)\
+Control theory could 1) or 2)\
+Search based could be 1) as there is no clear mapping of condition and action\
+\
+\
+\
+sampling interval for the entire cloud should be the same, whereas modelling interval could be differ for each middleware instance.\
+\
+\
+regards to whether CPU sharing is better than isolation, if the demand can be satisfied then isolation is better, however, if it is not then sharing is better (typical over provisioning strategy) thus the consequence of under/over provision is more serious than interference.\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \pard\pardeftab720
