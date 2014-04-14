@@ -644,6 +644,17 @@ sampling interval for the entire cloud should be the same, whereas modelling int
 \
 \
 regards to whether CPU sharing is better than isolation, if the demand can be satisfied then isolation is better, however, if it is not then sharing is better (typical over provisioning strategy) thus the consequence of under/over provision is more serious than interference.\
+\
+\
+J.RAO's 3 work (closet work on QoS modelling)\
+1. has interference\
+2. has interference and software CP\
+3. has interference, software CP and dynamic selection of primitives (use Simplex Reduction)\
+\
+upon provision hardware CP for VMs on a PM, follow:\
+1. hardware CP before software CP.\
+2. scale down before scale up.\
+3. in case of scale up, smaller value before larger value.\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \pard\pardeftab720
