@@ -80,9 +80,8 @@ relations of attribute: (for fitness function)
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f1\fs24 \cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 \cf0 \
+\f0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -619,7 +618,7 @@ when cloud dynamics occur, new adding primitive can use 0 to present the missing
 Enable Globally-optimal QoS and Cost (benefits?) for the Cloud Services using Computational Intelligence based Approach \cf0 \
 \
 Self-Adaptive and Self-Optimized Autoscaling for Service Based Applications in the Elastic Cloud\
-(using self-awareness and MAPE?)\
+(using self-awareness and MAPE? might be add Self-Aware?)\
 \
 adaptation overhead from 2 - 8\
 achieved score from 2 - 8\
@@ -653,8 +652,14 @@ J.RAO's 3 work (closet work on QoS modelling)\
 \
 upon provision hardware CP for VMs on a PM, follow:\
 1. hardware CP before software CP.\
-2. scale down before scale up.\
-3. in case of scale up, smaller value before larger value.\
+2. scale down before scale up. (particular for hardware)\
+3. in case of scale up, smaller value before larger value. (particular for hardware)\
+\
+may be better to clarify instead of focus on add/remove VM (horizontal), we focus on fine-grained provisioning inside the VM (vertical). But they can be used in conjunction.\
+\
+non-functional/softgoal usually a range, functional/hardgoal usually a concrete target. \
+\
+we do not have to update external QoS models (objectives from other PM) at QoS modeller, just whenever there is need to update regions due to model changes, we multicast, all the associated nodes in the region would do the updates. If there is need to trigger autoscaler, the external models can then be updated on the local PM where the optimisation is trigger (this can be done in the same process as the phase that avoid duplicate optimisation)\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \pard\pardeftab720
