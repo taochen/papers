@@ -586,11 +586,11 @@ group of VM (possible regioning) consists of many regions, each region has many 
 \
 \
 \cf6 regards to if trigger optimisation, \
-when detect QoS violation (under provision):\
+when detect QoS violation (under provision) for at least t interval for ensuring stability (or the average value over t intervals)::\
 1) if it is predicted that the likely QoS one step ahead is still ok, then do nothing\
 2) if the likely QoS one step ahead is not ok, then compare (violated QoS unit to QoS threshold * penalty per unit and penalty of ACO (cost per hardware CP unit), which can be estimated offline with regards to number of objective) to decide if trigger optimisation.\
 \
-when detect over provision:\
+when detect over provision for at least t interval (or the average value over t intervals)::\
 then compare (idle CP to utility threshold * penalty per idle CP and penalty of ACO (cost per hardware CP unit)) to decide if trigger optimisation.\
 \
 (consider using risk of optimisation?)\
@@ -660,6 +660,8 @@ may be better to clarify instead of focus on add/remove VM (horizontal), we focu
 non-functional/softgoal usually a range, functional/hardgoal usually a concrete target. \
 \
 we do not have to update external QoS models (objectives from other PM) at QoS modeller, just whenever there is need to update regions due to model changes, we multicast, all the associated nodes in the region would do the updates. If there is need to trigger autoscaler, the actual external models can then be updated on the local PM where the optimisation is trigger (this can be done in the same process as the phase that avoid duplicate optimisation)\
+\
+We consider Task = Service, which is Couldlet in CloudSim.\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
 \pard\pardeftab720
