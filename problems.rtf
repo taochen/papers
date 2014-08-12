@@ -665,6 +665,24 @@ We consider Task = Service, which is Couldlet in CloudSim.\
 \
 the simulation  (search based ) could be better than control theory one as it is expensive to try these on the real system.\
 \
+may use C measure as a metric in the ant colony versus step-wise and rule based approaches. \
+\
+Dealing with scale in/out: (these could improve instability that caused by the inaccuracy)\
+\
+1) when optimise, the selected control value for VM should be the total capacity of the PM, in case the PM can not satisfy the required value, we can then migrate or replicate. \
+\
+2) one possibility 
+\f1 preliminary experiments
+\f0 , is that we equivalently assign the possible provision to VMs and then set up a threshold for trigger scale out e.g., if the current max of CPU is 100% (the max provision) then if it actually use 90% of the max and the decide value is also above 90% then it is likely to be a scale out. this could also prevent scale out if we do not need to consider it.\
+\
+3) another way to do at runtime change of max provision is that, we only scale out if 2) has meet and the max provision can not be add by (1+g)*the max, where g is a present age > 100%; otherwise we update the max provision by (1+g)*the current max. This update occur when the optimisation is done and in the executor.\
+\
+when we we found that the actual and decided value is below 90%of the current max provision, we update the max provision by (1-g)*the current max.\
+\
+4) the min provision can be also updated  i.e., and each monitoring, update the vector's min value with the observed min. \
+\
+ACO may result in solution that violate some objective, in that case, we simply do not use it. The threshold that trigger ACO could be different with the actual SLA that used in ACO (i.e. the trigger one could be better)\
+\
 \pard\pardeftab720
 
 \f2 \cf0 Samuel Kounev
