@@ -663,9 +663,11 @@ we do not have to update external QoS models (objectives from other PM) at QoS m
 \
 We consider Task = Service, which is Couldlet in CloudSim.\
 \
+\cf7 Tradeoff in Autoscaling ===============================================\cf0 \
+\
 the simulation  (search based ) could be better than control theory one as it is expensive to try these on the real system.\
 \
-may use C measure as a metric in the ant colony versus step-wise and rule based approaches. \
+may use sth similar to C measure as a metric in the ant colony versus step-wise and rule based approaches. \
 \
 Dealing with scale in/out: (these could improve instability that caused by the inaccuracy)\
 \
@@ -679,9 +681,20 @@ Dealing with scale in/out: (these could improve instability that caused by the i
 \
 when we we found that the actual and decided value is below 90%of the current max provision, we update the max provision by (1-g)*the current max.\
 \
-4) the min provision can be also updated  i.e., and each monitoring, update the vector's min value with the observed min. \
+4) the min provision can be also updated  i.e., and each monitoring, update the vector's min value with the observed min.  (need to have a min value)\
 \
 ACO may result in solution that violate some objective, in that case, we simply do not use it. The threshold that trigger ACO could be different with the actual SLA that used in ACO (i.e. the trigger one could be better)\
+\
+the CP in cost model is regardless to the QoS sensitivity because although they are not correlated with the QoS, they are still essential to support the service, e.g., it may be not sensitive to memory at all at some point in time, but it may still correlated with it in the future, so it is still charged. but this can not go outside the provisioned VM.\
+\
+we can use distance to find the most balanced solution over the pareto optimal set. If the aco finally have to have multiple solution, then randomly select one as the are all good solutions.\
+\
+1. search good tradeoff solution\
+2. find the most well-balanced (best compromised) solution out form the set in (1)\
+\
+triple measure for best balanced solution (i.e., compromise-dominance): <pareto-dominance (superiority), nash-dominance (fairness/stability), distance (similarity-to-ideal)>. the priority decrease from left to right.\
+\
+Adaptively Resolve Trade-off under Uncertainty for Autoscaling in the Cloud: an Ant Colony and Compromise-Dominance based Solution.\
 \
 \pard\pardeftab720
 
