@@ -630,12 +630,12 @@ mind the differences on static/dynamic and offline/online\
 using the first node in cloud as reference, the interval start time of a new VM should be sync to the same physical clock. e.g., first node at 0:15 and interval is 5 mins, then if new VM start by 2:17 it needs to wait till 2:20 to start sampling. The same applied to new primitive/service\
 \
 \
-1) elastic strategy = certain combination of CP\
+\cf5 1) elastic strategy = certain combination of CP\
 2) elastic rules= a pair of condition and an action consists of certain combination of CP\
 \
 Rule-based could be 2)\
-Control theory could 1) or 2)\
-Search based could be 1) as there is no clear mapping of condition and action\
+Control theory could 1) or 2) (this category usually explicity model control-error, MPC is a special case which can be similar to search based ones, however it mainly focus on prediction rather than the search in optimisation)\
+Search based could be 1) as there is no clear mapping of condition and action\cf0 \
 \
 \
 \
@@ -695,6 +695,22 @@ we can use distance to find the most balanced solution over the pareto optimal s
 triple measure for best balanced solution (i.e., compromise-dominance): <pareto-dominance (superiority), nash-dominance (fairness/stability), distance (similarity-to-ideal)>. the priority decrease from left to right.\
 \
 Adaptively Resolve Trade-off under Uncertainty for Autoscaling in the Cloud: an Ant Colony and Compromise-Dominance based Solution.\
+\
+1st uncertainty: search the trade-off solution\
+2nd uncertainty: difficult to weight under interferences. This even make eplison dominance difficult.\
+\
+in Xen, the max mem and cpu is set to the maximum (except those that have been collected to Dom0) for each VM as the actual threshold is controlled by our method.\
+\
+\cf5 Can link the work to self-aware handbook by saying self-awareness AS a solution to the autoscaling problem. Putting software and hardware CP in the same model could reduce maintenance difficulty and also search for better combination. This is the main benefits over the approach that consider them in different models and/or consider them separately (e.g., in a sequence, see TR-10-full-version)\
+\
+<<<<<<<<<<<<<<<<<<\
+we care about redundancy between dimension of indirect primitives not the direct ones because different dimensions of direct primitives is able to affect QoS by directly controlling the utilization in different aspects whereas the indirect ones can only do so via contention. \
+\
+"This is because the direct primitives are able to affect QoS by directly controlling the utilization in different dimensions, which means they can provide different aspects of information; whereas all the indirect ones can only do so via contention, thus they can only provide information about contention and this means that the information redundancy becomes a problem to accuracy."\
+<<<<<<<<<<<<<<<<<<\cf0 \
+\
+in fitness landscape approximation, people would train the QoS model during evolutionary evaluation. but it aims for faster coverage, not good for runtime management. \
+\
 \
 \pard\pardeftab720
 
@@ -906,4 +922,21 @@ jv ren 18\
 yin zhi yao 05\
 \
 oad nan jia\
-oad ling zuo de guai tong xue}
+oad ling zuo de guai tong xue\
+\
+Create Xen VM Template:\
+\
+mkdir -p /opt/xen/domains/cloned\
+cd /opt/xen/domains/cloned\
+dd if=/dev/zero of=diskimage bs=1024k count=2048\
+dd if=/dev/zero of=swapimage bs=1024k count=256\
+mkfs.ext3 diskimage\
+mkswap swapimage\
+mkdir -p /mnt/disk\
+mount -o loop /opt/xen/domains/cloned/diskimage /mnt/disk\
+\
+rsync -av -SHWD --exclude-from="/tmp/XenCloneExclude" /mnt/image/ /mnt/disk\
+\
+\
+chroot /mnt/disk /bin/bash\
+}
