@@ -1,10 +1,10 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\froman\fcharset0 Times-Roman;
 \f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fswiss\fcharset0 ArialMT;
-\f6\fnil\fcharset0 Verdana;}
+\f6\fnil\fcharset0 Verdana;\f7\fmodern\fcharset0 Courier;}
 {\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
-\red164\green8\blue0;\red255\green39\blue18;\red217\green11\blue0;\red0\green57\blue161;\red7\green78\blue230;
-\red12\green82\blue6;\red195\green196\blue195;}
+\red164\green8\blue0;\red255\green39\blue18;\red217\green11\blue0;\red63\green105\blue30;\red0\green57\blue161;
+\red7\green78\blue230;\red12\green82\blue6;\red195\green196\blue195;\red247\green247\blue247;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7720\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
@@ -617,8 +617,10 @@ when cloud dynamics occur, new adding primitive can use 0 to present the missing
 \
 Enable Globally-optimal QoS and Cost (benefits?) for the Cloud Services using Computational Intelligence based Approach \cf0 \
 \
-Self-Adaptive and Self-Optimized Autoscaling for Service Based Applications in the Elastic Cloud\
-(using self-awareness and MAPE? might be add Self-Aware?)\
+Self-Adaptive and Self-Optimized Autoscaling for Service-Based Applications in Cloud\
+(using self-awareness and MAPE? might be add Self-Aware?) (thesis and journal 2)\
+\
+Self-adaptive online QoS Modeling for Elastic Autoscaling in Service-Oriented Cloud (journal 1)\
 \
 adaptation overhead from 2 - 8\
 achieved score from 2 - 8\
@@ -707,10 +709,48 @@ in Xen, the max mem and cpu is set to the maximum (except those that have been c
 we care about redundancy between dimension of indirect primitives not the direct ones because different dimensions of direct primitives is able to affect QoS by directly controlling the utilization in different aspects whereas the indirect ones can only do so via contention. \
 \
 "This is because the direct primitives are able to affect QoS by directly controlling the utilization in different dimensions, which means they can provide different aspects of information; whereas all the indirect ones can only do so via contention, thus they can only provide information about contention and this means that the information redundancy becomes a problem to accuracy."\
-<<<<<<<<<<<<<<<<<<\cf0 \
+\
+\
+We can use overall result for hybrid not for adaptive is because in the former, we can compare with all other possible selection techniques thus it can draw sensible conclusion. On the other hand for the later, there are hundreds of alternatives thus overall result of the 3 learning algorithm does not make any senses and we need adaptive methods. By proving the effectiveness of the adaptive method, we can imply the approach will be useful when other alternatives are involved. \
+\
+\cf0 !!!!!!!!!!! Move the description of two sub-space to the section of hybrid multi-learners method rather than during the system and qos models (for the description of SU also do the same)\
+\
+journal 1 - investigate the balance between relevance and redundancy motivate to study SU (found out direct ones are more relevant and important than indirect ones) and partition the direct/indirect space.\
+thesis - investigate the solution to the high dimension in previous method motivate to study SU (found out direct ones are more relevant and important than indirect ones)  and partition the direct/indirect space.\
+single vs mutil on primitive selection - differences of direct and indirect space (then importance of information quality (the ratio, direct better) and negative effect of redundancy (direct less affectted) is different for  direct/indirect space), thus improper for using single-learner.\
+\
+bar chart: N-SMAPE, stability and complexity. Then the detailed table of each algorithm and qos attribute.\cf5 \
+<<<<<<<<<<<<<<<<<<\
+\
+The autoscaling problem can be seen as multi-objective combinatorial optimisation problem (discrete optimisation)\cf0 \
 \
 in fitness landscape approximation, people would train the QoS model during evolutionary evaluation. but it aims for faster coverage, not good for runtime management. \
 \
+\cf8 Things to determine:\
+\
+1. keep the trail difference vs not keep the trail difference (not keep)\
+2. use local best to update trail vs use global best to update trail (use local)\
+3. the best alpha and beta values. (4-1)\
+4. the best evaporation value. (0.1)\
+5. keep local update or not keep (not keep)\cf0 \
+\
+" Since the errors are squared before they are averaged, the RMSE gives a relatively high weight to large errors. This means the RMSE is most useful when large errors are particularly undesirable.\
+\
+The MAE and the RMSE can be used together to diagnose the variation in the errors in a set of forecasts. The RMSE will always be larger or equal to the MAE; the greater difference between them, the greater the variance in the individual errors in the sample. If the RMSE=MAE, then all the errors are of the same magnitude"\
+\
+"The inferences that can be made from a sample will be greater/more precise/more accurate if distributional assumptions which validate the mean can be made (ie. the distribution is symmetric and hence the mean is a valid measure of centre). However, these assumptions cannot always be made and the mean may give a misleading idea of the data. If the assumptions cannot be made, then the median is a better measure of centre that we know will be representative regardless of the distribution of the measurements."\
+\
+\
+\cf5 for journal content of QoS modelling, we can:\
+\
+1. Consider the new data as rear 200 intervals in order to eliminate the effect of insufficient data\
+2. use normalised deviation, quality ranking score together with normalised SMAPE \
+3. use details accuracy as table and the overall result as bar chart, focus on stable and overall result of hybrid approach\
+4. apply 1 for the adaptive multi-learner's evaluation as well, and if needed, use the new data to test sensitivity of result to the similarity of candidate learning algorithms. Also show the adaptive multi-learner is overall better and the most stable.\
+\
+\cf0 \
+\
+deploy master with 2 tier RUBiS for handling DB related requests whereas the replicas handling non-DB requests, e.g., static page requests.\
 \
 \pard\pardeftab720
 
@@ -876,17 +916,17 @@ holly-michaels\nestcell \lastrow\nestrow\cell \lastrow\row
 \
 \pard\pardeftab720
 
-\f0 \cf8 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
+\f0 \cf9 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
 \
 \pard\pardeftab720
-{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf9 \ul \ulc9 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
+{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf10 \ul \ulc10 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
 \
 \pard\pardeftab720
-{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf10 h\cf9 \ul \ulc9 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
+{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf11 h\cf10 \ul \ulc10 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
 \pard\pardeftab720
-\cf10 \
-Cheers,\cf8 \
-\cf10 Jon\
+\cf11 \
+Cheers,\cf9 \
+\cf11 Jon\
 \
 skyinfly1987@gmail.com\
 mylmtlxg\
@@ -905,7 +945,7 @@ Mikan Kururugi\
 YUNA SHIINA\
 Yukina Momota\
 
-\fs26 \cf11 MIKURU MIO\
+\fs26 \cf12 MIKURU MIO\
 
 \fs24 Wakaba Onoue\cf0 \
 \
@@ -926,6 +966,13 @@ oad ling zuo de guai tong xue\
 \
 Create Xen VM Template:\
 \
+\pard\pardeftab720\sl360
+
+\f7\b0\fs28 \cf5 \cb13 Sources\cf0 : mount -o loop /opt/xen/domains/centos4-tpl/diskimage /mnt/image\
+\pard\pardeftab720\sl360
+
+\f1\b\fs24 \cf0 \cb1 \
+\
 mkdir -p /opt/xen/domains/cloned\
 cd /opt/xen/domains/cloned\
 dd if=/dev/zero of=diskimage bs=1024k count=2048\
@@ -933,7 +980,8 @@ dd if=/dev/zero of=swapimage bs=1024k count=256\
 mkfs.ext3 diskimage\
 mkswap swapimage\
 mkdir -p /mnt/disk\
-mount -o loop /opt/xen/domains/cloned/diskimage /mnt/disk\
+\pard\pardeftab720\sl360
+\cf5 Destination\cf0 : mount -o loop /opt/xen/domains/cloned/diskimage /mnt/disk\
 \
 rsync -av -SHWD --exclude-from="/tmp/XenCloneExclude" /mnt/image/ /mnt/disk\
 \
