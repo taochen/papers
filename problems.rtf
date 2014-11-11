@@ -585,6 +585,7 @@ as long as the search is completed, the action needs to be finished no matter we
 group of VM (possible regioning) consists of many regions, each region has many objectives from those VMs.\
 \
 \
+\pard\pardeftab720
 \cf6 regards to if trigger optimisation, \
 when detect QoS violation (under provision) for at least t interval for ensuring stability (or the average value over t intervals)::\
 1) if it is predicted that the likely QoS one step ahead is still ok, then do nothing\
@@ -707,17 +708,19 @@ in Xen, the max mem and cpu is set to the maximum (except those that have been c
 \cf5 Can link the work to self-aware handbook by saying self-awareness AS a solution to the autoscaling problem. Putting software and hardware CP in the same model could reduce maintenance difficulty and also search for better combination. This is the main benefits over the approach that consider them in different models and/or consider them separately (e.g., in a sequence, see TR-10-full-version)\
 \
 <<<<<<<<<<<<<<<<<< journal of QoS modelling approach\
-we care about redundancy between dimension of indirect primitives not the direct ones because different dimensions of direct primitives is able to affect QoS by directly controlling the utilization in different aspects whereas the indirect ones can only do so via contention. \
 \
-"This is because the direct primitives are able to affect QoS by directly controlling the utilization in different dimensions, which means they can provide different aspects of information; whereas all the indirect ones can only do so via contention, thus they can only provide information about contention and this means that the information redundancy becomes a problem to accuracy."\
+\
+"This is because the direct primitives are able to affect QoS by directly controlling the utilization in  different aspects of information; whereas all the indirect ones can only do so via contention, thus they can only provide information about contention and this means that the information redundancy becomes a problem to accuracy."\
 \
 \
 We can use overall result for hybrid not for adaptive is because in the former, we can compare with all other possible selection techniques thus it can draw sensible conclusion. On the other hand for the later, there are hundreds of alternatives thus overall result of the 3 learning algorithm does not make any senses and we need adaptive methods. By proving the effectiveness of the adaptive method, we can imply the approach will be useful when other alternatives are involved. \
 \
+\pard\pardeftab720
 \cf0 !!!!!!!!!!! Move the description of two sub-space to the section of hybrid multi-learners method rather than during the system and qos models (for the description of SU also do the same)\
 \
 the aim for primitive selection is to select the primitives that maximise relevance but yet the minimal redundancy. \
 \
+\pard\pardeftab720
 \cf7 Use the relevance and redundancy trend to compare with the non-linearity of accuracy. the direct shows that the 
 \i\b correlation of cumulative SU to model accuracy is nonlinear, and it exist for primitives provide quite different aspect of the class (QoS). 
 \i0\b0 (but for those that produce the same kind of information, it is ok). This prove that the direct and indirect provide quite different information. \cf0 \
@@ -726,11 +729,13 @@ journal 1 - investigate and analyse the possible relevant primitive space motiva
 \
 thesis - investigate the solution to the high dimension in previous method motivate to study SU (found out direct ones are more relevant and important than indirect ones)  and partition the direct/indirect space.\
 \
-single vs mutil on primitive selection - direct has higher relevance and tends to cause less effect on accuracy therefore direct tends to be more important, it shows that like the nonlinearty in direct, the nonlinearty between direct and indirect spaces imply that they provide different aspects of information, this also match the fact that one on direct control of different dimensions and the other only for interference/contention (direct is thus more important), thus to explore the full benefits from direct it is improper for using single-learner as in such case the 
+single vs mutil on primitive selection - direct has higher relevance and tends to cause less effect on accuracy therefore direct tends to be more important, it shows that like the nonlinearty in direct, the nonlinearty between direct and indirect spaces imply that they provide different aspects of information, this also match the fact that one on direct control of different aspect and the other only for interference/contention (direct is thus more important), thus to explore the full benefits from direct it is improper for using single-learner as in such case the 
 \i\b \cf7 correlation of cumulative
 \i0\b0  
 \i\b SU to model accuracy is nonlinear, and it exist for primitives provide quite different aspect of the class (QoS).
-\i0\b0  
+\i0\b0   Note that CPU and memory may contain information directly about the QoS and some information on service interference (hybrid information), however, it still different to the other in the direct space and those from the indirect space, as they provide either direct or contention information. \
+\
+
 \i\b \
 
 \i0\b0 \
@@ -740,7 +745,6 @@ can include the variation of hybrid multi-leaners in journal to show that even w
 \
 bar chart: N-SMAPE, stability and complexity. Then the detailed table of each algorithm and qos attribute.\
 \
-use mRMR for each aspects independently, then in the direct primitive, this can be reduced to mR approach as there is only one primitive in each feature dimension. This is only applicable in case we do not select useful primitives but select the relevant primitives, as long as we select relevant primitives only and the correlation of cumulative relevance to the number of selected primitives is positively linear. \
 \
 \
 thinking:\
@@ -752,8 +756,8 @@ thinking:\
 5. this require the correlation of cumulative relevance and redundancy to model accuracy is linear, otherwise it can mislead the selection. \
 6. the 4 obersvations and mention the different/same aspects of information.\
 7. given linear and nonlinear aspect in the space and nonlinear stuff mainly for primitives provide different aspect of information, single-learner can not help as it can not distinguish linear/nonlinear areas and  primitives provide different aspect of information, thus mislead the selection. Also nonlinear factor cannot be efficiently resolve, we decide to at least avoid the misleading.\
-8. partition the space into n+1, where n is in the direct space and 1 is in indirect space.\
-9. given nonlinear factor and different aspect of information in direct space, we use mRMR for each dimension, also, because only one primitive per dimension, it is equals to eliminate irrelevant primitive thus can be represented using mR, where the comparison between different relevant primitives set does not influent the result.\
+8. partition the space into n+1, where n is in the direct space and 1 is in indirect space. (n=the number of primitive)\
+9. given nonlinear factor and different aspect of information in direct space, we use mRMR for each sub-space, also, because only one primitive per sub-space, it is equals to eliminate irrelevant primitive thus can be represented using mR, where the comparison between different relevant primitives set does not influent the result.\
 10. in indirect space, simply  use mRMR, we have different variations. \
 \
 \
@@ -763,6 +767,8 @@ thinking:\
 one benefits of hybrid method is that we do not need to consider all interference, but only the singnificant ones, same applied to direct primitives.\
 \
 can mentioned that it need export to define the direct primitives should not be different representation of the same underlying primitive.\
+\
+(do not consider cloud dynamics in journal, but use the experiment comparison to show the importance of select primitive online and the importance of considering interference information)\
 \
 <<<<<<<<<<<<<<<<<< journal of QoS modelling approach\
 \
@@ -792,13 +798,15 @@ The MAE and the RMSE can be used together to diagnose the variation in the error
 3. use details accuracy as table and the overall result as bar chart, focus on stable and overall result of hybrid approach\
 4. apply 1 for the adaptive multi-learner's evaluation as well, and if needed, use the new data to test sensitivity of result to the similarity of candidate learning algorithms. Also show the adaptive multi-learner is overall better and the most stable.\
 \
+\pard\pardeftab720
 \cf0 \
 \
 deploy master with 2 tier RUBiS for handling DB related requests whereas the replicas handling non-DB requests, e.g., static page requests.\
 \
 \
+QoS(t) is a value at tth interval, the one that used in optimisation should be the function. This is the same as represent the model by vectors, but  i think this is more clear.\
 \
-\
+in adaptive multi learner, we does not consider time series when finding local error because usually, the most recent sample has higher weight, in addition, adding too many dimension making it difficult to express the true distance.\
 \
 \pard\pardeftab720
 
@@ -1035,4 +1043,16 @@ rsync -av -SHWD --exclude-from="/tmp/XenCloneExclude" /mnt/image/ /mnt/disk\
 \
 \
 chroot /mnt/disk /bin/bash\
+\
+\
+>>>>>>>>>>>>> thesis >>>>>>>>>>>>>>>>>\
+\
+\pard\pardeftab720
+
+\f0\b0 \cf0 Put QoS interference over the main issue as the other 3, because it exist all over the 3 challenges.\
+Then in the literature review, put QoS interference as a sub section under each challenges, discuss what are the current work that handle interference under the specific aspect. \
+\
+\
+keep SEAMS 2013 paper, keep the cloud dynamics. Then in the improvement add the additional consideration section (talk about RT and VM interference). Then we do not need to consider cloud dynamics in experiment as it has been shown in  the experiments of SEAMS paper section. 
+\f1\b \
 }
