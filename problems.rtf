@@ -618,7 +618,7 @@ when cloud dynamics occur, new adding primitive can use 0 to present the missing
 \
 Enable Globally-optimal QoS and Cost (benefits?) for the Cloud Services using Computational Intelligence based Approach \cf0 \
 \
-Self-Adaptive and Self-Optimized Autoscaling for Service-Based Applications in Cloud\
+Self-Aware and Self-Adaptive Autoscaling for Service-Based Applications in Cloud\
 (using self-awareness and MAPE? might be add Self-Aware?) (thesis and journal 2)\
 \
 Self-adaptive online QoS Modeling for Elastic Autoscaling in Service-Oriented Cloud (journal 1)\
@@ -684,7 +684,7 @@ Dealing with scale in/out: (these could improve instability that caused by the i
 \
 when we we found that the actual and decided value is below 90%of the current max provision, we update the max provision by (1-g)*the current max.\
 \
-4) the min provision can be also updated  i.e., and each monitoring, update the vector's min value with the observed min.  (need to have a min value)\
+4) the min provision can be also updated  i.e., and each monitoring, update the vector's min value with the observed min.  (need to have a min value), or the latest min value.\
 \
 ACO may result in solution that violate some objective, in that case, we simply do not use it. The threshold that trigger ACO could be different with the actual SLA that used in ACO (i.e. the trigger one could be better)\
 \
@@ -697,7 +697,7 @@ we can use distance to find the most balanced solution over the pareto optimal s
 \
 triple measure for best balanced solution (i.e., compromise-dominance): <pareto-dominance (superiority), nash-dominance (fairness/stability), distance (similarity-to-ideal) = G-distance>. the priority decrease from left to right.\
 \
-Adaptively Resolve Trade-off under Uncertainty for Autoscaling in the Cloud: an Ant Colony and Compromise-Dominance based Solution.\
+Adaptively Resolve Trade-off under Dynamic and Uncertainty for Autoscaling in the Cloud: an Ant Colony and Compromise-Dominance based Solution.\
 \
 1st uncertainty: search the trade-off solution\
 2nd uncertainty: difficult to weight under interferences. This even make eplison dominance difficult.\
@@ -735,10 +735,12 @@ single vs mutil on primitive selection - direct has higher relevance and tends t
 \i\b SU to model accuracy is nonlinear, and it exist for primitives provide quite different aspect of the class (QoS).
 \i0\b0   Note that CPU and memory may contain information directly about the QoS and some information on service interference (hybrid information), however, it still different to the other in the direct space and those from the indirect space, as they provide either direct or contention information. \
 \
+\pard\pardeftab720
 
-\i\b \
+\i\b \cf7 \
+\pard\pardeftab720
 
-\i0\b0 \
+\i0\b0 \cf7 \
 consider say 1. the direct 2. between direct and indirect, 3. the indirect\
 \
 can include the variation of hybrid multi-leaners in journal to show that even we further incorporating wrong information in, the model is still better than single leaners, this means how important it is to partition the space in order to get SU working properly. \cf0 \
@@ -757,16 +759,13 @@ thinking:\
 6. the 4 obersvations and mention the different/same aspects of information.\
 7. given linear and nonlinear aspect in the space and nonlinear stuff mainly for primitives provide different aspect of information, single-learner can not help as it can not distinguish linear/nonlinear areas and  primitives provide different aspect of information, thus mislead the selection. Also nonlinear factor cannot be efficiently resolve, we decide to at least avoid the misleading.\
 8. partition the space into n+1, where n is in the direct space and 1 is in indirect space. (n=the number of primitive)\
-9. given nonlinear factor and different aspect of information in direct space, we use mRMR for each sub-space, also, because only one primitive per sub-space, it is equals to eliminate irrelevant primitive thus can be represented using mR, where the comparison between different relevant primitives set does not influent the result.\
+9. given nonlinear factor and different aspect of information in direct space, we use mRMR for each sub-space based on the primitive, also, because only one primitive per sub-space, it is equals to eliminate irrelevant primitive thus can be represented using mR, where the comparison between different relevant primitives set does not influent the result.\
 10. in indirect space, simply  use mRMR, we have different variations. \
-\
-\
-\
 11. finally, what we do is to partition the space into two sub-space, which is sufficient. \
 \cf5 \
 one benefits of hybrid method is that we do not need to consider all interference, but only the singnificant ones, same applied to direct primitives.\
 \
-can mentioned that it need export to define the direct primitives should not be different representation of the same underlying primitive.\
+can mentioned that we only consider one metric per primitive and Qos\
 \
 (do not consider cloud dynamics in journal, but use the experiment comparison to show the importance of select primitive online and the importance of considering interference information)\
 \
@@ -776,6 +775,7 @@ The autoscaling problem can be seen as multi-objective combinatorial optimisatio
 \
 in fitness landscape approximation, people would train the QoS model during evolutionary evaluation. but it aims for faster coverage, not good for runtime management. \
 \
+\pard\pardeftab720
 \cf8 Things to determine:\
 \
 1. keep the trail difference vs not keep the trail difference (not keep)\
@@ -791,6 +791,7 @@ The MAE and the RMSE can be used together to diagnose the variation in the error
 "The inferences that can be made from a sample will be greater/more precise/more accurate if distributional assumptions which validate the mean can be made (ie. the distribution is symmetric and hence the mean is a valid measure of centre). However, these assumptions cannot always be made and the mean may give a misleading idea of the data. If the assumptions cannot be made, then the median is a better measure of centre that we know will be representative regardless of the distribution of the measurements."\
 \
 \
+\pard\pardeftab720
 \cf5 for journal content of QoS modelling, we can:\
 \
 1. Consider the new data as 350 intervals for write-intensive workload (5:5) (the previous one is read-intensive (9:1))\
@@ -801,12 +802,31 @@ The MAE and the RMSE can be used together to diagnose the variation in the error
 \pard\pardeftab720
 \cf0 \
 \
-deploy master with 2 tier RUBiS for handling DB related requests whereas the replicas handling non-DB requests, e.g., static page requests.\
 \
 \
 QoS(t) is a value at tth interval, the one that used in optimisation should be the function. This is the same as represent the model by vectors, but  i think this is more clear.\
 \
 in adaptive multi learner, we does not consider time series when finding local error because usually, the most recent sample has higher weight, in addition, adding too many dimension making it difficult to express the true distance.\
+\
+do not use nash in the search as it will decrease the diversity/variability/coverage. Do not use distance in the post trade-off as here, the number of improved objective is more important than the extents, and nash provide better fairness, especially when the number of objectives is large.\
+\
+although hormonic objectives can be optimised in parallel but tradeoff also true for this case at some point after the parallel optimisation: a decisions improve A more than B and a decision benefit B more than A.\
+\
+the price of CP might be better to be consistent and fixed per-service.\
+\
+caution about the use of "A of B for C" and "A for B of C", if the link between A and B  is important, then use the former; if the link between B and C is important, use the later.\
+\
+the term 'adapt' is quite general, it depends on the actual autoscaling actions, e.g., vertical or horizontal scaling. We are not interested on the reason between them, but rather, we try to answer the questions: how much resources and what configurations are needed in order to optimise the different QoS objective, reduce the cost and comply with the requirements?\
+\
+goal or requirements are threshold come from the users/stakeholders, objective is about the process of the system toward these requirements. In some cases, e.g., EPiCS, goal can be represented by either requirement models or system models; while objective  can be only represented by system models.\
+\
+put ageing of this phd work as assumption, e.g., CPU get old and heat up when utilisation increases. assume about no service composition, assume about no tradeoff between v-scaling and h-sclaing\
+\
+two way to incorporate time in autoscaling, 1. use time in the modelling (or trend prediction), 2. use time in the decision making, usually based on latest reward function. Both aim for making optimisation persistent. \
+\
+RL (can be model-based or model-free) can learn model when searching for good decision, but only use those MDP models cannot explicitly reason about tradeoff and tends to have larger overhead than a dedicated QoS modelling approach (even for analytical ones).\
+\
+\
 \
 \pard\pardeftab720
 
@@ -1046,13 +1066,57 @@ chroot /mnt/disk /bin/bash\
 \
 \
 >>>>>>>>>>>>> thesis >>>>>>>>>>>>>>>>>\
+objective: optimise both QoS and cost for all (consider trade-off). aim: use minimised cost to be as best as possible QoS, thus optimal global benefit and the QoS/budget requirement can be better complied. The benefits of handling tradeoff properly is that when compared with the penalty one, the later would becoming flavour to cost when penalty is 0 (usually result in QoS closed to the threshold), but the former, can further explore better trade-off e.g., a decision with slightly higher cost but greatly larger QoS, which can improve system stability. (if violation occur due to tight requirements, then both approaches should suffer the same)\
 \
+\
+\
+put on introduction a challenges description (expressed by questions) and the objectives (with background on autoscaling, self-adaptive and self-aware), here, we can briefly describe what self-aware and self-adaptive we used in each contribution. Then in LR, describe the work as it is (simply comment them), then in each chapter, motivate our work by describing detailed challenges and comparing existing work with respect to the challenges  (also link it to self-aware and self-adaptive, where self-adaptive is actually similar to self-expressive).\
+\
+\
+Self-adaptive here is the same as internal bidirectional adaptation to itself in DDDAS concept, two-fold, where it is not only influence the physical system but also consolidate and improve itself. The consolidation can be seen as a benefit of having self-awareness
+\f0\b0 \
 \pard\pardeftab720
-
-\f0\b0 \cf0 Put QoS interference over the main issue as the other 3, because it exist all over the 3 challenges.\
-Then in the literature review, put QoS interference as a sub section under each challenges, discuss what are the current work that handle interference under the specific aspect. \
+\cf0 \
+\
+keep SEAMS 2013 paper, keep the cloud dynamics. Then in the improvement add the additional consideration section (talk about RT and VM interference). Then we do not need to consider cloud dynamics in experiment as it has been shown in  the experiments of SEAMS paper section. \
+\
+consider demand modelling as implicit QoS modelling in LR\
+\
+from property of the approaches in LR, can be static and dynamic (semi-dynamic for the QoS modelling
+\f1\b )\
 \
 \
-keep SEAMS 2013 paper, keep the cloud dynamics. Then in the improvement add the additional consideration section (talk about RT and VM interference). Then we do not need to consider cloud dynamics in experiment as it has been shown in  the experiments of SEAMS paper section. 
-\f1\b \
-}
+\
+existing static and dynamic approaches are limited in the way then they cope with dynamics and uncertainty\
+\
+-1 Add self-aware and self-adaptive to the background  in the LR section, mainly about background, need to bring the bidirectional deputation and self-awareness pattern (in the background, we can describe primitives, self-adaptive/self-awareness principle)\
+\
+we see a node as self, in the global level, at local level, self = e.g., QoS model\
+\
+\
+0. the architecture for auotscaling in the cloud (our self-aware + bidirectional self-adaptive based on decentralised ) (self=node)\
+centralised, regional etc. talk about what they are aware (aware of 1-3)\
+\
+Here, architecture can be seen as the entire auotscaling approach as it determines what is needed.\
+\
+(existing autoscaling approaches as a whole have limited global self-adaptivity , which causing limited adaptation (adapt the system),  (in which certain aspects can be static, which has no or limited self-awareness and local self-adaptivity (adapt itself) see 1-3) vs our self-aware + bidirectional self-adaptive), keep them high level. Self-adaptive in local enable further consolidation already, this is realised by self-aware\
+\
+1. qos modelling (static, semi-dynamic and dynamic) (static in the way then the expression is fixed, restricted by assumption on system's behaviours)  (self=QoS modeling process, each challenge self-adaptive make qos modelling self-adaptive)\
+analytical\
+simulation (e.g., cloud sim)\
+machine learning (include MIMO)\
+\
+2. control granularity (static) (static in the way that control granularity does not change,  restricted by assumption on correlation between control granularity to global adaptation quality) (we talk about single way self-adaptive here, then on the architecture section, we talk about bidirectional self-adaptivity )  (self=region controlling process)\
+different levels of control (e.g., PM level)\
+ \
+3. decision making (static and dynamic) (static in the way that the mapping between condition and actions is fixed, can  restricted by assumption on (1) the predefined conditions, and (ii) the effect of actions upon the mapped conditions)  (self=decision making process)\
+rule based\
+control theoretic\
+search based (implicit and explicit) \
+\
+each aspect, talk about\
+1 self-aware and self-adaptive means\
+2 dynamics and uncertainty and challenges\
+3 limitations\
+\
+put he self-aware pattern as implementation.}
