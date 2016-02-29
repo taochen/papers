@@ -3,8 +3,10 @@
 \f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fswiss\fcharset0 ArialMT;
 \f6\fnil\fcharset0 Verdana;\f7\fmodern\fcharset0 Courier;}
 {\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
-\red164\green8\blue0;\red255\green39\blue18;\red217\green11\blue0;\red63\green105\blue30;\red0\green57\blue161;
-\red7\green78\blue230;\red12\green82\blue6;\red195\green196\blue195;\red247\green247\blue247;}
+\red164\green8\blue0;\red255\green39\blue18;\red217\green11\blue0;\red63\green105\blue30;\red206\green59\blue0;
+\red155\green44\blue1;\red0\green57\blue161;\red7\green78\blue230;\red12\green82\blue6;\red195\green196\blue195;
+\red247\green247\blue247;\red73\green0\blue0;\red67\green10\blue31;\red110\green5\blue0;\red85\green142\blue40;
+}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7720\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
@@ -80,8 +82,9 @@ relations of attribute: (for fitness function)
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \f1\fs24 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0 \
+\f0 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -812,7 +815,7 @@ do not use nash in the search as it will decrease the diversity/variability/cove
 \
 although hormonic objectives can be optimised in parallel but tradeoff also true for this case at some point after the parallel optimisation: a decisions improve A more than B and a decision benefit B more than A.\
 \
-the price of CP might be better to be consistent and fixed per-service.\
+the budget of CP might be better to be consistent and fixed per-service per VM.\
 \
 caution about the use of "A of B for C" and "A for B of C", if the link between A and B  is important, then use the former; if the link between B and C is important, use the later.\
 \
@@ -822,16 +825,41 @@ goal or requirements are threshold come from the users/stakeholders, objective i
 \
 put ageing of this phd work as assumption, e.g., CPU get old and heat up when utilisation increases. assume about no service composition, assume about no tradeoff between v-scaling and h-sclaing\
 \
-two way to incorporate time in autoscaling, 1. use time in the modelling (or trend prediction), 2. use time in the decision making, usually based on latest reward function. Both aim for making optimisation persistent. \
+two ways to incorporate time in autoscaling, 1. use time in the modelling (or trend prediction), 2. use time in the decision making, usually based on latest reward function. Both aim for making optimisation persistent. \
 \
-RL (can be model-based or model-free) can learn model when searching for good decision, but only use those MDP models cannot explicitly reason about tradeoff and tends to have larger overhead than a dedicated QoS modelling approach (even for analytical ones).\
+RL (can be model-based or model-free) can learn model when searching for good decision, but only use those MDP models cannot explicitly reason about tradeoff and tends to have larger overhead than a dedicated QoS modelling approach (even for analytical ones). (or it cannot reach pareto trade-offs or well compromised trade-offs results)\
 \
-new\
+the rail update in MOACO is actually a diversity vs optimality trade-off, the 1/(1-q)*s is better for the diversity as it is forcely reset whenever a better global solution found, so the search do not continuously explore similar path and seek alternatives (we found this is better for autoscaling), whereas the traditional one may be more for attraction. (better diversity may lead to emergently better compromised decision, which is something that very difficult (in p time) to achieve based on purely optimal search) This is because the nature of problem, e.g., the trade-off surface is dynamic and uncertain.\
 \
+autoscaling system/process should contain two physical parts: the managing autoscaling logic and the manageable services and VMs.  Also have some logical aspect: QoS modelling, granularity of control and trade-off decision making.\
+\
+\pard\pardeftab720
+\cf9 DEMAND\cf0 : demand should be the max resources that a cloud-based service/application consumed according to given environmental conditions, while not violate SLA or budget. (people is selfish and want as better as possible Qos with as less as possible cost, so it needs to consider both QoS and cost/budget requirement, while the current definition often ignore budget) This explores the full potentials of cloud-based service/application and elasticity. We mainly from a view of cloud consumers (need support from the cloud providers). If considers profit/energy, then will need to do it form the view of cloud providers.\
+\
+QoS interference in decision making might not be an issue from beginning. We aim to optimise service's objective till the point where QoS interference becomes significant, and then mitigate them by making well-compromise trade-offs.\
+\
+We can actually migrate/replica a service within an application, even for database, by copying only the dependent files and DB tables.\
+\
+We need pareto before nash because since the set of decisions can influence the results, ensuring the superiority of the decisions beforehand can yield more preferable decisions in nash dominance.\
+\
+Some important research directions of self-adaptive software systems are, when to act(adapt), what to act and how to act, my thesis mainly focus on what to act.\
+\
+\cf10 DEMAND(1)\cf0 : the current definition of demand on software system should be refined, because it emphasis too much on cost, i.e., put a strong preference on cost and it see SLA as upper bound while it should be a baseline only. Secondly, it it ignores the true demand of the application/service itself, this unlock its full potentials (currently the demand is probably from an economic point of view). Finally, it is highly and solely rely on the constraints (for the ones that are not in the objective function) which assume to be correctly given by the software architects. \
+\
+\cf10 DEMAND(2)\cf0 : It should be: the highest amount of resources/configuration that the system utilises naturally while both SLA and budges are complied. (this describe (i) the demand of software service and (ii) the demand of the owner) It can further has QoS-driven demand and cost-driven demand, if either SLA or budget needs to be compromised. \
+\
+\
+desired value= it is ok if we violate them. \
+constraint= we cannot violate them.\
 \
 \pard\pardeftab720
 
-\f2 \cf0 Samuel Kounev
+\f2 \cf0 Samuel Kounev\
+\
+future:\
+\
+1. interference aware horizontal and vertical scaling trade-off\
+2. interference aware energy saving and profit optimisation (with trade-offs, at this point, we only need to satisfy SLA rather than optimise QoS as much as possible)
 \f0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 ==================================================================\
@@ -993,17 +1021,17 @@ holly-michaels\nestcell \lastrow\nestrow\cell \lastrow\row
 \
 \pard\pardeftab720
 
-\f0 \cf9 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
+\f0 \cf11 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
 \
 \pard\pardeftab720
-{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf10 \ul \ulc10 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
+{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf12 \ul \ulc12 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
 \
 \pard\pardeftab720
-{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf11 h\cf10 \ul \ulc10 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
+{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf13 h\cf12 \ul \ulc12 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
 \pard\pardeftab720
-\cf11 \
-Cheers,\cf9 \
-\cf11 Jon\
+\cf13 \
+Cheers,\cf11 \
+\cf13 Jon\
 \
 skyinfly1987@gmail.com\
 mylmtlxg\
@@ -1022,7 +1050,7 @@ Mikan Kururugi\
 YUNA SHIINA\
 Yukina Momota\
 
-\fs26 \cf12 MIKURU MIO\
+\fs26 \cf14 MIKURU MIO\
 
 \fs24 Wakaba Onoue\cf0 \
 \
@@ -1045,7 +1073,7 @@ Create Xen VM Template:\
 \
 \pard\pardeftab720\sl360
 
-\f7\b0\fs28 \cf5 \cb13 Sources\cf0 : mount -o loop /opt/xen/domains/centos4-tpl/diskimage /mnt/image\
+\f7\b0\fs28 \cf5 \cb15 Sources\cf0 : mount -o loop /opt/xen/domains/centos4-tpl/diskimage /mnt/image\
 \pard\pardeftab720\sl360
 
 \f1\b\fs24 \cf0 \cb1 \
@@ -1120,4 +1148,208 @@ each aspect, talk about\
 2 dynamics and uncertainty and challenges\
 3 limitations\
 \
-put he self-aware pattern as implementation.}
+put he self-aware pattern as implementation.\
+\
+\
+1. Can you start by summarising your thesis? \
+\
+\pard\pardeftab720
+\cf16 The phd thesis propose a self-aware and self-adaptive autoscaling framework, which is a process that adapts the configurations and resource on-demand according to the changing workload. The aim is to optimise QoS and cost for all cloud-based services. The framework is capable to handle dynamics  , uncertainty, QoS interference and trade-offs. By using the principle of self-awareness, the effective autoscaling can be achieved without heavy human intervention and design time knowledge.\cf0 \
+\
+2. Now, can you summarise it in one sentence? \
+\
+\cf17 The phd thesis proposes a self-aware and self-adaptive autoscaling framework that is able to adapt without heavy human intervention and design time knowledge.\cf0 \
+\
+3. What is the idea that binds your thesis together? \
+\
+\cf18 The idea is a complete autoscaling framework that makes use of self-awareness principles, this would create the an integrated approach for different aspects, i.e., QoS modelling, architecture, control granularity and trade-off decision making. \cf0 \
+\
+4. What motivated and inspired you to carry out this research?\
+\
+\cf16 Cloud computing has been becoming one of the major paradigm in today's software industry, however, the heavy human analysis and intervention in the context of cloud computing is reducing its benefit. This is mainly due to the lack of effective approach for handling dynamics, uncertainty, QoS interference and trade-offs.\cf0 \
+ \
+5. What are the main issues and debates in this subject area? \
+\
+\cf16 The main issues are 1. how can we architect the autoscaling and incorporate the necessary information into the architecture. 2. how can we model the correlation between QoS and primitives; 3. what is the best granularity of control and 4. how to reason about the trade-off decision making in autoscaling.\
+\pard\pardeftab720
+\cf0 \
+6. Which of these does your research address? \
+form 1 to 4\
+\
+\
+7. Why is the problem you have tackled worth tackling? \
+\
+It has helped research to further advance future cloud computing, it also benefit for both consumer and cloud provider.\
+\
+8. Who has had the strongest influence in the development of your subject area in theory and practice? \
+\
+buyya, marin, murry woodside, kenovn, \
+\
+9. Which are the three most important papers that relate to your thesis? \
+\
+dynamic QoS modeling, q-cloud, vaiours MOP papers for optimizaiton of autoscaling, \
+\
+10. What published work is closest to yours? How is your work different? \
+\
+dynamic QoS modeling, - we cater for QoS inteference and software control primitives.\
+J. Rao, Marin, we cater for MOP with well-compromised solutions and QoS interference at both service/VM level.\
+\
+11. What do you know about the history of [insert something relevant]? \
+\
+the history of the field is mostly rely on policy based approach, which need extensive offline human analysis.\
+\
+12. How does your work relate to [insert something relevant]? \
+\
+\
+13. What are the most recent major developments in your area? \
+\
+search-based software engineering methods, MOP seems to be a trend in autoscaling decision making, it also apply e.g., hyper he rustics.\
+\
+14. How did your research questions emerge? \
+\
+The research questions comes from a broad literature review, where I identify the existing gap in the fields and that determine the needs of improvement on certain aspect.\
+\
+15. What were the crucial research decisions you made? \
+\
+Is the application of computational intelligence technique, which is often applied at design time, to a level of system runtime. In such promise,  some quality needs to be traded for efficiency.\
+\
+\pard\pardeftab720
+\cf19 16. Why did you use this research methodology? What did you gain from it? \cf0 \
+\
+The research is based on literature review, and it is partially derived from the systematic literature review paper. Quantitative experiments is also an important part in such methodology.\
+\
+17. What were the alternatives to this methodology? \
+\
+could be survey, interview and case study.\
+\
+18. What would you have gained by using another approach? \
+\
+The another approach may provide better insights for qualitative evaluation, instead of the quantitative result which has been documented in the thesis.\
+\
+19. How did you deal with the ethical implications of your work? \
+no ethical implication\
+\
+20. How has your view of your research topic changed? \
+\
+A general aim of the topic is the optimisation of QoS and cost, I though that autoscaling, as well as many other approach, are alternative method to the issue. But in fact, to achieve better long term quality, it might be better if they are combined or mix in a way to cater for different cericustances.\
+\
+21. How have you evaluated your work? \
+\
+Mainly based on quantitative evaluation, however, on Section is a qualitative appraisal.\
+\
+22. How do you know that your findings are correct? \
+\
+The experiments are taken for many runs to reduce randomness, also, they are compared against different competitors under different decisions, e.g., quality attributes.\
+\
+23. What are the strongest/weakest parts of your work? \
+\
+Strongest part is the application of CI techniques to achieve self-awareness and thus eliminate the need for heavy human intervention and design time knowledge. Weakest part is probably the scale of testbed, not on a scale closed to a real cloud but based on a relatively small private cloud.\
+\
+24. What would have improved your work? \
+\
+Carry out the experiments on real cloud; consider different type of benchmarking application/service.\
+\
+Others, including, incorporate hidden info on modelling, scalable consensus on architecture, objective reduction in decision making.\
+\
+\cf8 25. To what extent do your contributions generalise? \cf0 \
+\
+It is generalised in the sense that we do not assume certain quality attributes, the underlying primitives, and the preferences over certain objectives.\
+\
+26. Who will be most interested in your work? \
+\
+software engineers and researchers in cloud computing/self-adaptive systems, cloud provider, and consumer company who willing to deploy their service to cloud. Even the people working on fundamental CI could see this as interesting application of CI techniques.\
+\
+27. What is the relevance of your work to other researchers? \
+\
+It tackles many important aspect for autoscaling system in the cloud, it can also provide many insight for research on self-adaptive system in general.\
+\
+28. What is the relevance of your work to practitioners? \
+\
+It helps to provide a readily usable solution to ensure both QoS and cost for cloud-based services.\
+\
+29. Which aspects of your work do you intend to publish \uc0\u8211  and where? \
+\
+architecture\
+qos modeling\
+granularity of control\
+trade-off decision making\
+\
+see publication list, \
+\
+30. Summarise your key findings.\
+\
+a. it is possible the link the principle of self-awareness at the architecture level of autoscaling system.\
+\
+b. incorporating primitives selection, information of QoS interference and the dynamic selection of learning algorithm in QoS modelling can improve overall accuracy and stability.\
+\
+c. dynamically determine the right granularity of control can reach a right balance between scalability and global optimal result for autoscaling in the cloud.\
+\
+d. it is possible to achieve well compromised trade-off in the autoscaling system.\
+ \
+31. Which of these findings are the most interesting to you? Why? \
+\
+probably b and d, because they have the potential to be generalise to be useful for engineering self-adaptive systems. And they are often the common problem in such field.\
+\
+32. How do your findings relate to literature in your field? \
+\
+the finding can be associated with the QoS/performance modelling community, the software architecture community and the search based optimisation for software engineering community.\
+\
+\cf8 33. What are the contributions to knowledge of your thesis? \cf0 \
+\
+handling QoS interference, software control primitives with hardware control primitives, trade-off decision making.\
+\
+34. How long-term are these contributions? \
+\
+they can open and create new research opportunity in the filed, e.g., the importance of modelling and handling QoS interference, and trade-off decision making in autoscaling.\
+\
+35. What are the main achievements of your research? \
+\
+identify the gap and ignored issues in the field and propose self-awareness and the related algorithm to tackle those issues.\
+\
+36. What have you learned from the process of doing your PhD? \
+\
+systematic literature review skills. skill to identify important research questions, skill to reason about idea and setup quantitative experiments, analyse the result from those  experiments.\
+\
+37. What advice would you give to a research student entering this area? \
+\
+for research students, experimentation could be a tough issues as it is often difficult for student to have access to the infrastructure. Some alternative method is needed, e.g., simulation or small but real cloud setup. Also, properly setup the testbed require extensive and careful profiling. Applying CI techniques in a runtime manner also create the challenge of trade-off between efficiency and quality.\
+\
+38. You propose future research. How would you start this? \
+\
+We would work closely with other expert, e.g., CI people and other people in cloud computing/self-adaptive system to tackle the future research\
+\
+39. What would be the difficulties? \
+\
+the difficulties would be possibly combine different people form different background together to solve the problem. \
+\
+40. And, finally\'81\'63 What have you done that merits a PhD?\
+\
+I have conducted extensive LR to reach a set of important research questions, and these are tackled using sound techniques/algorithms. Different form of quantitative experiments are conducted to evaluate the approach. Those will provide useful insight for the community in the engineering more intelligent cloud computing, and possibly, self-adaptive systems in general.\
+\
+\
+\cf7 1. The objective/aim of your research\
+2. The contributions\
+3. The evaluations\
+\
+If start the contribution would be to explain the framework first. \
+\
+Why the experiments is sound and effective - comparing our algorithm to existing ones could be a way to follow, because there are other state-of-the-art algorithms; benchmarking and workload; state-of-the-art criteria; go to the details of metrics/criteria.\
+\
+a) research question \
+b) the strategy for evaluation (e.g., comparing others)\
+\
+\
+SLR have only partially, only inspired by SLR to take the most effective bits, it is more like a mapping proecudre. Why we haven't fully follow it. some people form non SE community found it strange to have such thing in the body, some do not feel that this should be included.\cf0 \
+\cf6 \
+The purpose of the survey is mainly driven by what approach has been taken for autoscaling, what QoS attributes/primitives, what representation of objective, what objective models.\
+\
+How you would do this again, if time permitted, we can use multiple benchmarks, better larger scale testbed. \
+\
+The pattern is evaluated using case study, EU reviewers, partners.\
+\
+\pard\pardeftab720
+\cf0 \
+\
+\
+\
+}

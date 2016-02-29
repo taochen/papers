@@ -1,0 +1,86 @@
+\begin{thebibliography}{10}
+
+\bibitem{Brun2013}
+Y.~Brun, R.~Desmarais, K.~Geihs, M.~Litoiu, A.~Lopes, M.~Shaw, and M.~Smit.
+\newblock {\em Software Engineering for Self-Adaptive Systems II: International
+  Seminar, Dagstuhl Castle, Germany, October 24-29, 2010 Revised Selected and
+  Invited Papers}, chapter A Design Space for Self-Adaptive Systems, pages
+  33--50.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2013.
+
+\bibitem{Cheng2009}
+B.~H.~C. Cheng, R.~Lemos, H.~Giese, P.~Inverardi, J.~Magee, J.~Andersson,
+  B.~Becker, N.~Bencomo, Y.~Brun, B.~Cukic, G.~Marzo~Serugendo, S.~Dustdar,
+  A.~Finkelstein, C.~Gacek, K.~Geihs, V.~Grassi, G.~Karsai, H.~M. Kienle,
+  J.~Kramer, M.~Litoiu, S.~Malek, R.~Mirandola, H.~A. M{\"u}ller, S.~Park,
+  M.~Shaw, M.~Tichy, M.~Tivoli, D.~Weyns, and J.~Whittle.
+\newblock {\em Software Engineering for Self-Adaptive Systems}, chapter
+  Software Engineering for Self-Adaptive Systems: A Research Roadmap, pages
+  1--26.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2009.
+
+\bibitem{2014-eplison-GA-weigh-h-scaling-2014}
+D.~El~Kateb, F.~Fouquet, G.~Nain, J.~A. Meira, M.~Ackerman, and Y.~Le~Traon.
+\newblock Generic cloud platform multi-objective optimization leveraging
+  models@run.time.
+\newblock In {\em Proceedings of the 29th Annual ACM Symposium on Applied
+  Computing}, SAC '14, pages 343--350, New York, NY, USA, 2014. ACM.
+
+\bibitem{Elkhodary:2010}
+A.~Elkhodary, N.~Esfahani, and S.~Malek.
+\newblock Fusion: A framework for engineering self-tuning self-adaptive
+  software systems.
+\newblock In {\em Proceedings of the Eighteenth ACM SIGSOFT International
+  Symposium on Foundations of Software Engineering}, FSE '10, pages 7--16, New
+  York, NY, USA, 2010. ACM.
+
+\bibitem{Esfahani:2011}
+N.~Esfahani, E.~Kouroshfar, and S.~Malek.
+\newblock Taming uncertainty in self-adaptive software.
+\newblock In {\em Proceedings of the 19th ACM SIGSOFT Symposium and the 13th
+  European Conference on Foundations of Software Engineering}, ESEC/FSE '11,
+  pages 234--244, New York, NY, USA, 2011. ACM.
+
+\bibitem{Lemos2013}
+R.~Lemos, H.~Giese, H.~A. M{\"u}ller, M.~Shaw, J.~Andersson, M.~Litoiu,
+  B.~Schmerl, G.~Tamura, N.~M. Villegas, T.~Vogel, D.~Weyns, L.~Baresi,
+  B.~Becker, N.~Bencomo, Y.~Brun, B.~Cukic, R.~Desmarais, S.~Dustdar,
+  G.~Engels, K.~Geihs, K.~M. G{\"o}schka, A.~Gorla, V.~Grassi, P.~Inverardi,
+  G.~Karsai, J.~Kramer, A.~Lopes, J.~Magee, S.~Malek, S.~Mankovskii,
+  R.~Mirandola, J.~Mylopoulos, O.~Nierstrasz, M.~Pezz{\`e}, C.~Prehofer,
+  W.~Sch{\"a}fer, R.~Schlichting, D.~B. Smith, J.~P. Sousa, L.~Tahvildari,
+  K.~Wong, and J.~Wuttke.
+\newblock {\em Software Engineering for Self-Adaptive Systems II: International
+  Seminar, Dagstuhl Castle, Germany, October 24-29, 2010 Revised Selected and
+  Invited Papers}, chapter Software Engineering for Self-Adaptive Systems: A
+  Second Research Roadmap, pages 1--32.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2013.
+
+\bibitem{1317482}
+V.~Poladian, J.~Sousa, D.~Garlan, and M.~Shaw.
+\newblock Dynamic configuration of resource-aware services.
+\newblock In {\em Software Engineering, 2004. ICSE 2004. Proceedings. 26th
+  International Conference on}, pages 604--613, May 2004.
+
+\bibitem{Song2013}
+H.~Song, S.~Barrett, A.~Clarke, and S.~Clarke.
+\newblock {\em Model-Driven Engineering Languages and Systems: 16th
+  International Conference, MODELS 2013, Miami, FL, USA, September 29 --
+  October 4, 2013. Proceedings}, chapter Self-adaptation with End-User
+  Preferences: Using Run-Time Models and Constraint Solving, pages 555--571.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2013.
+
+\bibitem{E3-R-extended}
+H.~Wada, J.~Suzuki, Y.~Yamano, and K.~Oba.
+\newblock Evolutionary deployment optimization for service-oriented clouds.
+\newblock {\em Softw. Pract. Exper.}, 41(5):469--493, Apr. 2011.
+
+\bibitem{Welsh2008}
+K.~Welsh and P.~Sawyer.
+\newblock {\em Requirements Engineering: Foundation for Software Quality: 14th
+  International Working Conference, REFSQ 2008 Montpellier, France, June 16-17,
+  2008 Proceedings}, chapter When to Adapt? Identification of Problem Domains
+  for Adaptive Systems, pages 198--203.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2008.
+
+\end{thebibliography}

@@ -1,0 +1,98 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red217\green11\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 1. tasks, deadline for the DAASE project? need hyper he rustics?\
+\
+no task, no deadline,  hyper heristic\
+\
+2. what direction? optimisation on software architecture, can we do in the context of self-adaptive systems and cloud computing?\
+\
+yes we can do this, can do on domain of self-adaptive system and cloud computing.\
+\
+\
+3. how we can get company involve?\
+\
+a. company give us data, we run experiments/evaluations\
+b. we delivery algorithms/tool to company for their daily software development/maintainace, we analyse the result in the end by e.g., interview.\
+\
+both are OK\
+\
+4. build a software/tool for the algorithm? \
+\
+for case study\
+\
+\
+TODO\
+\
+problems, research questions, significance of the problem and possible solutions (runtime optimisation for self-adaptive software architecture)\
+1. when to trigger the optimisation during adaptation\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 Research questions:\
+\
+1) how to choose the features.\
+2) how to ue technical debt to make reasoning\
+3) if need ensemble or concept drift
+\b0 \
+\
+a. technical debt to represent the long-term and short-term of decision.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf2 b. multiple feedbacks, e.g., coming from human, and coming from the adaptable software, the direction stage. Classify the users and then see of trigger adaptation coresspondly. \cf0 \
+\
+2. resilient optimisation with respect to the constraints given by stakeholders. (or the other is try to find the range of constraints that can be stable, using dynamic technical debt) the result of too good or too bad requirement should be at least similar to the result of an rational requirement.\
+\
+Mitigating the effects of requirements uncertainty: xxxx optimisation for self-adaptive software architecture\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 Research questions:\
+\
+1) how to do multi objective optimisation for SAS architecture with mixed variables (inside knee v.s. outside knee)\
+2) whether introducing constraints can tune multi objective optimisation (inside requirements v.s. outside requirements)\
+3) how to mitigate requirement uncertainty\
+     a. how to formulate the problem with requirements and their mitigation.\
+     b. how to design multi objective optimisation that can consider requirements.\
+     c. how is the resilience of the algorithm to requirements uncertainty.\
+4) how to incorporate dynamics into the problem.
+\b0 \
+\
+======================\
+\
+use numerical control variables and categorical control variables\
+\
+if the requirements are too good, can make search difficult which in turn trigger many adaptaions.\
+If the requirements are too bad, can not provide enough pressure to search which in turn lead to the scenario where the requirements are always satisfied but it is far away from optimal (cf. compare with an search without requirements)\
+\
+requirements can have two ways in optimisation (not constraints satisfaction): 1) as weights 2) as constraints\
+\
+We set the environmental variables as one interval behead, so that the models have a limited look ahead ability (the can be beneficial, e.g., workload becomes larger and larger, or it becomes larger and then smaller). Otherwise, the model would have to assume that the future workload is the same (or similar) as current one, which is unrealistic some time as the environments changes even during decision making process. \
+\
+When the cost is price related to provision, we still need to use demand for training semi-control knobs otherwise incorrect adaptation decision might be used as samples. Then in prediction, the predicted value becomes a worst bound. This is aim for learning the true correlation.\
+\
+When the cost is energy related to the actual usage, we can use provision for training as only the actual energy consumption matters.\
+\
+======================\
+\
+3. static optimizations (need short and efficient) vs. continuous dynamic optimisation (might be able to tolerate longer running time)\
+4. optimisation at the meta-level of self-adaptive system, i.e., switch on/off components\
+\
+\pard\pardeftab720
+
+\f1 \cf0 gromit\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0 \cf0 wallace\
+\
+5.4+7.5=13\
+\
+6649\
+35018\
+\
+6881-6758\
+35279-35145\
+}
