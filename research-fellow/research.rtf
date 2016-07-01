@@ -2,8 +2,8 @@
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
 {\colortbl;\red255\green255\blue255;\red217\green11\blue0;\red77\green77\blue77;\red128\green128\blue128;
 \red154\green154\blue154;\red103\green29\blue0;\red179\green179\blue179;\red164\green8\blue0;\red110\green5\blue0;
-\red63\green105\blue30;\red154\green154\blue154;\red69\green39\blue0;\red73\green0\blue0;\red205\green205\blue205;
-\red230\green230\blue230;\red217\green234\blue202;}
+\red63\green105\blue30;\red69\green39\blue0;\red73\green0\blue0;\red205\green205\blue205;\red230\green230\blue230;
+\red217\green234\blue202;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
 {\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
 {\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
@@ -266,6 +266,7 @@ For each gene only:\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf10 Horizontal (the first switch off non-madantory parent (when such parent is not gene, and the path from it to the target has no gene) of a given gene and such parent's next layer decent gene)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf0 \
 MAN - next layer decent gene 'required' on it. (if gene and can switch off)\
 OPT - do nothing, as itself can control its own existence which has no affect to the other decent gene even if it is gene.\
@@ -276,6 +277,7 @@ OPT, ALT and OR would always be able to be switch off.\
 \
 (MAN OPT does not need to consider the case of non-gene because their variability can be represented by children directly, while for ALT and OR, their children can only represent their variability after refactoring of dependency)\
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 \cf10 Vertical\cf0 \
 \
 Go down the tree from for each branch, ONLY NEED TO WORK ON THE NEXT LAYER (all gene as well as their children can be switch off except the Mandatory (depends))\
@@ -287,7 +289,7 @@ ALT -  if not gene, all its children gene should be dependent of its parent, it 
 ***Extraction - When dependent, the (can switch off and not under OR group) mandatory child gene ) we set "same_required" dependency, if the current parent gene is the first switch off non-mandatory  parent of that child. i.e., the path from such to the gene are all mandatory or cannot be switch off***\
 \
 Mandatory - (if it is a gene and it can switch off) then its children and all genes that share the same first parent, which can be switch off and non-mandatory , should be dependent of it, \cf5 itself also be deponent of the others. \cf0 (unless the first switch off non-mandatory parent is a gene) (due to rule 1, 2)\
-***Extraction - When dependent (children or\cf8  \cf11 the dependents are OR group, whose root is the first switch off feature, then the mandatory one would have at-least-one-required dependency to OR group members)\cf0 , the (can switch off and not under OR group) mandatory child gene ) we set "same_required" dependency, if the current parent gene is the first switch off non-mandatory  parent of that child. i.e., the path from such to the gene are all mandatory or cannot be switch off***\
+***Extraction - When dependent (children or\cf8  \cf5 the dependents are OR group, whose root is the first switch off feature, then the mandatory one would have at-least-one-required dependency to OR group members)\cf0 , the (can switch off and not under OR group) mandatory child gene ) we set "same_required" dependency, if the current parent gene is the first switch off non-mandatory  parent of that child. i.e., the path from such to the gene are all mandatory or cannot be switch off***\
 \
 \
 OR's children -, regardless if OR feature is gene, all OR group genes (and children genes) should have dependency (unless root of OR feature is optional and is not gene and the root is not the first switch off non-mandatory parent of any other mandatory children gene., \cf9 or if it is mandatory can be switch off then itself and its first \cf0 switch off non-mandatory \cf9 parent is not a gene and such parent \cf0 is not the first switch off non-mandatory parent of any other mandatory children gene\cf9 , otherwise it means that itself cannot control its existence. This is need to use together with Extraction and slibing dependency of Mandatory gene\cf0 ), sibling decenor of the same children of OR parent do not need such, but each of them need one for other OR member's   sibling decenor.\
@@ -337,7 +339,7 @@ if main is parent, it then find gene by going down next layer, if it cannot go d
 need to consider 'required' when main in OR group\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
-\cf12 It should be noted that in cross dependency where the main is parent (include the category-numeric dependency) where the main can be switch off (or it is numeric), only the dependent one is possible to be removed due to Grow 5. (We assume that when required cross dependency, it has been checked that the main one can be switch off, otherwise there is no point to have such dependency.)\cf0 \
+\cf11 It should be noted that in cross dependency where the main is parent (include the category-numeric dependency) where the main can be switch off (or it is numeric), only the dependent one is possible to be removed due to Grow 5. (We assume that when required cross dependency, it has been checked that the main one can be switch off, otherwise there is no point to have such dependency.)\cf0 \
 \
 If for main, if the main is the leaf, (this can not be numeric feature as it cannot be leaf)  then we move up one as the variability is represented by ALT on a parent. this is because\
 1. the relation cannot be mandorty as this would make the dependency pointless.\
@@ -351,7 +353,17 @@ If for main, if the main is the leaf, (this can not be numeric feature as it can
 \
 We now have the dependency graphic with redundant dependency.\
 \
+Some important points about dependency merging:\
 \
+1. Here, a single dependency between two genes represents the constraint on the dependent gene with respect to the conditions of main gene. The extracted dependencies and their imposed constraints are shown in Table.\
+\
+2. The constraint imposed by a dependency, according to Table,  can be expressed using a \\textbf\{\\emph\{value tree\}\}, where each leaf is a set of optional values constrained by the corresponding condition in branch, i.e., the selected values of main gene.\
+\
+\
+3.  For a given dependent gene, if it has two or more dependencies with identical main genes, then the leaves of the branches, which represent the same condition, can be combined directly, and such a mergence would be always performed before the others. \
+\
+\
+4. In case the dependencies have different main genes, all branch nodes of a value tree are grafted to each branch node of another, forming new levels for the final value tree, representing the combinatorial condition. Then, for all the value trees of different dependencies, the leaves, whose original branch is on the same path from root to a right-most node, are combined to create the leaf-set. \
 \
 ----------\
 given correct FM, in double side numeric dependency and they can be switch off, when (the could happen when required_less and excluded_greater_or_equals operator) the main is switch off and the alrithmic calculation lead to empty set, we then fix a 0 to represent that it can only be switch off (if one can switch off, then both should be able to be switch off otherwise it is a design error)! Unless specify in range-to-range (other empty set cases are design error)\
@@ -363,19 +375,19 @@ Then union following by intersection on a gene that has more than one dependency
 mutation: when mutate check dependent upon mutate, mutate itself when violation of dependent found, stop when no violations. (the original mutation operator would mutate it regardless if it has been mutated due to dependency violation). Since we assume correct/validated FM, there will be always a state that no violation on dependency, even with closed loop.\
 \
 crossover: when crossover check itself/dependent when swap, swap main/dependent when violation of itself/dependent found and it has not been swapped, stop when no violations or all has been swapped. (the original crossover operator would swap it only if it has been not been previously swapped due to dependency violation)\
-\cf13 \
+\cf12 \
 =============\
-Need to ensure every dependency leads to at least one value! \cf4 We also need to check looped (unless it does not involve numeric dependency, as categorical dependency all share 0 )dependency. Normally we should not have one, although it might not cause any issue. if we have, alert the people to check it and ensure that there is an end.\cf13  (we just assume that the closed loop will be checked by existing tool and grantee a correct FM!, because if this happen, then it is likely to be a design error in the model to avoid, e.g.,  dead features, \cf14 unwanted conditionally dead features\cf13  and contradiction on feature dependency, we do not consider conditionally dead as it will consider XOR as design error)\
+Need to ensure every dependency leads to at least one value! \cf4 We also need to check looped (unless it does not involve numeric dependency, as categorical dependency all share 0 )dependency. Normally we should not have one, although it might not cause any issue. if we have, alert the people to check it and ensure that there is an end.\cf12  (we just assume that the closed loop will be checked by existing tool and grantee a correct FM!, because if this happen, then it is likely to be a design error in the model to avoid, e.g.,  dead features, \cf13 unwanted conditionally dead features\cf12  and contradiction on feature dependency, we do not consider conditionally dead as it will consider XOR as design error)\
 \
 Since the FM is correct, then every single dependency would have a set of values, before intersection.\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
-\cf2 in althematic for, when less-required it can have empty is impossible as this would mean that the main's 0 feature is a dead feature, thus an design error.\cf13 \
+\cf2 in althematic for, when less-required it can have empty is impossible as this would mean that the main's 0 feature is a dead feature, thus an design error.\cf12 \
 \
-There is a special case where intersection lead to 0 even with a correct FM, i.e., when other dependency intersect with at-least-one-exist  e.g.,\cf0 , \cf13  , OR group member has other dependent other than at-least-one-exist, it could lead to empty set when all main set to 0. This is not a design error but the fact that the at-least-one-exist is a weak dependency and sometime contradict with the others, and the straight intersection does not aware of it. \cf14 fact they have not considered priority/order,\cf13  if this occurs, we see the other dependency (higher order) has higher priority thus set a 0, as this can be ensured by the siblings or the parent can be conditionally/directly deselected (this can also be directly optional as in such case it is possible to still have an at-least-one-exist dependency ). This still complain with the logic.  \cf14 as the lower order dependency would be pointless to ensure if the higher order one is violated. \cf13 Because in a correct FM, . For OR group, if all the member has such dependency (or different ones), then the dependency should be at their parent level. Otherwise, it is fine to set 0 as even if the at-least-one-exist of such member is violated, it can be enforced by other member due to the looped dependency chain.  Both case using the other dependency as higher priority preserve the same logic.\
+There is a special case where intersection lead to 0 even with a correct FM, i.e., when other dependency intersect with at-least-one-exist  e.g.,\cf0 , \cf12  , OR group member has other dependent other than at-least-one-exist, it could lead to empty set when all main set to 0. This is not a design error but the fact that the at-least-one-exist is a weak dependency and sometime contradict with the others, and the straight intersection does not aware of it. \cf13 fact they have not considered priority/order,\cf12  if this occurs, we see the other dependency (higher order) has higher priority thus set a 0, as this can be ensured by the siblings or the parent can be conditionally/directly deselected (this can also be directly optional as in such case it is possible to still have an at-least-one-exist dependency ). This still complain with the logic.  \cf13 as the lower order dependency would be pointless to ensure if the higher order one is violated. \cf12 Because in a correct FM, . For OR group, if all the member has such dependency (or different ones), then the dependency should be at their parent level. Otherwise, it is fine to set 0 as even if the at-least-one-exist of such member is violated, it can be enforced by other member due to the looped dependency chain.  Both case using the other dependency as higher priority preserve the same logic.\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
-\cf15 (it is impossible to have a case where each OR group member independently required different feature and the root cannot be switch off, as this is a design error: unwanted conditionally dead feature) (this is the same as all member required the same feature)\cf13 \
+\cf14 (it is impossible to have a case where each OR group member independently required different feature and the root cannot be switch off, as this is a design error: unwanted conditionally dead feature) (this is the same as all member required the same feature)\cf12 \
 \
 (For ALT and OR parent, we cannot have all their children can be switch off while not themselves (neither directly or conditionally), as this is the same as a MAN required another optional, which is false option design error)\
 \
@@ -383,7 +395,18 @@ There is a special case where intersection lead to 0 even with a correct FM, i.e
 \
 (other cases should be design error, and they should not occur as we assume correct validation on the FM. Also, if the categorical/mathematical comparison of single dependency lead to empty options, this can be a design error as well)\
 \
-\cf16 when a required to deselected (and only, i.e., 0, especially for numeric feature) and other dependency lead to null, then put only 0 (switch off) because it cannot satisfy any both dependency but choose to disable it, in some case, this still represent the valid dependency in the FM, e.g.,:\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 Some important points about dependency aware operators:\
+\
+1. For mutation, the requisition ensure that it goes to the depth first.\
+\
+2. For crossover, the order follows: dependent genes - main genes on one offspring and then do the same to another offspring. It also goes to the depth first. \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf12 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf15 when a required to deselected (and only, i.e., 0, especially for numeric feature) and other dependency lead to null, then put only 0 (switch off) because it cannot satisfy any both dependency but choose to disable it, in some case, this still represent the valid dependency in the FM, e.g.,:\
 \
 at-least-one-exist has an extreme case where a OR group member depends on other feature that require itself to deselected, then when the other OR group member are deselected, the intersection leads to null. In such case, we see the other dependency has higher priority (ignore the at-least-one-exist temporarality) as the OR group does not valid if it does not satisfy other dependency.\
 \
@@ -395,7 +418,7 @@ when no all OR group member has other dependency, then the group member that doe
 \
 In other case, e..g, c > a and c < b the null would occur when there is possible to have the combination of a > b, then in such case, it is likely to be a design error. (the key entry feature cannot be switch off) (but this should not occur as we assume that the FM is analysed/correct/validated by an existing approach )\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
-\cf13 \
+\cf12 \
 =============\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
