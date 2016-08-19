@@ -1,14 +1,15 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;\f2\fmodern\fcharset0 Courier;
+}
 {\colortbl;\red255\green255\blue255;\red217\green11\blue0;\red77\green77\blue77;\red128\green128\blue128;
 \red154\green154\blue154;\red103\green29\blue0;\red179\green179\blue179;\red164\green8\blue0;\red110\green5\blue0;
 \red63\green105\blue30;\red69\green39\blue0;\red73\green0\blue0;\red205\green205\blue205;\red230\green230\blue230;
-\red217\green234\blue202;}
+\red217\green234\blue202;\red242\green242\blue242;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
 {\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
 {\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 1. tasks, deadline for the DAASE project? need hyper he rustics?\
 \
@@ -36,7 +37,7 @@ TODO\
 problems, research questions, significance of the problem and possible solutions (runtime optimisation for self-adaptive software architecture)\
 1. when to trigger the optimisation during adaptation\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b \cf0 Research questions:\
 \
@@ -47,14 +48,14 @@ problems, research questions, significance of the problem and possible solutions
 \
 a. technical debt to represent the long-term and short-term of decision.\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf2 b. multiple feedbacks, e.g., coming from human, and coming from the adaptable software, the direction stage. Classify the users and then see of trigger adaptation coresspondly. \cf0 \
 \
 2. resilient optimisation with respect to the constraints given by stakeholders. (or the other is try to find the range of constraints that can be stable, using dynamic technical debt) the result of too good or too bad requirement should be at least similar to the result of an rational requirement.\
 \
 Mitigating the effects of requirements uncertainty: xxxx optimisation for self-adaptive software architecture\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b \cf0 Research questions:\
 \
@@ -67,7 +68,7 @@ Mitigating the effects of requirements uncertainty: xxxx optimisation for self-a
 4) how to incorporate dynamics into the problem.
 \b0 \
 \
-======================\
+====================== MOEA SAS optimisation with FM and knee ======================\
 feature guided and knee point focused multi-objective optimisation for self-adapting software architecture at runtime (we do not use FM as qos model and thus do not assume the effects of decision on goals!) FEMOSSA\
 \
 we can say the QoS model is also guided by the gene, which is a result of feature model. But it needs to additional consider environmental variables.\
@@ -101,7 +102,7 @@ FM has been used for the problem this help to systemically model control feature
 \
 2. only consider categorical feature not numeric feature in the encoding of individual. If use the categorical encoding (0/1) to numeric that could rise more computational effort and harder the handle dependency. \
 \
-3. FM work also consider dependency, but do not explicitly  consider complex dependency, especially numeric ones, within the EA and search process to prevent violation, as EA is not naturally design to handle dependency constraints. Instead, they use dependency as an objective, which can find more valid solution but is still not completely resolve the problem and it is not suitable for SAS runtime as it introduces extra complexity.\
+3. FM work also consider dependency, but do not explicitly  consider complex dependency, especially numeric ones, within the EA and search process to prevent violation, as EA is not naturally design to handle dependency constraints. Instead, they use dependency as an objective, which can find more valid solution but is still not completely resolve the problem and it is not suitable for SAS runtime as it introduces extra complexity. Also, all existing work do not prevent the exploration of invalid solution, even for the JSS paper on DSPL.\
 \
 4. Weighted sum is limited as it is difficult to specify weights.To explore trade-off, some work use multi-objective optimisation.  But they rely on NSGA2, which is limited in diversity in finding trade-off decisions and thus the quality of decision\
 \
@@ -125,20 +126,20 @@ We use FM to express the SAS problem, then systematic and automatic translation 
 \
 
 \b manual steps:\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b0 \cf0 \
 \
 1. add numeric attributes and complex numeric dependency based on the scenario. (such dependency can be changed back to classic excluded)\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf2 numeric feature is the one that has more than one predefined and alternative children which have attributes of numeric value, and it has not other type of children. The children are regarded as categorical. (they have large children and can be used for mathematical comparison in dependency)\
 \
 if a feature A has numeric value but only one XOR children or not XOR, then than can only be considered as categorical, they are usually consider as MAN features. In case of dependency to numeric feature,  we simply restrict the range of the dependent numeric feature.\
 \
 all children range should be given, including 0. If the feature has 0 but with a core (no conditionally switch off), or with core (no conditionally switch off) but not 0, then it is false option design error.\cf0 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b \cf0 automatic steps:
 \b0 \
@@ -162,10 +163,10 @@ grow\
 \
 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf6 If we find a numeric feature that needs to be switch has no 0, or if the numeric feature has 0 but there is no way for it to switch off, then it is a design error (false option as some feature can be switch off but no such option).\cf0 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf4 5. add on to parent that is required by a cross dependency and do not have more than one ALT.\
 (this can prevent complication when it only has OR children and it is optional)\cf0 \
 \
@@ -176,15 +177,15 @@ prune \
 3. in-branch dependency would be inherited for the ones that has not been removed.\
 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b \cf0 rule2:
 \b0  \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf2 feature model: branch feature with more than on ALT is gene, direct children as optional values which are mutual excluded. We then prune the other non-gene branch. (leaf is still in consideration but just not as gene)\cf7 Because i) they help to translate some leaf feature into selection as they can be considered as values ii) they cannot  be disregard as gene without affecting variability, causing some solution can not be explored. iii) Removing them can also affect adaptation and the design of actuators, as they cannot select as a constant  at design time and the solution would have not contained them.  \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf8 Those branches can be pruned because they only have on (where do not have variability), on/off variability and by adding proper on/off XOR leaf our add rules ensure that their variability can be represented by their children.\
 \
 Because if it cannot turn on, it means none of its children can be selected, which means a design error.\
@@ -195,9 +196,9 @@ Therefore, for those feature that removed, if they have actuators then we should
 The sensor/acuator of the gene are the ones that only will be triggered at runtime.\
 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf8 Since we prune some branches, we then need to restructure dependency for the pruned branch to preserve variability. \
 \
 Wothnting that our goal is not to find the min number gene, but to see a reduced number of gene than 0/1 representation, which is more suitable for SAS. in fact if xOR parent has all children as XOR parent, their variability can also be represented by its children, but this need much complex restructing of dependency for reducing only 1 gene.\cf0 \
@@ -210,7 +211,7 @@ once the genes are identified, we then can translate the dependency based on eac
 \
 This will help to selected only the necessary features, as some features cannot be changed at runtime or they are duplicated and can be represented by some other features. Thus not even needed to be considered in the modelling.\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b \cf0 rule3:
 \b0   (extract dependency chain)\
@@ -222,7 +223,7 @@ categorical feature can only have categorical dependency\
 \
 (range-to-existence and existence-to-range are different under required! the former when non-exist the range cannot be selected, while the later can)\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf8 Range != to full range, as this would be the same as categorical, and this would be design error.\cf0 \
 range = mathmatical constraint, e.g, =0 or >= 50 or\'85\
 \
@@ -264,9 +265,9 @@ For each gene only:\
 2. if $G$ has Mandatory relation to its parent and the path between $F$ and $G$ does not contain deselectable features  (vertical)\
 3. $P$ is not a gene, and that there is no gene on the path from $P$ to $F$  (vertical (for OR) and horizontal) (for vertical OR, this can be change to if and acsent features are gene)\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf10 Horizontal (the first switch off non-madantory parent (when such parent is not gene, and the path from it to the target has no gene) of a given gene and such parent's next layer decent gene)\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 \
 MAN - next layer decent gene 'required' on it. (if gene and can switch off)\
 OPT - do nothing, as itself can control its own existence which has no affect to the other decent gene even if it is gene.\
@@ -277,7 +278,7 @@ OPT, ALT and OR would always be able to be switch off.\
 \
 (MAN OPT does not need to consider the case of non-gene because their variability can be represented by children directly, while for ALT and OR, their children can only represent their variability after refactoring of dependency)\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf10 Vertical\cf0 \
 \
 Go down the tree from for each branch, ONLY NEED TO WORK ON THE NEXT LAYER (all gene as well as their children can be switch off except the Mandatory (depends))\
@@ -338,7 +339,7 @@ if main is parent, it then find gene by going down next layer, if it cannot go d
 \
 need to consider 'required' when main in OR group\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf11 It should be noted that in cross dependency where the main is parent (include the category-numeric dependency) where the main can be switch off (or it is numeric), only the dependent one is possible to be removed due to Grow 5. (We assume that when required cross dependency, it has been checked that the main one can be switch off, otherwise there is no point to have such dependency.)\cf0 \
 \
 If for main, if the main is the leaf, (this can not be numeric feature as it cannot be leaf)  then we move up one as the variability is represented by ALT on a parent. this is because\
@@ -355,6 +356,8 @@ We now have the dependency graphic with redundant dependency.\
 \
 Some important points about dependency merging:\
 \
+To construct a combined value tree for a dependent gene, the dependencies, by which it is constrained, need to be merged one by one using set operations (union, intersection or subtraction) on the leaves from their value trees, where unions are always performed ahead of the others. \
+\
 1. Here, a single dependency between two genes represents the constraint on the dependent gene with respect to the conditions of main gene. The extracted dependencies and their imposed constraints are shown in Table.\
 \
 2. The constraint imposed by a dependency, according to Table,  can be expressed using a \\textbf\{\\emph\{value tree\}\}, where each leaf is a set of optional values constrained by the corresponding condition in branch, i.e., the selected values of main gene.\
@@ -363,7 +366,12 @@ Some important points about dependency merging:\
 3.  For a given dependent gene, if it has two or more dependencies with identical main genes, then the leaves of the branches, which represent the same condition, can be combined directly, and such a mergence would be always performed before the others. \
 \
 \
-4. In case the dependencies have different main genes, all branch nodes of a value tree are grafted to each branch node of another, forming new levels for the final value tree, representing the combinatorial condition. Then, for all the value trees of different dependencies, the leaves, whose original branch is on the same path from root to a right-most node, are combined to create the leaf-set. \
+4. In case the dependencies have different main genes, all branch nodes of a single or already combined value tree are replicated and grafted to each right-most branch node of another single or already combined value tree, forming new levels for the finally combined value tree, representing the combinatorial conditions. Then, for the two value trees that were grafted, their leaves, whose original ancestors are now on the same path from root to a right-most node in the newly grafted tree, are combined to create the new leaf-set. The process stops when all related dependencies are merged and their value trees are grafted. \
+\
+5. To ensure correctness when merging in the presence of different main genes, the dependencies that require union are always merged ahead of the other operations, leading to a set of partially merged dependencies. Since each of them are merged from identical dependency type as shown in Table \\ref\{table:dependency-constraints\}, they can be then merged with each others (and the remaining single dependencies) using the set operations as if they are single dependencies. \
+\
+\
+for numeric gene, the 0 does not only mean its numeric value is set to 0, but also refer to the feature is 'turned off', which will have no further effects on the SAS. Thus, when empty set caused by numeric feature, fixing 0 can help to prevent effects, even if such 0 literally break dependency.\
 \
 ----------\
 given correct FM, in double side numeric dependency and they can be switch off, when (the could happen when required_less and excluded_greater_or_equals operator) the main is switch off and the alrithmic calculation lead to empty set, we then fix a 0 to represent that it can only be switch off (if one can switch off, then both should be able to be switch off otherwise it is a design error)! Unless specify in range-to-range (other empty set cases are design error)\
@@ -381,12 +389,12 @@ Need to ensure every dependency leads to at least one value! \cf4 We also need t
 \
 Since the FM is correct, then every single dependency would have a set of values, before intersection.\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf2 in althematic for, when less-required it can have empty is impossible as this would mean that the main's 0 feature is a dead feature, thus an design error.\cf12 \
 \
 There is a special case where intersection lead to 0 even with a correct FM, i.e., when other dependency intersect with at-least-one-exist  e.g.,\cf0 , \cf12  , OR group member has other dependent other than at-least-one-exist, it could lead to empty set when all main set to 0. This is not a design error but the fact that the at-least-one-exist is a weak dependency and sometime contradict with the others, and the straight intersection does not aware of it. \cf13 fact they have not considered priority/order,\cf12  if this occurs, we see the other dependency (higher order) has higher priority thus set a 0, as this can be ensured by the siblings or the parent can be conditionally/directly deselected (this can also be directly optional as in such case it is possible to still have an at-least-one-exist dependency ). This still complain with the logic.  \cf13 as the lower order dependency would be pointless to ensure if the higher order one is violated. \cf12 Because in a correct FM, . For OR group, if all the member has such dependency (or different ones), then the dependency should be at their parent level. Otherwise, it is fine to set 0 as even if the at-least-one-exist of such member is violated, it can be enforced by other member due to the looped dependency chain.  Both case using the other dependency as higher priority preserve the same logic.\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf14 (it is impossible to have a case where each OR group member independently required different feature and the root cannot be switch off, as this is a design error: unwanted conditionally dead feature) (this is the same as all member required the same feature)\cf12 \
 \
 (For ALT and OR parent, we cannot have all their children can be switch off while not themselves (neither directly or conditionally), as this is the same as a MAN required another optional, which is false option design error)\
@@ -396,16 +404,16 @@ There is a special case where intersection lead to 0 even with a correct FM, i.e
 (other cases should be design error, and they should not occur as we assume correct validation on the FM. Also, if the categorical/mathematical comparison of single dependency lead to empty options, this can be a design error as well)\
 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 Some important points about dependency aware operators:\
 \
 1. For mutation, the requisition ensure that it goes to the depth first.\
 \
 2. For crossover, the order follows: dependent genes - main genes on one offspring and then do the same to another offspring. It also goes to the depth first. \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf12 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf15 when a required to deselected (and only, i.e., 0, especially for numeric feature) and other dependency lead to null, then put only 0 (switch off) because it cannot satisfy any both dependency but choose to disable it, in some case, this still represent the valid dependency in the FM, e.g.,:\
 \
 at-least-one-exist has an extreme case where a OR group member depends on other feature that require itself to deselected, then when the other OR group member are deselected, the intersection leads to null. In such case, we see the other dependency has higher priority (ignore the at-least-one-exist temporarality) as the OR group does not valid if it does not satisfy other dependency.\
@@ -417,11 +425,11 @@ when all OR group member has other dependency, then it means there is case that 
 when no all OR group member has other dependency, then the group member that does not has extra dependency would enforce the at-least-one-exist, because of OR group in branch enforcement. (the key entry feature can be switch off)\
 \
 In other case, e..g, c > a and c < b the null would occur when there is possible to have the combination of a > b, then in such case, it is likely to be a design error. (the key entry feature cannot be switch off) (but this should not occur as we assume that the FM is analysed/correct/validated by an existing approach )\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf12 \
 =============\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf5 other cases would likely to be an error. Extraction - need to ensure intersection is not null (for numeric dependency), \
 -----------\cf0 \
 \
@@ -446,9 +454,9 @@ We filter/correct dependency first and then non-dominated ranking and then the r
 \
 the final dependency is an intersection of the dependency for more than one main features.\
 \
-\pard\tx220\tx720\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li720\fi-720\pardirnatural
+\pard\tx220\tx720\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li720\fi-720\pardirnatural\partightenfactor0
 \ls1\ilvl0\cf0 {\listtext	\'95	}Software stack vs. software\
-\pard\tx220\tx720\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li720\fi-720\pardirnatural
+\pard\tx220\tx720\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li720\fi-720\pardirnatural\partightenfactor0
 \ls2\ilvl0\cf0 {\listtext	\'95	}fine-grained configurations (both numeric and categorical feature) vs. coarse-grained. \
 {\listtext	\'95	}design EMO based on feature model. (representation of individual, 0/1 representation cause larger overhead and difficult to handle dependency.Therefore, we need shorter representation that still preserve\cf2  variability of the software\cf0 ). Others needs complex manual analysis.\
 {\listtext	\'95	}consider logical dependency, so proactively avoid the wrong values vs. find the values then evaluate using constraint functions. (categorical (on categorical feature) and numeric  (on numeric feature) dependency). 
@@ -457,7 +465,7 @@ the final dependency is an intersection of the dependency for more than one main
 {\listtext	\'95	}better optimisation algorithm vs. NSGA-II.\
 {\listtext	\'95	}find keen points vs. find pareto front.\
 {\listtext	\'95	}exact algorithm's assumption about linear model, convex problem make them difficult to find optimal result in our problem; or they may take a very long time to do so.\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 \
 When mutation, change with dependency and check all the dependent variables are correct, if not change it. Do the same for every change.\
 \
@@ -491,15 +499,32 @@ When the cost is price related to provision, we still need to use demand for tra
 \
 When the cost is energy related to the actual usage, we can use provision for training as only the actual energy consumption matters.\
 \
-======================\
+====================== MOEA SAS optimisation with FM and knee ======================\
+\
+\
+====================== When to adapt using TD and ML ======================\
+\
+\
+\
+\
+====================== When to adapt using TD and ML ======================\
 \
 3. static optimizations (need short and efficient) vs. continuous dynamic optimisation (might be able to tolerate longer running time)\
 4. optimisation at the meta-level of self-adaptive system, i.e., switch on/off components\
 \
-\pard\pardeftab720
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f1 \cf0 gromit\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\f1\fs20 \cf16 \cb0 \CocoaLigature0 ssh 147.188.200.124
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0 gromit\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0 \cf0 wallace\
 \
