@@ -84,7 +84,9 @@ We can assume the given FM is correct, i.e., no dead feature, e.g., those that h
 \
 dependency: the optional range of one feature depends on the chosen value of others.\
 \
-CHALLENGE\
+
+\b CHALLENGE
+\b0 \
 \
 \
 \
@@ -95,7 +97,9 @@ CHALLENGE\
 \
 3. how to find a knee point.\
 \
-LIMITATION\
+
+\b LIMITATION
+\b0 \
 \
 1. exact methods are easily adopt and they are design to handle dependency constraint, but they do not scale well. Other existing work rely on manual analysis and translation to EA, they do not consider dependency between features, as EA is not naturally design to handle dependency constraints., Althgouht some objective function (e.g., ML) one can distinguish valid/invlaid ones, letting the EA explore the entire search space would still waste evaluation and not prevent invalid solution in final population (affect optimisation quality). Whats worse, the solution may need to be corrected if no valid ones found, this might destroy the evolution history.\
 \
@@ -107,11 +111,15 @@ FM has been used for the problem this help to systemically model control feature
 \
 3. FM work also consider dependency, but do not explicitly  consider complex dependency, especially numeric ones, within the EA and search process to prevent violation, as EA is not naturally design to handle dependency constraints. Instead, they use dependency as an objective, which can find more valid solution but is still not completely resolve the problem and it is not suitable for SAS runtime as it introduces extra complexity. Also, all existing work do not prevent the exploration of invalid solution, even for the JSS paper on DSPL.\
 \
+In addition, they do not prevent the wasteful exploration of invalid solution and consider merely limited type of dependency.\
+\
 4. Weighted sum is limited as it is difficult to specify weights.To explore trade-off, some work use multi-objective optimisation.  But they rely on NSGA2, which is limited in diversity in finding trade-off decisions and thus the quality of decision\
 \
 5. knee point. No other has considered. Might lead to unbalanced decisions, which is normally not preferred.\
 \
-CONTRIBUTIONS:\
+
+\b CONTRIBUTIONS
+\b0 \
 \
 We use FM to express the SAS problem, then systematic and automatic translation of the problem FM in EA context.\
 \
@@ -121,11 +129,11 @@ We use FM to express the SAS problem, then systematic and automatic translation 
 \
 2. automatically extract dependency , based on the new representation of gene from FM, and inject them into mutation and crossover. (reduced search space so save function evaluation cycles for unwanted space, prevent invalid decisions, improve optimisation quality)\
 \
-1-2 also are win-win situation.\
-\
 3. MOEAD STM\
 \
 4 knee points.\
+\
+5 Create clear synergy between software engineering and evolutionary computation.\
 \
 
 \b manual steps:\
@@ -491,7 +499,7 @@ no knee point, need to pick one form pareto front.\
 use numerical control variables and categorical control variables\
 \
 \
-if the requirements are too good, can make search difficult which in turn trigger many adaptaions.\
+if the requirements are too good, can make search difficult which in turn trigger many adaptations.\
 If the requirements are too bad, can not provide enough pressure to search which in turn lead to the scenario where the requirements are always satisfied but it is far away from optimal (cf. compare with an search without requirements)\
 \
 requirements can have two ways in optimisation (not constraints satisfaction): 1) as weights 2) as constraints\
@@ -505,28 +513,120 @@ When the cost is energy related to the actual usage, we can use provision for tr
 ====================== MOEA SAS optimisation with FM and knee ======================\
 \
 \
+=================== comparing online and offline learning based performance modelings for SAS ===================\
+\
+they are both incremental (different from performance modelings in SPL, modelings in SAS needs to consider the changing environment, which cause dynamic and uncertainty)\
+\
+\
+=================== comparing online and offline learning based performance modelings for SAS ===================\
+\
+=================== Imbalanced aware performance modelings ===================\
+\
+\
+Imbalanced aware performance modelings for SAS at runtime\
+\
+fully-incremental (train h+n) vs partialy-incremental (train model+n)\
+\
+=================== Imbalanced aware performance modelings ===================\
+\
+\
+\
+\
+\
 ====================== When to adapt using TD and ML ======================\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b \cf0 CHANLLENGE
+\b0  \
+\
+how to determine the best and the most economic efficient time to adapt. The actual effect of adaptation/decision making process is again dynamic and uncertain, causing the payoff of adaptation difficult to known.\
+\
+\
+
+\b LIMITATIONs
+\b0  \
+\
+1. the periodically adaptation one might influence the SAS too much, as sometime this might make the SAS even worse given the stochastic behaviour of some decision making approaches. \
+\
+In addition, adaptation is also costly in terms of energy and decision making time.\
+\
+2. the threshold driven one might adapt the SAS too little, as sometime the adaptation when SAS is ok could further improve the SAS, leading to less server violation on requirements in the next times.\
+\
+Solution? adapt when the the benefit (payoff) is justify. \
+\
+\
+
+\b CONTRIBUTIONS
+\b0 \
+\
+\
+1. Propose adaptation debt, and map the problem using debt analysis\
+\
+2. the debt analysis serves as expert judgement in the learning model\
+\
+3. Create clear synergy between software engineering and machine learning. In addition, we consider economic theory. \
+\
 \
 Adaptation debt,\
 \
-AD occurs when the SAS choose not to adapt. However, bear in mind that even if SAS choose to adapt, the expected payoff is not guaranteed, due to the dynamic and uncertain nature of the environment, and depending on the decision making approach.\
+AD occurs when the SAS chooses not to adapt. However, bear in mind that even if SAS chooses to adapt, the expected payoff is not guaranteed, due to the dynamic and uncertain nature of the environment, and depending on the decision making approach.\
 \
 B = \'a3 payoff of adaptation\
 C = \'a3 cost of adaptation\
 P = \'a3 penalty of requirement violation\
 \
-Principle = C, Interest  = P.\
+Principle = C, Interest  = P (or B).\
 \
-to adapt, utility1 = B - C - P(likely better than original P)\
+to adapt, utility1 = C + B if B is negative or C - B otherwise (likely better than original P)\
 not to adapt, utility2 = P\
 \
-expert decision = comparing utility1 and utility2.\
+expert decision = comparing utility1 and utility2.  for both to adapt and not to adapt could actually result in debt, positive debt \
+\
+can apply to case where there is or no violation, as if there is no violation, the interest become negative, which represent some existing benefit\
+\
+the cumulative of debt depends on the sampling interval, e.g., debt will be cumulative till the next sampling interval.\
+\
+it is also worth to train the model when no adaptation occurs.\
+\
+(track the workload so consider cumulative effects?, this might be possible, but require prediction on the changes caused by environment, we currently one consider the current tilmestep, will leave it for future work)\
+\
+we consider not only the transient effects but also the actual payoff of adaptation mechanism \
+\
+\
+the cost can be either decision making delay or execution delay, the former would lead to only one model whereas the latter can have n model, where n is the number of decision cluster that have significantly different delay.\
 \
 ====================== When to adapt using TD and ML ======================\
 \
+\
+== Combing goal model and machine learning model in MOEA with two population ======\
+\
+\
+== Combing goal model and machine learning model in MOEA with two population ======\
+\
+\
+========== better explore the information of requirements in optimisation for SAS ==========\
+\
+\
+\
+\
+\
+\
+========== better explore the information of requirements in optimisation for SAS ==========\
+\
+\
+\
 3. static optimizations (need short and efficient) vs. continuous dynamic optimisation (might be able to tolerate longer running time)\
 4. optimisation at the meta-level of self-adaptive system, i.e., switch on/off components\
+5. applying search space reduction techniques? e.g., the Simplex optimisation in J.Rao\'92s work\
 \
+\
+\
+Embedding Computational Intelligence in Self-Adaptive Software Systems and their application in cloud autoscaling.\
+\
+1. explain SAS\
+2. explain challenge on dynamic and uncertainty\
+3. explain CI is promising for those, but need to understand how and which problem of SAS to work.\
 \
 \pard\pardeftab720\sl440\sa108\partightenfactor0
 
@@ -768,7 +868,7 @@ Change venue
 \
 6649\
 35018\
-\
+chaturbate\
 6881-6758\
 35279-35145\
 }
