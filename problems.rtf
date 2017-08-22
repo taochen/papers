@@ -1,12 +1,13 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\froman\fcharset0 Times-Roman;
-\f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fswiss\fcharset0 ArialMT;
-\f6\fnil\fcharset0 Verdana;\f7\fmodern\fcharset0 Courier;}
+\f3\fnil\fcharset134 STHeitiSC-Light;\f4\froman\fcharset0 TimesNewRomanPSMT;\f5\fnil\fcharset0 Tahoma;
+\f6\fswiss\fcharset0 ArialMT;\f7\fnil\fcharset0 Verdana;\f8\fmodern\fcharset0 Courier;
+}
 {\colortbl;\red255\green255\blue255;\red154\green154\blue154;\red179\green179\blue179;\red128\green128\blue128;
 \red164\green8\blue0;\red255\green39\blue18;\red217\green11\blue0;\red63\green105\blue30;\red206\green59\blue0;
-\red155\green44\blue1;\red0\green57\blue161;\red7\green78\blue230;\red12\green82\blue6;\red195\green196\blue195;
-\red247\green247\blue247;\red73\green0\blue0;\red67\green10\blue31;\red110\green5\blue0;\red85\green142\blue40;
-}
+\red155\green44\blue1;\red223\green223\blue223;\red45\green109\blue141;\red0\green57\blue161;\red7\green78\blue230;
+\red12\green82\blue6;\red195\green196\blue195;\red247\green247\blue247;\red73\green0\blue0;\red67\green10\blue31;
+\red110\green5\blue0;\red85\green142\blue40;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh7720\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -82,8 +83,9 @@ relations of attribute: (for fitness function)
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f1\fs24 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0 \
+\f0 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \fs30 \cf0 Finding optimal config of services and attributes:
@@ -233,6 +235,7 @@ but the objectives of service that related to the considered RQ should be includ
 \
  2) is used when solve MOO, then can determine up/down, and adjust monitor able variable via adjustable variable depends on the equation. (as for how the mon change when adj change can be find out by linear dynamic model, so no need to define i.e y = 1/x) (the up and down can not be changed, i.e if there is need to reduce resource then resource should not be added, so it reduce over optimise a SLA (such as consistency))\
 2) may be, can be predefined or learn online using MIMO (ARMA/ARIMA)?\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf2 if 2) is region level metric, such as cpu, men then for each service it can be compute via 1) (mean % of cpu usage on service) in fact or auto-created model in 2) need measure value from 1) that is, region level adjustable value can be transferred to service level. \cf0 \
 ***************\
 \
@@ -264,10 +267,10 @@ Price determine can be based on different consumer (their services) in such case
 budget could be based on each PM, component and consumer as well as adj\
 \
 can use partial equilibrium for each spot instance type as each product. Seems like amazon does not allow scale up - purchase a type still charge the whole regardless if you fully using it. can consider fine grained resource to prices per cpu/memory.\cf2  (we can calculate demand/supply function dynamically - demand function Q = b - Pa, supply function Q = d + Pc, (to get b,a,d and c can use 
-\fs38 \uc0\u8234 Linear least squares\uc0\u8236  
-\fs24 (polynomial regression)) then\cf0  \cf2 it can be used MR = MC, MR = quantity times demand function
-\f1 ,
-\f0  therefore the demand resource would definitely being produce with a assumption of profit maximum) remember to consider case where there is no equilibrium point within the quantity range, then usually select the max of demand. \cf0 \
+\fs38 \cf2 \uc0\u8234 Linear least squares\uc0\u8236  
+\fs24 \cf2 (polynomial regression)) then\cf0  \cf2 it can be used MR = MC, MR = quantity times demand function
+\f1 \cf2 ,
+\f0 \cf2  therefore the demand resource would definitely being produce with a assumption of profit maximum) remember to consider case where there is no equilibrium point within the quantity range, then usually select the max of demand. \cf0 \
 \
 \cf2 for the first interval, the demand/supply function would be calculated by a set of the (budget of each region adj type)/ total quantity of that adj type in each interval. Then the subsequence interval can use the calculate equilibrium point price and the total number of adj value in each previous intervals. \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
@@ -283,8 +286,8 @@ when apply demand/supply with MOO we may need finer grained price (instead of pe
  \
 
 \f0 5.1. \cf2 when under supply, calculating the ratio of capacity (cpu/memory, for the additional demand) can be also used to reduce the most suitable instance type (e.g. most expensive fits the ratio) when over supply
-\f1 ,
-\f0  also increase the most suitable type (e.g. cheapest and require less number of type) (the solution for if scale up or scale out could potentially be determined as well). When it can't add more on the VM it seeking to add more PM with suitable type. (all those output should be involve in the solution of MOO)\cf0 \
+\f1 \cf2 ,
+\f0 \cf2  also increase the most suitable type (e.g. cheapest and require less number of type) (the solution for if scale up or scale out could potentially be determined as well). When it can't add more on the VM it seeking to add more PM with suitable type. (all those output should be involve in the solution of MOO)\cf0 \
 \
 assign resource to service as instance type, although the resource may not be fully used buy this is how the price is calculated. instance type can be scale up/down to another type\
 \
@@ -333,7 +336,6 @@ accuracy\'94\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf2 An incremental model selection could be applied, i.e. (start with full input) chose the number of neurone of a hidden layer that best than the best historical AIC/RS (or just the best one if the target couldn't find ), then do it only the next layer, then reduce the input one by one. Note that the RSS should be base on the new model on the give interval (with the data in the buffer windows). Or we can consider all combination via backward approach.\cf0 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf4 (instead of AIC, we may apply the least RSS seems we only interest in accuracy and the speed of converge, if only apply RS ann can only run 1 round to see number of neruos), mutual information is a good way to predict interference set and related resource quality.\
 t\
 \
@@ -383,7 +385,7 @@ weight include: 1) amongst services from different consumers, 2) services from t
 when consensus on adj we can agree on different level of region concurrently, i.e no of PM and consistency \
 \
 Some adj from different MOO (or ven the same MOO) may needs to compete with each others (i.e. cpu/memory) when such competition occur we first satisfy the ones that have more profit, then looking to add more PM normally add 1, the same as when a PM usage below predefined value which cause it can be removed. \cf2 in this case we know how much resource needs thus add on the proper VM  otherwise from the cheapest one . (need to send to sequencer for determine) 
-\f1 no action if node already decided to be added) (PM section could based on availability)\cf0 \
+\f1 \cf2 no action if node already decided to be added) (PM section could based on availability)\cf0 \
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -865,10 +867,55 @@ The only thing not changing is the change itself. My recent research is all abou
 future:\
 \
 1. interference aware horizontal and vertical scaling trade-off\
-2. interference aware energy saving and profit optimisation (with trade-offs, at this point, we only need to satisfy SLA rather than optimise QoS as much as possible)
-\f0 \
+2. interference aware energy saving and profit optimisation (with trade-offs, at this point, we only need to satisfy SLA rather than optimise QoS as much as possible)\
+\
+\'93
+\f5\b\fs22 \cb11 \expnd0\expndtw0\kerning0
+Just a few reminder, for the self- install, some light lifting/bending may be required; installing QS is similar to installing a DVD player. Telco Sockets may be labelled Virgin Media, ntl or Telewest etc.\'a0 It\'92s only a problem if it\'92s BT or Sky (BT & Sky sockets may not be labelled), TV/BBI Quickstarts also\'a0 include 1.5m\'92s of coaxial cable, along with a 3m Ethernet cable for the broadband.
+\f2\b0\fs24 \cb1 \kerning1\expnd0\expndtw0 \'94\
+\
+\'93
+\f5\b\fs22 \cb11 \expnd0\expndtw0\kerning0
+Yup! It is also important that you take note of this details, your new account number: ( 411275-04 ), the area reference : ( 12 ) and the activation line: 0800 953 9500. You will be needing this on the activation process
+\f2\b0\fs24 \cb1 \kerning1\expnd0\expndtw0 \'94\
+\
+\'93
+\f5\b\fs22 \cb11 \expnd0\expndtw0\kerning0
+That's {\field{\*\fldinst{HYPERLINK "mailto:moverswebchat@virginmedia.co.uk"}}{\fldrslt \cf12 moverswebchat@virginmedia.co.uk}}\'a0and my name is : Ernalynne.
+\f2\b0\fs24 \cb1 \kerning1\expnd0\expndtw0 \'94
+\f6\b\fs28 \expnd0\expndtw0\kerning0
+36253595\
+\
+\pard\pardeftab720\sl260\partightenfactor0
+
+\f5\fs22 \cf0 \cb11 The earliest appointment is available for 23/01/2017, Monday between 8AM to 12PM, is it okay?
+\f0\b0\fs24 \cb1 \kerning1\expnd0\expndtw0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 ==================================================================\
+\cf0 \
+IEEE SERVICES 2017\
+SERVER: ServicesCongress.org\
+congressweb\
+congress2@IEEE\
+\
+\
+@ARTICLE\{Chen:2015:tse, \
+author=\{Chen, Tao and Bahsoon, Rami\}, \
+journal=\{IEEE Transactions on Software Engineering\}, \
+title=\{Self-Adaptive and Online QoS Modeling for Cloud-Based Software Services\}, \
+year=\{2016\}, \
+note=\{doi:10.1109/TSE.2016.2608826\}\}\
+\
+\
+@ARTICLE\{tsc-chen-2015, \
+author=\{Chen, T. and Bahsoon, R.\}, \
+journal=\{IEEE Transactions on Services Computing\}, \
+title=\{Self-Adaptive Trade-off Decision Making for Autoscaling Cloud-Based Services\}, \
+year=\{2015\}, \
+keywords=\{Cloud computing;Decision making;Interference;Optimization;Quality of service;Throughput;QoS interference;Search-based optimization;cloud computing;multi-objective trade-offs\}, \
+doi=\{10.1109/TSC.2015.2499770\}, \
+note=\{doi:10.1109/TSC.2015.2499770\}\
+\}\
+==================================================================\
 \pard\pardeftab720\partightenfactor0
 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
@@ -970,7 +1017,7 @@ myllxgmt\
 \
 \pard\pardeftab720\sl320\partightenfactor0
 
-\f5\fs22 \cf0 326ZT4K7
+\f6\fs22 \cf0 326ZT4K7
 \f0\fs24 \
 \pard\pardeftab720\partightenfactor0
 \cf0 \
@@ -983,7 +1030,7 @@ myllxgmt\
 \clmrg \clvertalc \clshdrawnil \clwWidth2180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
 \pard\intbl\itap2\pardeftab720\sl320\partightenfactor0
 
-\f6 \cf0 Thank you for yui mizuna your order, your application has been processed.\nestcell 
+\f7 \cf0 Thank you for yui mizuna your order, your application has been processed.\nestcell 
 \pard\intbl\itap2\nestcell \nestrow
 
 \itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
@@ -1027,17 +1074,17 @@ holly-michaels\nestcell \lastrow\nestrow\cell \lastrow\row
 \
 \pard\pardeftab720\partightenfactor0
 
-\f0 \cf11 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
+\f0 \cf13 Both the below links are useful for helping get Oracle XE running on JeOS (basic Ubuntu OS) within a virtual machine, although I think the second link is more straight-forward.\'a0\
 \
 \pard\pardeftab720\partightenfactor0
-{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf12 \ul \ulc12 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
+{\field{\*\fldinst{HYPERLINK "http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/"}}{\fldrslt \cf14 \ul \ulc14 http://www.crazymcphee.net/x/2009/08/27/oracle-xe-on-mac-osx/}}\
 \
 \pard\pardeftab720\partightenfactor0
-{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf13 h\cf12 \ul \ulc12 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
+{\field{\*\fldinst{HYPERLINK "http://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/"}}{\fldrslt \cf15 h\cf14 \ul \ulc14 ttp://tedwise.com/2008/10/03/running-oracle-for-development-on-the-mac/}}\
 \pard\pardeftab720\partightenfactor0
-\cf13 \
-Cheers,\cf11 \
-\cf13 Jon\
+\cf15 \
+Cheers,\cf13 \
+\cf15 Jon\
 \
 skyinfly1987@gmail.com\
 mylmtlxg\
@@ -1051,12 +1098,12 @@ wxid_pw8vafhd0n4d21\
 \
 \pard\pardeftab720\sl360\partightenfactor0
 
-\f5\b \cf0 Airi Minami\
+\f6\b \cf0 Airi Minami\
 Mikan Kururugi\
 YUNA SHIINA\
 Yukina Momota\
 
-\fs26 \cf14 MIKURU MIO\
+\fs26 \cf16 MIKURU MIO\
 
 \fs24 Wakaba Onoue\cf0 \
 \
@@ -1079,7 +1126,7 @@ Create Xen VM Template:\
 \
 \pard\pardeftab720\sl360\partightenfactor0
 
-\f7\b0\fs28 \cf5 \cb15 Sources\cf0 : mount -o loop /opt/xen/domains/centos4-tpl/diskimage /mnt/image\
+\f8\b0\fs28 \cf5 \cb17 Sources\cf0 : mount -o loop /opt/xen/domains/centos4-tpl/diskimage /mnt/image\
 \pard\pardeftab720\sl360\partightenfactor0
 
 \f1\b\fs24 \cf0 \cb1 \
@@ -1160,23 +1207,23 @@ put he self-aware pattern as implementation.\
 1. Can you start by summarising your thesis? \
 \
 \pard\pardeftab720\partightenfactor0
-\cf16 The phd thesis propose a self-aware and self-adaptive autoscaling framework, which is a process that adapts the configurations and resource on-demand according to the changing workload. The aim is to optimise QoS and cost for all cloud-based services. The framework is capable to handle dynamics  , uncertainty, QoS interference and trade-offs. By using the principle of self-awareness, the effective autoscaling can be achieved without heavy human intervention and design time knowledge.\cf0 \
+\cf18 The phd thesis propose a self-aware and self-adaptive autoscaling framework, which is a process that adapts the configurations and resource on-demand according to the changing workload. The aim is to optimise QoS and cost for all cloud-based services. The framework is capable to handle dynamics  , uncertainty, QoS interference and trade-offs. By using the principle of self-awareness, the effective autoscaling can be achieved without heavy human intervention and design time knowledge.\cf0 \
 \
 2. Now, can you summarise it in one sentence? \
 \
-\cf17 The phd thesis proposes a self-aware and self-adaptive autoscaling framework that is able to adapt without heavy human intervention and design time knowledge.\cf0 \
+\cf19 The phd thesis proposes a self-aware and self-adaptive autoscaling framework that is able to adapt without heavy human intervention and design time knowledge.\cf0 \
 \
 3. What is the idea that binds your thesis together? \
 \
-\cf18 The idea is a complete autoscaling framework that makes use of self-awareness principles, this would create the an integrated approach for different aspects, i.e., QoS modelling, architecture, control granularity and trade-off decision making. \cf0 \
+\cf20 The idea is a complete autoscaling framework that makes use of self-awareness principles, this would create the an integrated approach for different aspects, i.e., QoS modelling, architecture, control granularity and trade-off decision making. \cf0 \
 \
 4. What motivated and inspired you to carry out this research?\
 \
-\cf16 Cloud computing has been becoming one of the major paradigm in today's software industry, however, the heavy human analysis and intervention in the context of cloud computing is reducing its benefit. This is mainly due to the lack of effective approach for handling dynamics, uncertainty, QoS interference and trade-offs.\cf0 \
+\cf18 Cloud computing has been becoming one of the major paradigm in today's software industry, however, the heavy human analysis and intervention in the context of cloud computing is reducing its benefit. This is mainly due to the lack of effective approach for handling dynamics, uncertainty, QoS interference and trade-offs.\cf0 \
  \
 5. What are the main issues and debates in this subject area? \
 \
-\cf16 The main issues are 1. how can we architect the autoscaling and incorporate the necessary information into the architecture. 2. how can we model the correlation between QoS and primitives; 3. what is the best granularity of control and 4. how to reason about the trade-off decision making in autoscaling.\
+\cf18 The main issues are 1. how can we architect the autoscaling and incorporate the necessary information into the architecture. 2. how can we model the correlation between QoS and primitives; 3. what is the best granularity of control and 4. how to reason about the trade-off decision making in autoscaling.\
 \pard\pardeftab720\partightenfactor0
 \cf0 \
 6. Which of these does your research address? \
@@ -1220,7 +1267,7 @@ The research questions comes from a broad literature review, where I identify th
 Is the application of computational intelligence technique, which is often applied at design time, to a level of system runtime. In such promise,  some quality needs to be traded for efficiency.\
 \
 \pard\pardeftab720\partightenfactor0
-\cf19 16. Why did you use this research methodology? What did you gain from it? \cf0 \
+\cf21 16. Why did you use this research methodology? What did you gain from it? \cf0 \
 \
 The research is based on literature review, and it is partially derived from the systematic literature review paper. Quantitative experiments is also an important part in such methodology.\
 \
@@ -1357,5 +1404,26 @@ The pattern is evaluated using case study, EU reviewers, partners.\
 \cf0 \
 \
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 big high light 20%, a complishment this year, beyond impacts, how we are going to achieve impact on PM, for previous years.\
 \
+the strength from citation, awards, most downloads, for the ones before the last AB, goes into technical details for the new papers.\
+\
+high level details of the new papers, e.g., one or two, challenge, limitations, contributions, results. not super simple.\
+\
+when finish , talk about the other themes, just transition things\
+\
+ask some company about how they feel about our work is relevant, e.g., try to contact corsos to ask one or more quote form their CTO. (ask to help about daase project to see if there is company can give quote )\
+\
+to give an outline for the AB in the next meeting. \
+\
+\
+\
+\
+\pard\pardeftab720\sl340\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf0 \
 }
