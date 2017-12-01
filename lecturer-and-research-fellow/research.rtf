@@ -6,7 +6,8 @@
 \red154\green154\blue154;\red103\green29\blue0;\red179\green179\blue179;\red164\green8\blue0;\red110\green5\blue0;
 \red63\green105\blue30;\red69\green39\blue0;\red73\green0\blue0;\red205\green205\blue205;\red230\green230\blue230;
 \red217\green234\blue202;\red38\green38\blue38;\red14\green14\blue14;\red252\green252\blue252;\red20\green65\blue152;
-\red242\green242\blue242;\red26\green26\blue26;\red255\green255\blue255;\red38\green38\blue38;}
+\red242\green242\blue242;\red174\green174\blue174;\red21\green21\blue21;\red26\green26\blue26;\red32\green35\blue35;
+\red255\green255\blue255;\red11\green11\blue11;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
 {\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
 {\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-alpha\}.}{\leveltext\leveltemplateid202\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid203\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listname ;}\listid3}
@@ -723,6 +724,29 @@ Another promising idea is to embed domain knowledge in the preproduction operati
 \
 ================ A better seeding strategy for MOEA? ================\
 \
+STRAND 1\
+\
+compare different seeding strategy for self-adaptive service composition, getting inspirations from SPL and testing community. (we do not mutate the seeds, as they will be mutated during reproduction anyway)\
+\
+seeding strategy:\
+\
+1. single aggregated objective optimisation of single seed, using single seed to generate a population of individuals.\
+\
+2. single objective optimisation or a maximisation of a single objective, using single seed to generate a population of individuals.\
+\
+3. randomly chosen a population of individuals from previous multi-objective optimisation runs (who\'92s basic concrete services have some differences)\
+\
+4. randomly chosen a population of individuals from previous multi-objective optimisation runs, and contains only the non-dominated individuals (who\'92s basic concrete services have some differences)\
+\
+As a baseline, we can use half-to-half strategy for mutual comparisons.\
+\
+Each strategy will allow to set a parameter n (0<=n<=population size), representing how many individuals are initialised by seeds.\
+\
+\
+How to evaluate?\
+\
+\
+STRAND 2\
 \
 Use previously good adaptation decision as seed?\
 \
@@ -1105,8 +1129,12 @@ Change venue
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0 \cf0 wallace\
-\
-5.4+7.5=13\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs20 \cf21 \cb22 \CocoaLigature0 tinky-winky.cs.bham.ac.uk
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 5.4+7.5=13\
 \
 6649\
 35018\
@@ -1116,11 +1144,11 @@ chaturbate\
 \
 \pard\pardeftab720\sl300\partightenfactor0
 
-\f5\fs26 \cf21 \cb22 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec21 USS name: 
-\f1\fs24 \cf23 \strokec23 48805142 pin 
-\f5\fs26 \cf21 \strokec21 030609
-\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\f5\fs26 \cf23 \expnd0\expndtw0\kerning0
+USS name: 
+\f1\fs24 \cf16 48805142 pin 
+\f5\fs26 \cf23 030609
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 \
 alexander.romanovsky@ncl.ac.uk\
@@ -1138,4 +1166,21 @@ syed.islam@uel.ac.uk\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 {\field{\*\fldinst{HYPERLINK "http://www.rightmove.co.uk/property-for-sale/property-55476694.html"}}{\fldrslt \cf0 http://www.rightmove.co.uk/property-for-sale/property-55476694.html}}\
-architectural patterns for centralised and decentralised self-adaptive software systems}
+architectural patterns for centralised and decentralised self-adaptive software systems\
+\pard\pardeftab720\sl820\partightenfactor0
+
+\fs72 \cf23 \expnd0\expndtw0\kerning0
+749661656832\
+\
+\pard\pardeftab720\sl340\partightenfactor0
+
+\f3\fs28 \cf24 \cb25 \outl0\strokewidth0 \strokec24 CMP3CHENT
+\f0\fs72 \cf23 \cb1 \outl0\strokewidth0 \
+\pard\pardeftab720\sl440\partightenfactor0
+
+\f5\fs38 \cf26 \cb25 \outl0\strokewidth0 \strokec26 Thank you for applying for Tax-Free Childcare. You're eligible to get Tax-Free Childcare for Yvonne Chen.\
+Yvonne's childcare service account details are: \
+\
+	^	Account number: 10027165\
+	^	Sort code: 60-89-71\
+	^	Payment reference: 1100009243056}
