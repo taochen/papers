@@ -1,0 +1,11 @@
+The paper proposals a hybrid approach that use instance based learning to learn if to use quick (reactive) plan and 
+advanced (deliberative) plan toghether or just wati for the advanced plan.
+
+the training is based on offline profiling accroding the the training space that were clustered using response time
+and workload. At runtime, the most similar decision making problem to the ones that profiling stage, calculating using
+response time and predicted arrival of requests.
+
+bad
+
+the learning process is actually not machine learning but using the model checking way, to create cases to used
+at runtime. That is, the generationzation of the approach is questionable

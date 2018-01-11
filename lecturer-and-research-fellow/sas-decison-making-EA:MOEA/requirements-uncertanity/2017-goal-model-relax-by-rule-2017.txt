@@ -1,0 +1,7 @@
+The paper presents an intersting approach to rewrite the goal model when context change. It assume that in some case, 
+self-adaptation is not needed because the quality constriant can not be satisfied at all.
+
+bad
+
+again, it need to state a lot parameters such as the step of change on the qualit constraints, the limit of a golobal
+invriant that trigger the goal model rewriting.
