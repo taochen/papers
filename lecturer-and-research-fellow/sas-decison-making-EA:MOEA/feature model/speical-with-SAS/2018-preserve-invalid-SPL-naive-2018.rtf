@@ -1,0 +1,26 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The paper presents an investigation about if it is better to leave the invalid solution for SPL problem using MOEA. it relies on a previous method called SATIBEA which uses SAT solver with IBEA.\
+\
+But unlike FEMOSAA, SATIBEA does not guarantee to produce all valid solution and it takes too much time.\
+\
+The contributions are\
+1. it does not matter if they leave invalid ones in the initial population\
+2. a low probability to fix solution is better\
+3. for some other problem, it is better to have only valid solution all the way (because of complex dependency)\
+\
+bad\
+\
+the idea is quite obvious, and not surprising. The proposed quality attributes is confusing, why it is not simply like a fitness calculation? why it is a constraint?\
+\
+the reason why the Amazon EC2 requires all valid ones is probably because of the complex constraints that are introduced - all other\'92s constraints are quite simply and thus it would be fine to leave invalid one.\
+\
+We can focus more on deeper algorithm side but will need better results.\
+\
+still binary encoding and use correction as an objective.\
+\
+Quality indicator does not seem justified}
