@@ -7,8 +7,7 @@
 \red63\green105\blue30;\red69\green39\blue0;\red73\green0\blue0;\red205\green205\blue205;\red230\green230\blue230;
 \red217\green234\blue202;\red38\green38\blue38;\red14\green14\blue14;\red252\green252\blue252;\red20\green65\blue152;
 \red242\green242\blue242;\red174\green174\blue174;\red21\green21\blue21;\red26\green26\blue26;\red32\green35\blue35;
-\red11\green11\blue11;\red77\green77\blue77;\red242\green242\blue242;\red209\green209\blue209;\red255\green255\blue255;
-\red109\green109\blue109;\red108\green108\blue108;\red246\green246\blue246;}
+\red11\green11\blue11;\red209\green209\blue209;\red108\green108\blue108;\red246\green246\blue246;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
 {\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
 {\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-alpha\}.}{\leveltext\leveltemplateid202\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid203\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listname ;}\listid3}
@@ -694,10 +693,17 @@ In this case, information is expressed in that crispy or fuzzy threshold.\
 for 2, we can also distinguish between if we see the objective value better than the threshold are different or the same.\
 \
 Evaluation:\
+single objective\
 1. check if each fitness function and the tailored EA fulfil the requirement statement.\
-2. check if the implication relation between requirement statement still hold.\
+use generation of max/min value for single objective, use line plotting, this can also investigate the search pressure. \
+2. check if the implication relation between requirement statement can still be reflected in the optimisation results.\
+check if when putting the solutions of population found by one proposition, and put them into the fitness of another one, to see if the (mean) original and fuzzy value still comply with the implication relation. (this needs to be down both way), use box plot\
+or we simply use the box plot of original value?\
 3. check if the requirement value can have implication.\
 4. overhead/scalability wise\
+\
+muti objective\
+1. check relaxation, similar to 2) but w.r.t all objectives\
 \
 first priority is to meet the constraint, then if we can do better, go better, otherwise stick with it.\
 \
@@ -1227,295 +1233,295 @@ Yvonne's childcare service account details are: \
 \
 \
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrt\brdrs\brdrw20\brdrcf28 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalb \clcbpat27 \clwWidth2480\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalb \clcbpat27 \clwWidth1980\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalb \clcbpat27 \clwWidth5680\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalb \clcbpat27 \clwWidth4260\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalb \clcbpat20 \clwWidth2480\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalb \clcbpat20 \clwWidth1980\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalb \clcbpat20 \clwWidth5680\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalb \clcbpat20 \clwWidth4260\clftsWidth3 \clminh20 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b\fs28 \cf26 \outl0\strokewidth0 \strokec26 ACTIONS\cell 
+\b\fs28 \cf3 ACTIONS\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 PREFERENCE\cell 
+\cf3 PREFERENCE\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 REVIEWER\cell 
+\cf3 REVIEWER\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 INSTITUTION\cell \row
+\cf3 INSTITUTION\cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
 
-\b0 \cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\b0 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on self-adaptive systems\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Alexander Romanovsky
+\b \cf3 Alexander Romanovsky
 \b0 \
 Alexander.Romanovsky@ncl.ac.uk\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Newcastle University\
+\cf3 Newcastle University\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clcbpat32 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clcbpat32 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clcbpat32 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clcbpat32 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat28 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clcbpat28 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clcbpat28 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clcbpat28 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on self-adaptive systems\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Amel Bennaceur
+\b \cf3 Amel Bennaceur
 \b0 \
 amel.bennaceur@open.ac.uk\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Open university\
+\cf3 Open university\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on self-adaptive systems\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Damian Tamburri
+\b \cf3 Damian Tamburri
 \b0 \
 damianandrew.tamburri@polimi.it\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Politecnico di Milano Dipartimento di Chimica Materiali e Ingegneria Chimica Giulio Natta\
+\cf3 Politecnico di Milano Dipartimento di Chimica Materiali e Ingegneria Chimica Giulio Natta\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clcbpat32 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clcbpat32 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clcbpat32 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clcbpat32 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat28 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clcbpat28 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clcbpat28 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clcbpat28 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on self-adaptive systems\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Alfredo Goldman
+\b \cf3 Alfredo Goldman
 \b0 \
 gold@ime.usp.br\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Universidade de Sao Paulo Faculdade de Medicina\
+\cf3 Universidade de Sao Paulo Faculdade de Medicina\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on self-adaptive systems\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Marin Litoiu
+\b \cf3 Marin Litoiu
 \b0 \
 mlitoiu@yorku.ca\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 York university\
+\cf3 York university\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clcbpat32 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clcbpat32 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clcbpat32 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clcbpat32 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat28 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clcbpat28 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clcbpat28 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clcbpat28 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on self-adaptive architecture\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Rabih Bashroush
+\b \cf3 Rabih Bashroush
 \b0 \
 R.Bashroush@uel.ac.uk\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 University of East London\
+\cf3 University of East London\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: work on SBSE\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Federica Sarro
+\b \cf3 Federica Sarro
 \b0 \
 f.sarro@cs.ucl.ac.uk\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 University College London\
+\cf3 University College London\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clcbpat32 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clcbpat32 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clcbpat32 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clcbpat32 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat28 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clcbpat28 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clcbpat28 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clcbpat28 \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on self-adaptive systems\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 John Thomson
+\b \cf3 John Thomson
 \b0 \
 j.thomson@st-andrews.ac.uk\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 University of St Andrews\
+\cf3 University of St Andrews\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4260\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on adaptive systems\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Syed Islam
+\b \cf3 Syed Islam
 \b0 \
 syed.islam@uel.ac.uk\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 University of East London\
+\cf3 University of East London\
 \
 \cell \row
 
-\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat29 \tamarb400 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
-\clvertalt \clcbpat32 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
-\clvertalt \clcbpat32 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
-\clvertalt \clcbpat32 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
-\clmrg \clvertalt \clcbpat32 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf28 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trcbpat1 \tamarb400 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat28 \clwWidth2480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2160
+\clvertalt \clcbpat28 \clwWidth1980\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx4320
+\clmgf \clvertalt \clcbpat28 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx6480
+\clmrg \clvertalt \clcbpat28 \clwWidth5680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf26 \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
 \pard\intbl\itap1\pardeftab720\sl320\partightenfactor0
-\cf26 \cb29 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Select...
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Edit
 \f5 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
-\f6 \cf31 \strokec31 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
-\f5 \cf26 \strokec26 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
+\f6 \cf27 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f5 \cf3 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0
 \f6 Remove Reviewer
-\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cb1 \cell 
+\f5 \'a0 \'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\'a0 \'a0\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
-\cf26 Recommended\
+\cf3 Recommended\
 Reason: Work on SBSE\cell 
 \pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
 
-\b \cf26 Yuanyuan ZHANG
+\b \cf3 Yuanyuan ZHANG
 \b0 \
 Yuanyuan.Zhang@cs.ucl.ac.uk\cell 
 \pard\intbl\itap1\cell \lastrow\row
