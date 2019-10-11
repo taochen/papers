@@ -1,0 +1,21 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The paper is quite interesting as it tries to explore, based on the knowledge of a feature model, about the samples that are more likely to be effective during exploration of the online/incremental learning process for SAS. In this way, it hopes to learn the model quicker.\
+\
+1. Incremental one explore the leaves first\
+2. Depth one explores the one with higher depth first (the one that is included in more solution)\
+\
+The other interesting point is about considering system evolution by comparing the differences of two feature model, it consider any new features and new solution, while ignoring any features that have been removed, considering whether they are effective or not.\
+\
+This seems a bit like the reinforcement learning, because whether a solution is effective or not is determined by the model prediction.\
+\
+Bad\
+\
+For the depth based strategy is interesting, the idea is that the more solution that a feature is included, the more likely that it is in an effective solution/sample, thus it should be explore first. But the depth is found out by an existing tool, which my be slow when the search space is large, is this possible?\
+\
+It is also unclear about what learning algorithm is used? The experiments seem like simply evaluation about how to find an effective solution, but how effective is defined?}
