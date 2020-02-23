@@ -1,38 +1,56 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red222\green226\blue234;}
-{\*\expandedcolortbl;;\cssrgb\c89412\c90980\c93333;}
-\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+{\colortbl;\red255\green255\blue255;\red222\green226\blue234;\red222\green226\blue234;}
+{\*\expandedcolortbl;;\cssrgb\c89412\c90980\c93333;\cssrgb\c89412\c90980\c93333;}
+\margl1440\margr1440\vieww10800\viewh9220\viewkind0
 \deftab720
 \pard\pardeftab720\sl180\partightenfactor0
 
 \f0\fs26 \cf0 \cb2 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec0     \\item RQ1: Which ML techniques have been used?\
 \
-Unjustifiable bias?\
+(Unjustifiable bias on classic ML algorithms, given the recent advances of deep learning on NLP domain), see \
 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf0 \strokec0 Recent Trends in Deep Learning Based Natural Language Processing\
+\pard\pardeftab720\sl180\partightenfactor0
+\cf0 \strokec0 \
     \\item RQ2: Which software projects have been used?\
 \
-Diversity in Software Engineering Research - use this paper to calculate the coverage metrics\
- For each of the paper reviewed\
+(Possibly low coverage?) Diversity in Software Engineering Research - use this paper to calculate the coverage metrics for each of the paper reviewed\
+\
+Add a pie chart that shows the number of projects consider per paper\
 \
     \\item RQ3: What bug report analysis uses ML techniques?\
 \
-What Makes a Good Bug Report? - use this paper ti identify whether there is any gap between the problem studied and the practically important issues\
-\
+\pard\pardeftab720\sl180\partightenfactor0
+\cf0 \cb3 \outl0\strokewidth0 (Possible discrepancy between the problem studied and the practical importance?) \cb2 \outl0\strokewidth0 \strokec0 What Makes a Good Bug Report? (Use the TSE version) - use this paper to identify whether there is any gap between the problem studied and the practically important issues\
+\pard\pardeftab720\sl180\partightenfactor0
+\cf0 \strokec0 \
     \\item RQ4: What types of bug have been studied?\
 \
-Use the following 5 papers to declare the importance and severity of performance bug, particularly in contrast to the functional ones.\
+(Under-estimated importance/attention to performance bug report analysis) Use the following papers to declare the importance and severity of performance bug, particularly in contrast to the functional ones.\
 A Qualitative Study on Performance Bugs\
 Discovering, Reporting, and Fixing Performance Bugs\
 An Empirical Study on Performance Bugs for Highly Configurable Software Systems\
 Understanding and Detecting Real-World Performance Bugs\
 \
-    \\item RQ5: What feature representation methods have been used?\
+    \\item RQ5: What feature selection methods have been used?\
+\
+(The predominately used TF-IDF may cause issue?) Can you find some drawbacks of TF-IDF? E.g., does not capture position of the words, and no semantics. This may be linked to the TSE paper - \cb3 \outl0\strokewidth0 What Makes a Good Bug Report? Perfectly if we can provide a bug report example to show the lack of semantics is important, then it would be great\cb2 \outl0\strokewidth0 \strokec0 \
+\
     \\item RQ6: Which performance metrics have been used?\
 \
-Unjustifiable bias? Use defect prediction metrics?\
+(Low usage of AUC for multi class classification)\
+\pard\pardeftab720\sl180\partightenfactor0
+\cf0 \cb3 \outl0\strokewidth0 (Ways to average the precision/recall/f measure with cross-val/bootstrap etc), see:\
+\
+Apples-to-Apples in Cross-Validation Studies: Pitfalls in Classifier Performance Measurement\cb2 \outl0\strokewidth0 \strokec0 \
+\pard\pardeftab720\sl180\partightenfactor0
+\cf0 \strokec0 Improving the AUC of Probabilistic Estimation Trees\\\
 \
     \\item RQ7: Which statistical tests or effect size measures have been used?\
 \
-Use the following to paper to claims the importance of having proper statistical test and effect size measurement }
+(Lack of using proper statistical test/effect size) Use the following paper to claim the importance of having proper statistical test and effect size measurement \
+A Practical Guide for Using Statistical Tests to Assess Randomized Algorithms in Software Engineering\
+A systematic review of effect size in software engineering experiments}
