@@ -1,13 +1,14 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 This paper present an extended work of the preference based MOEA for testing.\
 \
-It embeds preference into many objective selection, i.e., prefer extreme points. The process is very simple: get the best objective value for each objective and put then as front 0; if none of them exist, simplify use non-dominated sort based on the objective that has 0 (the branch that has not been covered)\
+It embeds preference into many objective selection, i.e., prefer extreme points. The process is very simple: get the best objective value for each objective and put then as front 0; if none of them exist, simplify use non-dominated sort based on the objective that has 0 (the branch that has not been covered), from the previous MOSA\
 \
 This is then extended with the same way but adding more branch coverage objective\
 \
-Now, it use a performance proximity metric that nurse parallel with the crowding distance. I.e., it use the the performance one when stagnation is detected, which is the objective value does not changed on certain generation.}
+Now, it use a performance proximity metric that runs parallel with the crowding distance. I.e., it use the the either one when stagnation is detected under the other, which is the objective value does not changed on certain generation. The final result is an archive.}
