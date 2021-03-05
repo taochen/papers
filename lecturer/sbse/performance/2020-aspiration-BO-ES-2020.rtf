@@ -10,6 +10,8 @@
 1. Tune both the hyper parameter and cloud resource configuration\
 2. Using a subsampling. Note that this sub sampling is not the sample of configuration, but the sample of data that used to train the ML model under target.\
 \
+CEA is merely a metric to reduce the search space of the acquisition function, e.g., 10% with the largest CEA value, predicted by the model. But is it expensive to evaluate by entropies search (acquisition) much more expensive than CEA?\
+\
 Other than that, this is a very generic BO approach.\
 \
 It seems that the acquisition function is a probability (Entropy Search), and it consider aspiration similar to p1 and p2 as constraint (accuracy is p0, though). A CEA is used for acquisition instead of grid search.\
