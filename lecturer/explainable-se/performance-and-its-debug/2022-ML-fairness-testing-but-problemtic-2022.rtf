@@ -1,0 +1,16 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The paper present approach to test ML system that aims to optimise accuracy and fairness.\
+\
+It has two metrics to measure fairness, hence forming a 2 level hierarchy of the Pareto front. (Look like the accuracy it the main drive, and it only consider worse accuracy when all fairness is the same, not sure how the fairness with two metrics can be turned into a single value?)\
+\
+It then use the objective value into K-mean to calculate some labels, which then use the individual + the objective value pari to train an interpretable model for explaining which hyper parameter causes fairness issue, e.g., low and high fairness if k=2. (Similar idea of explaining search, but naive one)\
+\
+But why we need both high and low fairness? May be because it seeks to debug the influence of hyper parameter?\
+\
+It mentions to use the accuracy as constraint, but really it only use it in the environmental selection to select hierarchical Pareto front (is this considered as constraint?). There is not consideration of diversity and no cap on the population}
